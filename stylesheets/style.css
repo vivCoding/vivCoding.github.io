@@ -54,6 +54,17 @@ body {
     padding-bottom: 2em;
 }
 
+#about a {
+    text-decoration: none;
+    color: white;
+    font-weight: 550;
+    transition: 0.25s;
+}
+
+#about a:hover {
+    color: cyan;
+}
+
 #about #profilePic {
     max-width: 30em;
     border-radius: 7em;
