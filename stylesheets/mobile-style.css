@@ -11,12 +11,38 @@
         }
     }
 
-    #profilePic {
+    #about #profilePic {
         margin-bottom: 0;
     }
 
     #about-content {
         margin-top: 0;
         text-align: center;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #about #profilePic {
+        width: 80vw;
+        border-radius: 20vw;
+    }
+
+    #about #about-content {
+        width: 90vw
+    }
+
+    .card {
+        flex-direction: column;
+        padding: 1em;
+    }
+
+    .cardContent {
+        padding: 0em;
+        text-align: center;
+        width: 70vw;
+    }
+
+    .cardContent * {
+        margin-bottom: 0;
     }
 }

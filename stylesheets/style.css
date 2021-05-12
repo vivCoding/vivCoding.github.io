@@ -17,11 +17,10 @@
 body {
     color: white;
     margin: 0;
-    background-color: rgb(0, 44, 109);
-    /* background-image: url("../assets/auraSky.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed; */
+    background-color: rgb(0, 27, 68);
+    background-image: linear-gradient(rgb(0, 136, 199), rgb(0, 27, 68));
+    /* background-image: url("../assets/auraSky.jpg"); */
+    background-attachment: fixed;
 }
 
 .section {
@@ -35,6 +34,8 @@ body {
 
 .title {
     font-size: 300%;
+    /* box-shadow: 0em 0.6em 0.6em 0 rgba(0, 0, 0, 0.5); */
+    text-shadow: 0.1em 0.1em rgba(0, 0, 0, 0.5);
 }
 
 #content {
@@ -57,7 +58,7 @@ body {
 #about a {
     text-decoration: none;
     color: white;
-    font-weight: 550;
+    font-weight: 500;
     transition: 0.25s;
 }
 
@@ -69,13 +70,17 @@ body {
     max-width: 30em;
     border-radius: 7em;
     margin: 5em;
-    box-shadow: 0em 0.3em 0.3em 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0em 0.6em 0.6em 0 rgba(0, 0, 0, 0.5);
     transition-duration: 0.25s;
 }
 
 #about #profilePic:hover {
     transition-duration: 0.25s;
     transform: scale(1.1, 1.1);
+}
+
+#about #about-content {
+    padding: 3em 0;
 }
 
 #links .iconBtn img {
@@ -96,12 +101,14 @@ body {
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
+    /* padding: 3em 0; */
 }
 
 .card {
     background-color: whitesmoke;
     color: black;
     border-radius: 1em;
+    box-shadow: 0em 0.6em 0.6em 0 rgba(0, 0, 0, 0.5);
     margin: 1em;
     padding: 1.5em;
     display: flex;
@@ -127,5 +134,5 @@ body {
 .cardContent {
     align-self: flex-start;
     padding: 0em 1.5em 0 4em;
-    max-width: 25em;
+    width: 20vw;
 }
