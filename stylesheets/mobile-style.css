@@ -19,6 +19,10 @@
         margin-top: 0;
         text-align: center;
     }
+
+    #links {
+        justify-content: center;
+    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -31,7 +35,7 @@
         width: 90vw
     }
 
-    .card {
+    .card a {
         flex-direction: column;
         padding: 1em;
     }
