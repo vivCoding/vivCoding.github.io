@@ -15,6 +15,24 @@ var content = {
     ],
     projects: [
         {
+            title: "vTodo",
+            link: "https://vtodo.herokuapp.com",
+            image: "assets/checkmark.jpg",
+            description: "An extremely basic app where users can write and save todo apps. Created with Vue/TypeScript, FastApi, and MongoDB."
+        },
+        {
+            title: "vsearch",
+            link: "https://github.com/vivCoding/vsearch",
+            image: "assets/search.png",
+            description: "An attempt to make a customizable web crawler/data miner wth search engine fetures. Created with Scrapy, Flask, and MongoDB."
+        },
+        {
+            title: "vBlocker",
+            link: "https://github.com/vivCoding/vBlocker",
+            image: "assets/code_icon.png",
+            description: "Simple browser extension that blocks user specified domains with a password. Created with JavaScript"
+        },
+        {
             title: "HealthEye",
             link: "https://devpost.com/software/healtheye",
             image: "assets/healtheye.png",
@@ -24,7 +42,7 @@ var content = {
             title: "Vusic",
             link: "https://vusicmusic.herokuapp.com",
             image: "assets/logo500x500.png",
-            description: "A fast and easy to use music queuer, inspired by Discord GroovyBot. Created with Vue. Submited to the BoilerMake VIII Hackathon"
+            description: "A fast and easy to use music queuer, inspired by Discord GroovyBot. Created with Vue and NodeJS. Submited to the BoilerMake VIII Hackathon"
         },
         {
             title: "ASCII Art Converter",
