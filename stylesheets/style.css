@@ -12,6 +12,7 @@
 
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* font-family: monospace; */
 }
 
 body {
@@ -39,7 +40,7 @@ h1 {
 .title {
     font-size: 300%;
     /* box-shadow: 0em 0.6em 0.6em 0 rgba(0, 0, 0, 0.5); */
-    text-shadow: 0.1em 0.1em rgba(0, 0, 0, 0.5);
+    text-shadow: 0.1em 0.1em 0.2em black;
     margin-bottom: 0.5em;
 }
 
@@ -145,7 +146,7 @@ h1 {
 }
 
 .cardContent {
-    align-self: flex-start;
+    /* align-self: flex-start; */
     padding: 0em 1.5em 0 4em;
     width: 20vw;
 }
