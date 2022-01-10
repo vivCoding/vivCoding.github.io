@@ -18,7 +18,7 @@ var content = {
             title: "VChess",
             link: "https://vivcoding.github.io/vchess/",
             image: "assets/chess_piece_knight.png",
-            description: "A basic C++ chess engine for playing chess games and generating optimal moves. Designed to be paired with a GUI and be a backend for chess programs."
+            description: "A basic C++ chess engine for playing chess games and generating optimal moves. Designed to be paired with a GUI and be a backend for chess programs. Deployable to the web with WebAssembly."
         },
         {
             title: "Vusic",
