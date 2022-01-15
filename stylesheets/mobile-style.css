@@ -11,11 +11,11 @@
         }
     }
 
-    #about #profilePic {
+    #profilePic {
         margin-bottom: 0;
     }
 
-    #about-content {
+    #intro-content {
         margin-top: 0;
         text-align: center;
     }
@@ -26,11 +26,11 @@
 }
 
 @media only screen and (max-width: 600px) {
-    #about #profilePic {
+    #profilePic {
         width: 80vw;
     }
 
-    #about #about-content {
+    #intro-content {
         width: 90vw
     }
 
