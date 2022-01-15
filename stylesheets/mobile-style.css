@@ -23,6 +23,11 @@
     #links {
         justify-content: center;
     }
+
+    #about {
+        padding-right: 5vw;
+        padding-left: 5vw;
+    }
 }
 
 @media only screen and (max-width: 600px) {
