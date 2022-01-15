@@ -22,9 +22,27 @@
     }
 }
 
+@keyframes slideUp {
+    0% {
+        transform: translate(-50%, 100%);
+        /* font-size: 30%; */
+    }
+    75% {
+        transform: translate(-50%, -20%);
+        /* font-size: 80%; */
+    }
+    92% {
+        transform: translate(-50%, 15%);
+    }
+    100% {
+        transform: translate(-50%, 0%);
+    }
+}
+
 * {
     font-family: "Roboto_Mono";
     /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    scroll-behavior: smooth;
 }
 
 body {
@@ -38,6 +56,17 @@ body {
 
 h1 {
     margin-bottom: 0em;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: 0.25s;
+}
+
+a:hover {
+    color: cyan;
 }
 
 .section {
@@ -77,17 +106,6 @@ h1 {
 #profilePic:hover {
     transition-duration: 0.25s;
     transform: scale(1.1, 1.1);
-}
-
-#about a {
-    text-decoration: none;
-    color: white;
-    font-weight: 500;
-    transition: 0.25s;
-}
-
-#about a:hover {
-    color: cyan;
 }
 
 #about-content {
@@ -157,4 +175,33 @@ h1 {
 
 .cardContent h2 {
     font-weight: bold;
+}
+
+#backToTop {
+    display: none;
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%);
+    padding: 1em;
+    bottom: 0;
+    background-color: rgb(0, 102, 150);
+    border-radius: 1em 1em 0 0;
+    font-weight: bold;
+    box-shadow: 0 -0em 1.5em 0.1em rgba(0, 0, 0, 0.438);
+    transition-duration: 0.35s;
+    font-size: 85%;
+    animation: 0.4s ease slideUp;
+}
+
+#backToTop:hover {
+    transition-duration: 0.35s;
+    cursor: pointer;
+    font-size: 100%;
+    box-shadow: 0 -0em 1.5em 0.75em rgba(0, 0, 0, 0.438);
+    color: white;
+}
+
+#backToTop img {
+    position: relative;
+    width: 3em;
 }

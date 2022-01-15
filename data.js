@@ -70,10 +70,3 @@ var content = {
         }
     ]
 }
-
-var app = new Vue({
-    el: "#content",
-    data: {
-        content: content
-    }
-})
