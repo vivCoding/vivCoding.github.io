@@ -7,7 +7,7 @@ var app = new Vue({
 
 var backToTopBtn = document.getElementById("backToTop")
 
-var height = window.visualViewport.height / 2
+var height = window.visualViewport.height / 3
 
 function displayBackToTop() {
     backToTopBtn.style.display = window.scrollY >= height ? "block" : "none"

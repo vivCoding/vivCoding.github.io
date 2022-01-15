@@ -24,7 +24,7 @@ var content = {
             title: "Vusic",
             link: "https://vusicmusic.herokuapp.com",
             image: "assets/logo500x500.png",
-            description: "A fast and easy to use music queuer, inspired by Discord GroovyBot. Created with Vue and NodeJS. Submited to the BoilerMake VIII Hackathon"
+            description: "A fast and easy to use music queuer, inspired by Discord GroovyBot. Created with Vue and NodeJS. Submited to the BoilerMake VIII Hackathon, later updated with revisions and improvements"
         },
         {
             title: "HealthEye",
@@ -36,7 +36,7 @@ var content = {
             title: "vsearch",
             link: "https://github.com/vivCoding/vsearch",
             image: "assets/search.png",
-            description: "An attempt to make a customizable web crawler/data miner wth search engine fetures. Created with Scrapy, Flask, and MongoDB"
+            description: "An attempt to make a customizable web crawler/data miner wth search engine features. Created with Scrapy, Flask, and MongoDB"
         },
         {
             title: "vBlocker",
