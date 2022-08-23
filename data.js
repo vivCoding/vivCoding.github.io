@@ -12,7 +12,7 @@ var content = {
         },
         {
             title: "LinkedIn",
-            link: "https://www.linkedin.com/in/vincent-v-vu/",
+            link: "https://www.linkedin.com/in/vincent-v-",
             icon: "assets/linkedinLogo_trans.png"
         }
     ],
