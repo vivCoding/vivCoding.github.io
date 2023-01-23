@@ -8,12 +8,14 @@ var content = {
         {
             title: "GitHub",
             link: "https://github.com/vivCoding",
-            icon: "assets/githubIcon_trans.png"
+            icon: "assets/githubIcon_trans.png",
+            description: "View my GitHub profile",
         },
         {
             title: "LinkedIn",
             link: "https://www.linkedin.com/in/vincent-v-",
-            icon: "assets/linkedinLogo_trans.png"
+            icon: "assets/linkedinLogo_trans.png",
+            description: "View my LinkedIn profile",
         }
     ],
     projects: [

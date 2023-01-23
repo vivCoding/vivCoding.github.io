@@ -28,7 +28,7 @@
                 <p>My favorite sorting algorithm is <a href = "https://en.wikipedia.org/wiki/Bogosort" target="_blank" rel="noopener noreferrer">bogosort</a>.</p>
                 <div id = "links">
                     <div class = "iconBtn" v-for = "link in content.links" :key = "link.title">
-                        <a :href = "link.link" target="_blank" rel="noopener noreferrer"><img :src = "link.icon"/></a>
+                        <a :href = "link.link" :title="link.description" target="_blank" rel="noopener noreferrer"><img :src = "link.icon"/></a>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
             <p>A collection of my works, big and small</p>
             <div id = "projects-content">
                 <div class = "card" v-for = "project in content.projects" :key = "project.title">
-                    <a :href = "project.link" target="_blank" rel="noopener noreferrer">
+                    <a :href = "project.link" :title="project.title" target="_blank" rel="noopener noreferrer">
                         <img :src = "project.image">
                         <div class = "cardContent">
                             <h2>{{ project.title }}</h2>
