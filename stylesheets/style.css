@@ -70,11 +70,11 @@ a:hover {
 }
 
 .section {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: wrap; */
     margin-bottom: 4em;
 }
 
@@ -88,6 +88,7 @@ a:hover {
 #intro {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     min-height: 90vh;
@@ -140,20 +141,24 @@ a:hover {
     font-size: 120%;
 }
 
+#projects {
+    text-align: center;
+}
+
 #projects-content {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 2em;
+    text-align: start;
+    margin: 0 5vw;
 }
 
 .card {
     background-color: whitesmoke;
     border-radius: 1em;
     box-shadow: 0em 0.6em 0.6em 0 rgba(0, 0, 0, 0.5);
-    margin: 1em;
     transition-duration: 0.25s;
-    display: flex;
+    padding: 1.5em;
 }
 
 .card:hover {
@@ -163,13 +168,13 @@ a:hover {
 }
 
 .card a {
-    color: black;
-    text-decoration: none;
-    padding: 1.5em;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    color: black;
+    text-decoration: none;
+    height:100%;
 }
 
 .card img {
@@ -180,7 +185,7 @@ a:hover {
 
 .cardContent {
     padding: 0em 1.5em 0 4em;
-    width: 20vw;
+    /* width: 20vw; */
 }
 
 .cardContent h2 {

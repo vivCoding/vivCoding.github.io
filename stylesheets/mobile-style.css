@@ -28,6 +28,12 @@
         padding-right: 5vw;
         padding-left: 5vw;
     }
+
+    #projects-content {
+        display: flex;
+        flex-direction: column;
+        margin: 0 4em;
+    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -39,18 +45,33 @@
         width: 90vw
     }
 
+    #projects-content {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        text-align: center;
+    }
+
+
     .card a {
         flex-direction: column;
-        padding: 1em;
+        justify-content: center;
     }
 
     .cardContent {
         padding: 0em;
+    }
+
+    /* .card a {
+        flex-direction: column;
+    }
+
+    .cardContent {
         text-align: center;
         width: 70vw;
     }
 
     .cardContent * {
         margin-bottom: 0;
-    }
+    } */
 }
