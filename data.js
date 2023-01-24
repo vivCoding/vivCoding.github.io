@@ -23,7 +23,7 @@ var content = {
             title: "MeetCode",
             link: "https://devpost.com/software/meetcode",
             image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.glassdoor.com%2Fsqll%2F1763822%2Fleetcode-squarelogo-1524799041565.png&f=1&nofb=1&ipt=c0be23ef85ff6d9b1a72e5a6d28b4a21dfb336db0b2e502562e98e10d381346b&ipo=images",
-            description: "A collaborative platform to learn LeetCode problem. Submitted to the Boilermake X hackathon"
+            description: "A collaborative platform to learn LeetCode problems together. Submitted to the Boilermake X hackathon"
         },
         {
             title: "Blanner",
