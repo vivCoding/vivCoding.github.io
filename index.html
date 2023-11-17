@@ -1,68 +1,25 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href = "stylesheets/style.css"/>
-    <link rel = "stylesheet" href = "stylesheets/mobile-style.css"/>
-    <link rel="shortcut icon" type="image/jpg" href="assets/logo500x500.png"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta property="og:title" content="Vincent V">
-    <meta property="og:image" content="assets/logo500x500.png">
-    <meta property="og:url" content="https://vivcoding.github.io">
-    <meta property="og:type" content="website">
-    <meta property="og:description" content="CS Student at Purdue University">
+    <link rel="stylesheet" href="dist/style.css" />
+    <link rel="shortcut icon" type="image/jpg" href="assets/logo500x500.png" />
+
+    <meta property="og:title" content="Vincent V" />
+    <meta property="og:image" content="assets/logo500x500.png" />
+    <meta property="og:url" content="https://vivcoding.github.io" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:description"
+      content="Vincent V | CS Student at Purdue University"
+    />
 
     <title>Vincent V</title>
-</head>
-<body>
-    <!-- maybe want to add nav here? -->
-    <div id = "content">
-        <div id = "intro" class = "section">
-            <img id = "profilePic" src = "assets/logo500x500.png"/>
-            <div id = "intro-content">
-                <h1 class = "title">Vincent V</h1>
-                <h2> {{ content.subtitle }} </h2>
-                <p> {{ content.description }} </p>
-                <p>My favorite sorting algorithm is <a href = "https://en.wikipedia.org/wiki/Bogosort" target="_blank" rel="noopener noreferrer">bogosort</a>.</p>
-                <div id = "links">
-                    <div class = "iconBtn" v-for = "link in content.links" :key = "link.title">
-                        <a :href = "link.link" :title="link.description" target="_blank" rel="noopener noreferrer"><img :src = "link.icon"/></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id = "about" class = "section">
-            <h1 class = "title">About Me</h1>
-            <p>I am currently a 4th year student at Purdue University, studying computer science focusing in software engineering and machine intelligence.</p>
-            <div id="readMore" style="display: none">
-                <p>I am deeply passionate about developing practical solutions that will contribute to society, whether it be to advance humanity or to help out a local community. I aspire to utilize my interest in technology to achieve these goals.</p>
-                <p>Of course, once in awhile, I do enjoy up making fun and trivial programs, especially when I'm learning new technologies.</p>
-                <p>I enjoy participating in hackathons and working on side projects with university clubs. Outside of CS activities, I love playing piano, exercising, and playing badminton.</p>
-            </div>
-            <p>My favorite sorting algorithm is <a href = "https://en.wikipedia.org/wiki/Bogosort" target="_blank" rel="noopener noreferrer">bogosort</a>. It reminds us to never give up on our goals.<br>...<br>It also inspires us to come up with better ways to get to our goals.</p>
-            <a id="readMoreAboutMe" style="text-decoration: underline; cursor: pointer; font-size: large; font-weight: bold" onclick="readMoreAboutMe()">Read More</a>
-        </div>
-        <div id = "projects" class = "section">
-            <h1 class = "title">Projects</h1>
-            <p>A collection of my works, big and small</p>
-            <div id = "projects-content">
-                <div class = "card" v-for = "project in content.projects" :key = "project.title">
-                    <a :href = "project.link" :title="project.title" target="_blank" rel="noopener noreferrer">
-                        <img :src = "project.image">
-                        <div class = "cardContent">
-                            <h2>{{ project.title }}</h2>
-                            <p>{{ project.description }}</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <a id = "backToTop" href="#">↑ Back to Top ↑</a>
-    </div>
-</body>
-<script src = "vue_prod_2.6.14.js"></script>
-<script src = "data.js"></script>
-<script src = "main.js"></script>
+  </head>
+  <body>
+    <h1 class="text-3xl font-bold">Hello world</h1>
+  </body>
+  <script src="scripts/data.js"></script>
 </html>

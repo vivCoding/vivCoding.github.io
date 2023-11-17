@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "dev": "pnpm css-build && node test-server.js",
+    "css-build": "tailwindcss -i ./styles/index.css -o ./dist/style.css",
+    "css-build:watch": "pnpm css-build --watch"
+  },
+  "devDependencies": {
+    "prettier": "^3.1.0",
+    "prettier-plugin-tailwindcss": "^0.5.7",
+    "tailwindcss": "^3.3.5"
+  }
+}
