@@ -3,6 +3,12 @@ const defaultTheme = require("tailwindcss/defaultTheme")
 
 module.exports = {
   content: ["./**/*.{html,js}"],
+  // TODO remove in prod
+  safelist: [
+    {
+      pattern: /.*/,
+    },
+  ],
   theme: {
     extend: {
       fontFamily: {

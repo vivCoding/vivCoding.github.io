@@ -22,21 +22,35 @@ const extToType = {
 }
 
 const server = http.createServer((req, res) => {
-  console.log("got", req.url)
+  console.log(
+    `${new Date().toLocaleTimeString([], {
+      hour: "numeric",
+      minute: "2-digit",
+      second: "numeric",
+      fractionalSecondDigits: 2,
+    })} - ${req.method}: ${req.url}`
+  )
 
-  const filePath = path.join(home, req.url == "/" ? "index.html" : req.url)
-  const extname = path.extname(filePath)
-  const contentType = extToType[extname]
+  try {
+    const filePath = path.join(home, req.url == "/" ? "index.html" : req.url)
+    const extname = path.extname(filePath)
+    const contentType = extToType[extname]
 
-  fs.readFile(filePath, (err, data) => {
-    if (!err) {
-      res.writeHead(200)
-      res.end(data)
-    } else {
-      res.writeHead(404)
-      res.end(`404 ${filePath} not found`)
-    }
-  })
+    fs.readFile(filePath, (err, data) => {
+      if (!err) {
+        res.writeHead(200, {
+          ...(contentType && { "Content-Type": contentType }),
+        })
+        res.end(data)
+      } else {
+        res.writeHead(404)
+        res.end(`404 ${filePath} not found`)
+      }
+    })
+  } catch (err) {
+    res.writeHead(500)
+    res.end(`500 server error: ${err}`)
+  }
 })
 
 server.listen(port, () => {

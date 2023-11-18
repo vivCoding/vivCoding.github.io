@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "dev": "pnpm css-build && node test-server.js",
-    "css-build": "tailwindcss -i ./styles/index.css -o ./dist/style.css",
+    "dev": "node test-server.js",
+    "css-build": "tailwindcss -i ./styles/index.css -o ./styles/tw.css",
     "css-build:watch": "pnpm css-build --watch"
   },
   "devDependencies": {
