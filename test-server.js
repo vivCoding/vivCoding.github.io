@@ -3,7 +3,7 @@ var http = require("http")
 var fs = require("fs")
 var path = require("path")
 
-const port = 3000
+const port = process.argv[2] || 3000
 const home = __dirname
 
 const extToType = {
