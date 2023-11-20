@@ -10,82 +10,6 @@ const logoMiddle = document.getElementById("logoMiddle")
 const logoBottom = document.getElementById("logoBottom")
 const logoStroke = document.getElementById("logoStroke")
 
-const heroTextAnimation = async () => {
-  await delay(500)
-  // initial setup
-  const containerBr = heroText.getBoundingClientRect()
-  const dist = containerBr.height / 2
-  heroTitle.style.transform = `translateY(calc(${dist}px - 50%))`
-
-  // border animation
-  heroBorder.animate([{ transform: "scaleY(0)" }, { transform: "scaleY(1)" }], {
-    duration: 500,
-    easing: "cubic-bezier(0.86, 0, 0.07, 1)",
-    fill: "forwards",
-  })
-
-  // wait till text slides in
-  await waitForAnimation(
-    heroText.animate(
-      [
-        {
-          offset: 0,
-          opacity: 0,
-          transform: "translateX(-150%) scale(0.4)",
-          easing: "ease",
-        },
-        {
-          offset: 0.5,
-          opacity: 0,
-          easing: "ease",
-        },
-        {
-          offset: 1,
-          opacity: 1,
-          transform: "translateX(0%) scale(1)",
-          easing: "ease",
-        },
-      ],
-      {
-        duration: 500,
-        fill: "forwards",
-      }
-    )
-  )
-
-  await delay(100)
-  // slide smaller text down, and title up
-  heroTitle.animate(
-    { transform: "translateY(0)" },
-    { duration: 300, easing: "ease", fill: "forwards" }
-  )
-  heroDesc.animate(
-    [
-      {
-        offset: 0,
-        opacity: 0,
-        transform: "translateY(-80%)",
-        easing: "ease",
-      },
-      {
-        offset: 0.5,
-        opacity: 0,
-        easing: "ease",
-      },
-      {
-        offset: 1,
-        opacity: 1,
-        transform: "translateY(0)",
-        easing: "ease",
-      },
-    ],
-    {
-      duration: 300,
-      fill: "forwards",
-    }
-  )
-}
-
 document.body.onload = async () => {
   // initial setup
   logoInit.style.position = "relative"
@@ -233,6 +157,82 @@ document.body.onload = async () => {
   const sibling = logoInit.nextSibling
   logoInit.remove()
   parent.insertBefore(newNode, sibling)
+}
+
+async function heroTextAnimation() {
+  await delay(500)
+  // initial setup
+  const containerBr = heroText.getBoundingClientRect()
+  const dist = containerBr.height / 2
+  heroTitle.style.transform = `translateY(calc(${dist}px - 50%))`
+
+  // border animation
+  heroBorder.animate([{ transform: "scaleY(0)" }, { transform: "scaleY(1)" }], {
+    duration: 500,
+    easing: "cubic-bezier(0.86, 0, 0.07, 1)",
+    fill: "forwards",
+  })
+
+  // wait till text slides in
+  await waitForAnimation(
+    heroText.animate(
+      [
+        {
+          offset: 0,
+          opacity: 0,
+          transform: "translateX(-150%) scale(0.4)",
+          easing: "ease",
+        },
+        {
+          offset: 0.5,
+          opacity: 0,
+          easing: "ease",
+        },
+        {
+          offset: 1,
+          opacity: 1,
+          transform: "translateX(0%) scale(1)",
+          easing: "ease",
+        },
+      ],
+      {
+        duration: 500,
+        fill: "forwards",
+      }
+    )
+  )
+
+  await delay(100)
+  // slide smaller text down, and title up
+  heroTitle.animate(
+    { transform: "translateY(0)" },
+    { duration: 300, easing: "ease", fill: "forwards" }
+  )
+  heroDesc.animate(
+    [
+      {
+        offset: 0,
+        opacity: 0,
+        transform: "translateY(-80%)",
+        easing: "ease",
+      },
+      {
+        offset: 0.5,
+        opacity: 0,
+        easing: "ease",
+      },
+      {
+        offset: 1,
+        opacity: 1,
+        transform: "translateY(0)",
+        easing: "ease",
+      },
+    ],
+    {
+      duration: 300,
+      fill: "forwards",
+    }
+  )
 }
 
 // #region utility
