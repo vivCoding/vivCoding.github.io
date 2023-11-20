@@ -8,6 +8,7 @@ const logoInit = document.getElementById("logoInit")
 const logoTop = document.getElementById("logoTop")
 const logoMiddle = document.getElementById("logoMiddle")
 const logoBottom = document.getElementById("logoBottom")
+const logoStroke = document.getElementById("logoStroke")
 
 const heroTextAnimation = async () => {
   await delay(500)
@@ -91,20 +92,44 @@ document.body.onload = async () => {
   logoInit.style.left = "50%"
   logoInit.style.translate = "-50%"
 
+  logoMiddle.style.visibility = "hidden"
+  logoBottom.style.visibility = "hidden"
+
+  logoTop.style.strokeDasharray = 300
+  logoStroke.style.strokeDasharray = 300
+
   // logo step 1
+
   await waitForAnimations([
-    logoInit.animate(
+    // logoInit.animate([{ scale: 3 }, { scale: 1 }], {
+    //   duration: 1000,
+    //   easing: "ease",
+    //   fill: "forwards",
+    // }),
+    logoTop.animate([{ strokeDashoffset: 300 }, { strokeDashoffset: 475 }], {
+      duration: 900,
+      easing: "ease",
+      fill: "forwards",
+    }),
+    logoStroke.animate([{ strokeDashoffset: 300 }, { strokeDashoffset: 170 }], {
+      duration: 700,
+      easing: "ease",
+      fill: "forwards",
+    }),
+    logoTop.animate(
       [
-        { scale: 3, opacity: 0 },
-        { scale: 1, opacity: 1 },
+        { offset: 0, fillOpacity: 0 },
+        { offset: 0.5, fillOpacity: 0, easing: "ease" },
+        { offset: 1, fillOpacity: 1, easing: "ease" },
       ],
       {
-        duration: 250,
-        easing: "ease",
+        duration: 900,
         fill: "forwards",
       }
     ),
   ])
+  logoMiddle.style.visibility = "visible"
+  logoBottom.style.visibility = "visible"
 
   // start hero text animation concurrently, and don't wait to finish
   heroTextAnimation()
@@ -115,6 +140,7 @@ document.body.onload = async () => {
       [
         {
           rotate: "3deg",
+          strokeOpacity: 0,
         },
       ],
       {
@@ -159,7 +185,25 @@ document.body.onload = async () => {
         fill: "forwards",
       }
     ),
+    logoStroke.animate(
+      [
+        {
+          opacity: 1,
+        },
+        {
+          opacity: 0,
+        },
+      ],
+      {
+        duration: 500,
+        easing: "ease",
+        fill: "forwards",
+      }
+    ),
   ])
+
+  logoTop.style.strokeOpacity = 0
+  logoStroke.style.opacity = 0
 
   // logo step 3
   await waitForAnimations([
