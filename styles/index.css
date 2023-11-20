@@ -64,7 +64,8 @@
   transition-duration: 300ms;
 }
 
-#logo #logoTop {
+#logo #logoTop,
+#logo #logoStroke {
   transform: translate(-2px, -3px);
 }
 
@@ -84,7 +85,8 @@
   transform: rotate(-1deg) scale(1.1);
 }
 
-#logo:hover #logoTop {
+#logo:hover #logoTop,
+#logo:hover #logoStroke {
   transform: translate(-12px, -17px);
 }
 

@@ -16,8 +16,8 @@ document.body.onload = async () => {
   logoInit.style.left = "50%"
   logoInit.style.translate = "-50%"
 
-  logoMiddle.style.visibility = "hidden"
-  logoBottom.style.visibility = "hidden"
+  logoMiddle.style.fillOpacity = 0
+  logoBottom.style.fillOpacity = 0
 
   logoTop.style.strokeDasharray = 300
   logoStroke.style.strokeDasharray = 300
@@ -25,18 +25,26 @@ document.body.onload = async () => {
   // logo step 1
 
   await waitForAnimations([
-    // logoInit.animate([{ scale: 3 }, { scale: 1 }], {
+    // logoInit.animate([{ scale: 0.8 }, { scale: 1 }], {
     //   duration: 1000,
     //   easing: "ease",
     //   fill: "forwards",
     // }),
+    logoInit.animate(
+      [{ transform: "translateY(-10px)" }, { transform: "translateY(0)" }],
+      {
+        duration: 500,
+        easing: "ease",
+        fill: "forwards",
+      }
+    ),
     logoTop.animate([{ strokeDashoffset: 300 }, { strokeDashoffset: 475 }], {
-      duration: 900,
+      duration: 600,
       easing: "ease",
       fill: "forwards",
     }),
     logoStroke.animate([{ strokeDashoffset: 300 }, { strokeDashoffset: 170 }], {
-      duration: 700,
+      duration: 400,
       easing: "ease",
       fill: "forwards",
     }),
@@ -47,13 +55,11 @@ document.body.onload = async () => {
         { offset: 1, fillOpacity: 1, easing: "ease" },
       ],
       {
-        duration: 900,
+        duration: 600,
         fill: "forwards",
       }
     ),
   ])
-  logoMiddle.style.visibility = "visible"
-  logoBottom.style.visibility = "visible"
 
   // start hero text animation concurrently, and don't wait to finish
   heroTextAnimation()
@@ -64,11 +70,10 @@ document.body.onload = async () => {
       [
         {
           rotate: "3deg",
-          strokeOpacity: 0,
         },
       ],
       {
-        duration: 500,
+        duration: 250,
         easing: "ease",
         fill: "forwards",
       }
@@ -80,31 +85,7 @@ document.body.onload = async () => {
         },
       ],
       {
-        duration: 500,
-        easing: "ease",
-        fill: "forwards",
-      }
-    ),
-    logoMiddle.animate(
-      [
-        {
-          transform: "translate(2px, 3px)",
-        },
-      ],
-      {
-        duration: 500,
-        easing: "ease",
-        fill: "forwards",
-      }
-    ),
-    logoBottom.animate(
-      [
-        {
-          transform: "translate(5px, 5px)",
-        },
-      ],
-      {
-        duration: 500,
+        duration: 250,
         easing: "ease",
         fill: "forwards",
       }
@@ -112,22 +93,42 @@ document.body.onload = async () => {
     logoStroke.animate(
       [
         {
-          opacity: 1,
-        },
-        {
-          opacity: 0,
+          transform: "translate(-2px, -3px)",
         },
       ],
       {
-        duration: 500,
+        duration: 250,
+        easing: "ease",
+        fill: "forwards",
+      }
+    ),
+    logoMiddle.animate(
+      [
+        {
+          fillOpacity: 1,
+          transform: "translate(2px, 3px)",
+        },
+      ],
+      {
+        duration: 250,
+        easing: "ease",
+        fill: "forwards",
+      }
+    ),
+    logoBottom.animate(
+      [
+        {
+          fillOpacity: 1,
+          transform: "translate(5px, 5px)",
+        },
+      ],
+      {
+        duration: 250,
         easing: "ease",
         fill: "forwards",
       }
     ),
   ])
-
-  logoTop.style.strokeOpacity = 0
-  logoStroke.style.opacity = 0
 
   // logo step 3
   await waitForAnimations([
@@ -144,12 +145,16 @@ document.body.onload = async () => {
     ),
   ])
 
+  // reset styling
+  logoInit.style.left = "0%"
+  logoInit.style.translate = "0%"
+
+  logoMiddle.style.fillOpacity = 1
+  logoBottom.style.fillOpacity = 1
+
   // using animation fill forward to retain new transforms and adding hover effects afterwards is kinda whack
   // hacky fix: just replace the node
   const newNode = logoInit.cloneNode(true)
-  // reset styling
-  newNode.style.left = "0%"
-  newNode.style.translate = "0%"
   // change id to use hover effects defined in css
   newNode.id = "logo"
   // remove old node and replace with new one
@@ -160,7 +165,7 @@ document.body.onload = async () => {
 }
 
 async function heroTextAnimation() {
-  await delay(500)
+  // await delay(200)
   // initial setup
   const containerBr = heroText.getBoundingClientRect()
   const dist = containerBr.height / 2
@@ -168,9 +173,10 @@ async function heroTextAnimation() {
 
   // border animation
   heroBorder.animate([{ transform: "scaleY(0)" }, { transform: "scaleY(1)" }], {
-    duration: 500,
+    duration: 400,
     easing: "cubic-bezier(0.86, 0, 0.07, 1)",
     fill: "forwards",
+    delay: 500,
   })
 
   // wait till text slides in
@@ -213,12 +219,7 @@ async function heroTextAnimation() {
       {
         offset: 0,
         opacity: 0,
-        transform: "translateY(-80%)",
-        easing: "ease",
-      },
-      {
-        offset: 0.5,
-        opacity: 0,
+        transform: "translateY(-25%)",
         easing: "ease",
       },
       {
