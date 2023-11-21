@@ -56,11 +56,11 @@
 }
 
 #visual .p2 {
-  animation-delay: calc(var(--visual-delay) + 0ms);
+  animation-delay: calc(var(--visual-delay) + 100ms);
 }
 
 #visual .p3 {
-  animation-delay: calc(var(--visual-delay) + 100ms);
+  animation-delay: calc(var(--visual-delay) + 0ms);
 }
 
 #visual .p4 {

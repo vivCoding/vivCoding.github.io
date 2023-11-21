@@ -1,3 +1,7 @@
+// TODO wrap around big function, check if prefered reduced motion
+// TODO pixiApp on resize window
+// TODO remove unused funcs
+
 const starsBg = document.getElementById("starsBg")
 const noStarElems = [...document.getElementsByClassName("noStars")]
 
@@ -7,7 +11,9 @@ const pixiApp = new PIXI.Application({
   autoResize: true,
   backgroundAlpha: 0,
 })
-document.body.appendChild(pixiApp.view)
+if (starsBg) {
+  document.body.appendChild(pixiApp.view)
+}
 
 const width = pixiApp.screen.width
 const height = pixiApp.screen.height
@@ -19,7 +25,8 @@ const spacing = 80
 const size = 3.5
 const numStars = 0
 const baseSpeed = 1
-// const baseSpeed = 0
+const minSpeed = 0.1
+const mouseForceRadius = 100
 
 const stars = []
 const mousePosition = { x: 0, y: 0 }
@@ -29,11 +36,16 @@ document.onmousemove = (e) => {
   mousePosition.y = e.clientY
 }
 
-const mouseCursor = new PIXI.Graphics()
-mouseCursor.beginFill("rgba(255, 255, 255, 0.7)")
-mouseCursor.drawCircle(0, 0, 4)
-mouseCursor.endFill()
-pixiApp.stage.addChild(mouseCursor)
+const mouseCursor = {
+  graphic: new PIXI.Graphics(),
+  x: 0,
+  y: 0,
+  velocity: { x: 0, y: 0 },
+}
+mouseCursor.graphic.beginFill("white", 0.7)
+mouseCursor.graphic.drawCircle(0, 0, 3)
+mouseCursor.graphic.endFill()
+pixiApp.stage.addChild(mouseCursor.graphic)
 
 const lineGraphics = new PIXI.Graphics()
 pixiApp.stage.addChild(lineGraphics)
@@ -50,7 +62,7 @@ for (let x = 0; x < width; x += spacing) {
     // create star
     const star = new PIXI.Graphics()
     star
-      .beginFill(`rgba(255, 255, 255, ${alpha})`)
+      .beginFill("white", alpha)
       .drawRect(-rSize / 2, -rSize / 2, rSize, rSize)
       .endFill()
     star.angle = rAngle
@@ -64,89 +76,104 @@ for (let x = 0; x < width; x += spacing) {
       velocity: { x: 0, y: rSpeed },
       startVelocity: { x: 0, y: rSpeed },
       size: rSize,
+      lineColor: {
+        h: randomFromRange(0, 360),
+        s: randomFromRange(100, 100),
+        l: randomFromRange(50, 50),
+      },
     })
     pixiApp.stage.addChild(star)
   }
 }
 
 pixiApp.ticker.add((delta) => {
-  mouseCursor.position.x = mousePosition.x
-  mouseCursor.position.y = mousePosition.y
+  // mouse cursor simple gravity
+  const mcxDiff = mousePosition.x - mouseCursor.x
+  const mcyDiff = mousePosition.y - mouseCursor.y
+  const mcDistSquared = mcxDiff ** 2 + mcyDiff ** 2
+  const mcDist = Math.sqrt(mcDistSquared)
+
+  const mcGrav = mcDist / 40
+  const mcTheta = Math.atan2(mcyDiff, mcxDiff)
+  const mcxGrav = mcGrav * Math.cos(mcTheta)
+  const mcyGrav = mcGrav * Math.sin(mcTheta)
+
+  mouseCursor.velocity.x += mcxGrav * delta
+  mouseCursor.velocity.y += mcyGrav * delta
+
+  mouseCursor.x += mouseCursor.velocity.x * delta
+  mouseCursor.y += mouseCursor.velocity.y * delta
+  mouseCursor.graphic.position.set(mouseCursor.x, mouseCursor.y)
+
+  mouseCursor.velocity.x *= 0.8
+  mouseCursor.velocity.y *= 0.8
+
   lineGraphics.clear()
+
   stars.forEach((star) => {
-    // general movement
+    // apply movement (including forces)
     star.x += star.velocity.x * delta
     star.y += star.velocity.y * delta
+    // apply only base movement (no forces) to star center
     star.center.x += star.startVelocity.x * delta
     star.center.y += star.startVelocity.y * delta
-    star.graphic.position.set(star.x, star.y)
+    // reset pos if needed
     if (star.y > height + star.size) {
-      star.y = -star.size
+      star.velocity.x = 0
+      star.velocity.y = 0
       star.center.y = -star.size
+      star.x = star.center.x
+      star.y = star.center.y
     }
+    // update graphic
+    star.graphic.position.set(star.x, star.y)
 
-    // maybe not needed
-    let minD = Infinity
-    for (let i = 0; i < noStarElems.length; i++) {
-      const bb = noStarElems[i].getBoundingClientRect()
-      // if not in x range, disregard
-      if (star.x < bb.x || star.x > bb.x + bb.width) continue
-      // check if star is inside el
-      if (star.y >= bb.y && star.y <= bb.y + bb.height) {
-        minD = 0
-        break
-      }
-      // calculate
-      const dist = Math.min(
-        Math.abs(bb.y - star.y),
-        Math.abs(bb.y + bb.height - star.y)
-      )
-      minD = Math.min(dist, minD)
-    }
-    if (minD < elemSpacing) {
-      star.graphic.clear()
-      const newAlpha = Math.max(
-        Math.min(star.alpha, 0.2),
-        (star.alpha * minD) / elemSpacing
-      )
-      star.graphic
-        .beginFill(`rgba(255, 255, 255, ${newAlpha})`)
-        .drawRect(-star.size / 2, -star.size / 2, star.size, star.size)
-        .endFill()
-    }
+    // velocity loss
+    star.velocity.x *= 0.5
+    star.velocity.y *= 0.5
 
-    // mouse gravity
-    const mxDiff = star.x - mousePosition.x
-    const myDiff = star.y - mousePosition.y
+    // prevent excess oscillation
+    // if (Math.abs(star.velocity.x) < minSpeed) star.velocity.x = 0
+    // if (Math.abs(star.velocity.y) < minSpeed) star.velocity.y = 0
+
+    // mouse force
+    const mxDiff = star.x - mouseCursor.x
+    const myDiff = star.y - mouseCursor.y
     const mDistSquared = mxDiff ** 2 + myDiff ** 2
-    // ignore mouse gravity if distance far away
-    // const mGrav =
-    //   mDistSquared > 10000 ? 0 : Math.max(100 / Math.max(mDistSquared, 1), 1)
-    const mGrav =
-      mDistSquared > 10000 ? 0 : Math.min(500 / Math.max(mDistSquared, 1), 10)
+    const mDist = Math.sqrt(mDistSquared)
+    // ignore mouse force if distance far away
+    const mGrav = mDist > mouseForceRadius ? 0 : 50 / mDist
+    const mTheta = Math.atan2(myDiff, mxDiff)
+    const mxGrav = mGrav * Math.cos(mTheta)
+    const myGrav = mGrav * Math.sin(mTheta)
+    const mouseInteraction = !!mGrav
 
-    // original center gravity
-    const cxDiff = star.x - star.center.x
-    const cyDiff = star.y - star.center.y
+    // gravity towards star center (orbit)
+    const cxDiff = star.center.x - star.x
+    const cyDiff = star.center.y - star.y
     const cDistSquared = cxDiff ** 2 + cyDiff ** 2
-    const cGrav = cDistSquared < 10 ? 0 : cDistSquared / 10000 + 0.1
+    const cDist = Math.sqrt(cDistSquared)
+    const cGrav = Math.min(cDist / 50, 5)
+    const cTheta = Math.atan2(cyDiff, cxDiff)
+    const cxGrav = cGrav * Math.cos(cTheta)
+    const cyGrav = cGrav * Math.sin(cTheta)
 
-    star.velocity.x +=
-      (mGrav * Math.sign(mxDiff) + cGrav * -Math.sign(cxDiff)) * delta
-    star.velocity.y +=
-      (mGrav * Math.sign(myDiff) + cGrav * -Math.sign(cyDiff)) * delta
-    star.velocity.x *= 0.9
-    star.velocity.y *= 0.9
+    // apply forces
+    star.velocity.x += (mxGrav + cxGrav) * delta
+    star.velocity.y += (myGrav + cyGrav) * delta
 
     // add lines to show mouse gravity
-    if (mGrav > 0) {
+    if (mouseInteraction) {
+      const percentDist = (mouseForceRadius - mDist) / mouseForceRadius
       lineGraphics
         .lineStyle(
-          Math.min(mGrav * 10, 5),
+          clampValue(1, 5, percentDist ** 0.5 * 5),
           "white",
-          Math.min(star.alpha, 3000 / Math.max(mDistSquared, 1))
+          // star.lineColor,
+          // { h: Math.floor(percentDist * 360), s: 100, l: 50 },
+          clampValue(0, star.alpha, percentDist ** 0.6)
         )
-        .moveTo(mouseCursor.position.x, mouseCursor.position.y)
+        .moveTo(mouseCursor.x, mouseCursor.y)
         .lineTo(star.x, star.y)
     }
   })
@@ -253,20 +280,24 @@ function lineIntersect(x1, y1, x2, y2, x3, y3, x4, y4) {
   return result
 }
 
-function showClientBrs() {
-  noStarElems.forEach((el) => {
-    const { x, y, width, height } = el.getBoundingClientRect()
-    console.log("got", x, width)
-    const graphics = new PIXI.Graphics()
-    graphics.beginFill("rgba(255, 0, 0, 0.2)")
-    graphics.drawRect(
-      x - elemSpacing,
-      y - elemSpacing,
-      width + elemSpacing * 2,
-      height + elemSpacing * 2
-    )
-    graphics.endFill()
-    pixiApp.stage.addChild(graphics)
-  })
+function getRandomColor() {
+  var letters = "0123456789ABCDEF"
+  var color = "#"
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)]
+  }
+  return color
 }
+
+/**
+ *
+ * @param {number} min
+ * @param {number} max
+ * @param {number} value
+ * @returns {number}
+ */
+function clampValue(min, max, value) {
+  return Math.max(min, Math.min(value, max))
+}
+
 // #endregion utilities
