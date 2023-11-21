@@ -10,5 +10,8 @@
   "editor.detectIndentation": false,
   "files.associations": {
     "*.css": "tailwindcss"
+  },
+  "[svg]": {
+    "editor.defaultFormatter": "jock.svg"
   }
 }

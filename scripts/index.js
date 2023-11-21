@@ -10,6 +10,8 @@ const logoMiddle = document.getElementById("logoMiddle")
 const logoBottom = document.getElementById("logoBottom")
 const logoStroke = document.getElementById("logoStroke")
 
+// TODO maybe bring this back into css
+
 document.body.onload = async () => {
   // initial setup
   logoInit.style.position = "relative"
@@ -224,7 +226,7 @@ document.body.onload = async () => {
   parent.insertBefore(newNode, sibling)
 }
 
-// #region utility
+// #region utilities
 
 /**
  *
@@ -253,4 +255,4 @@ function waitForAnimations(animations) {
   return Promise.all(animations.map((a) => waitForAnimation(a)))
 }
 
-// #endregion utility
+// #endregion utilities
