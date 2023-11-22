@@ -1,0 +1,52 @@
+/* #region logo normal */
+
+#logo {
+  overflow: visible;
+  transform: rotate(3deg);
+
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 700ms;
+}
+
+#logo path {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+#logo #logoTop,
+#logo #logoStroke {
+  transform: translate(-2px, -3px);
+}
+
+#logo #logoMiddle {
+  transform: translate(2px, 3px);
+}
+
+#logo #logoBottom {
+  transform: translate(5px, 5px);
+}
+
+/* #endregion logo normal */
+
+/* #region logo hover */
+
+#logo:hover {
+  transform: rotate(-1deg) scale(1.1);
+}
+
+#logo:hover #logoTop,
+#logo:hover #logoStroke {
+  transform: translate(-12px, -17px);
+}
+
+#logo:hover #logoMiddle {
+  transform: translate(-4px, -4px);
+}
+
+#logo:hover #logoBottom {
+  transform: translate(5px, 7px);
+}
+
+/* #endregion logo hover */

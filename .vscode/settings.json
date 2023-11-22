@@ -9,9 +9,7 @@
   "editor.tabSize": 2,
   "editor.detectIndentation": false,
   "files.associations": {
-    "*.css": "tailwindcss"
-  },
-  "[svg]": {
-    "editor.defaultFormatter": "jock.svg"
+    "*.css": "tailwindcss",
+    "*.svg": "html"
   }
 }

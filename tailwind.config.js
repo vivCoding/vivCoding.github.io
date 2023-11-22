@@ -9,6 +9,15 @@ module.exports = {
       fontFamily: {
         sans: ["RobotoMono", ...defaultTheme.fontFamily.sans],
       },
+      keyframes: {
+        "fade-in": {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
+        },
+      },
+      animation: {
+        "fade-in": "fade-in 1s linear forwards",
+      },
     },
   },
   plugins: [
