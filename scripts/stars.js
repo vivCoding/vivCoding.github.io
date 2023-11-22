@@ -2,9 +2,6 @@
 // TODO pixiApp on resize window
 // TODO remove unused funcs
 
-const starsBg = document.getElementById("starsBg")
-const noStarElems = [...document.getElementsByClassName("noStars")]
-
 const pixiApp = new PIXI.Application({
   view: starsBg,
   resizeTo: window,
@@ -27,6 +24,7 @@ const numStars = 0
 const baseSpeed = 1
 const minSpeed = 0.1
 const mouseForceRadius = 100
+const mouseCursorSize = 3
 
 const stars = []
 const mousePosition = { x: 0, y: 0 }
@@ -36,16 +34,21 @@ document.onmousemove = (e) => {
   mousePosition.y = e.clientY
 }
 
+// create the mouse cursor
+const mouseCursorGraphic = new PIXI.Graphics()
+  .beginFill("white", 0.7)
+  .drawCircle(0, 0, mouseCursorSize)
+  .endFill()
 const mouseCursor = {
-  graphic: new PIXI.Graphics(),
+  sprite: new PIXI.Sprite(pixiApp.renderer.generateTexture(mouseCursorGraphic)),
   x: 0,
   y: 0,
+  size: mouseCursorSize,
   velocity: { x: 0, y: 0 },
 }
-mouseCursor.graphic.beginFill("white", 0.7)
-mouseCursor.graphic.drawCircle(0, 0, 3)
-mouseCursor.graphic.endFill()
-pixiApp.stage.addChild(mouseCursor.graphic)
+mouseCursorGraphic.destroy()
+mouseCursor.sprite.pivot.set(mouseCursorSize, mouseCursorSize)
+pixiApp.stage.addChild(mouseCursor.sprite)
 
 const lineGraphics = new PIXI.Graphics()
 pixiApp.stage.addChild(lineGraphics)
@@ -59,16 +62,17 @@ for (let x = 0; x < width; x += spacing) {
     const rAngle = randomFromRange(0, 360)
     const alpha = randomFromRange()
     const rSpeed = alpha * baseSpeed
-    // create star
-    const star = new PIXI.Graphics()
-    star
-      .beginFill("white", alpha)
-      .drawRect(-rSize / 2, -rSize / 2, rSize, rSize)
-      .endFill()
+    // create star graphic
+    const graphic = new PIXI.Graphics()
+    graphic.beginFill("white", alpha).drawRect(0, 0, rSize, rSize).endFill()
+    // create sprite with graphic texture (sprites are apparently a lil' more performant than graphics)
+    const star = new PIXI.Sprite(pixiApp.renderer.generateTexture(graphic))
+    // set pivot and initial transform, and add to list
+    star.pivot.set(rSize / 2, rSize / 2)
     star.angle = rAngle
     star.position.set(rx, ry)
     stars.push({
-      graphic: star,
+      sprite: star,
       alpha,
       x: rx,
       y: ry,
@@ -83,6 +87,7 @@ for (let x = 0; x < width; x += spacing) {
       },
     })
     pixiApp.stage.addChild(star)
+    graphic.destroy()
   }
 }
 
@@ -93,7 +98,7 @@ pixiApp.ticker.add((delta) => {
   const mcDistSquared = mcxDiff ** 2 + mcyDiff ** 2
   const mcDist = Math.sqrt(mcDistSquared)
 
-  const mcGrav = mcDist / 40
+  const mcGrav = mcDist / 25
   const mcTheta = Math.atan2(mcyDiff, mcxDiff)
   const mcxGrav = mcGrav * Math.cos(mcTheta)
   const mcyGrav = mcGrav * Math.sin(mcTheta)
@@ -103,7 +108,7 @@ pixiApp.ticker.add((delta) => {
 
   mouseCursor.x += mouseCursor.velocity.x * delta
   mouseCursor.y += mouseCursor.velocity.y * delta
-  mouseCursor.graphic.position.set(mouseCursor.x, mouseCursor.y)
+  mouseCursor.sprite.position.set(mouseCursor.x, mouseCursor.y)
 
   mouseCursor.velocity.x *= 0.8
   mouseCursor.velocity.y *= 0.8
@@ -125,8 +130,8 @@ pixiApp.ticker.add((delta) => {
       star.x = star.center.x
       star.y = star.center.y
     }
-    // update graphic
-    star.graphic.position.set(star.x, star.y)
+    // update sprite
+    star.sprite.position.set(star.x, star.y)
 
     // velocity loss
     star.velocity.x *= 0.5
@@ -179,11 +184,7 @@ pixiApp.ticker.add((delta) => {
   })
 })
 
-// #region utilities
-
-function randomFromRange(min = 0, max = 1) {
-  return Math.random() * (max - min) + min
-}
+// #region utilities (unused)
 
 /**
  *
@@ -278,26 +279,6 @@ function lineIntersect(x1, y1, x2, y2, x3, y3, x4, y4) {
   result.y = y1 + a * (y2 - y1) ?? NaN
 
   return result
-}
-
-function getRandomColor() {
-  var letters = "0123456789ABCDEF"
-  var color = "#"
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)]
-  }
-  return color
-}
-
-/**
- *
- * @param {number} min
- * @param {number} max
- * @param {number} value
- * @returns {number}
- */
-function clampValue(min, max, value) {
-  return Math.max(min, Math.min(value, max))
 }
 
 // #endregion utilities

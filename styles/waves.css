@@ -20,13 +20,13 @@
 
 @keyframes moveWave {
   0% {
-    transform: translateX(0) scaleY(1);
+    transform: translateX(0) scaleY(1.5);
   }
   50% {
-    transform: translateX(-25%) scaleY(1.5);
+    transform: translateX(-25%) scaleY(1.9);
   }
   100% {
-    transform: translateX(-50%) scaleY(1);
+    transform: translateX(-50%) scaleY(1.5);
   }
 }
 
