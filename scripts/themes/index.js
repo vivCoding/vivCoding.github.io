@@ -1,5 +1,6 @@
 import { PixiEngine } from "../pixi/engine.js"
 import { fadeIn, fadeOut, waitForAnimation } from "../utils/animation.js"
+import { Vector2d } from "../utils/misc.js"
 
 // TODO check for prefer no motion
 
@@ -32,14 +33,14 @@ export class Theme {
  * Has basic fade in/out as transition
  */
 export class ThemeFromHtml extends Theme {
-  // Default fade in
-  async enter() {
-    await waitForAnimation(fadeIn(this.parentElem))
+  /** Default duration = 1000ms */
+  async enter(duration = 1000) {
+    await waitForAnimation(fadeIn(this.parentElem, duration))
   }
 
-  // Default fade out
-  async exit() {
-    await waitForAnimation(fadeOut(this.parentElem))
+  /** Default duration = 1000ms */
+  async exit(duration = 1000) {
+    await waitForAnimation(fadeOut(this.parentElem, duration))
   }
 }
 
@@ -61,13 +62,20 @@ export class PixiTheme extends Theme {
     /** @type {number} */
     this.width = this.pixiApp.screen.width
     /** @type {number} */
-    this.height = this.pixiApp.screen.width
+    this.height = this.pixiApp.screen.height
+
+    this.center = new Vector2d(this.width / 2, this.height / 2)
 
     PixiTheme.pixiEngine.addOnResize(
       (() => {
-        this.width = this.pixiApp.screen.width
-        this.height = this.pixiApp.screen.width
-        this.resize()
+        if (this.rendered) {
+          this.width = this.pixiApp.screen.width
+          this.height = this.pixiApp.screen.width
+          this.center.x = this.width / 2
+          this.center.y = this.height / 2
+          this.center.set(this.width / 2, this.height / 2)
+          this.resize()
+        }
       }).bind(this)
     )
     this.playing = false
@@ -79,6 +87,10 @@ export class PixiTheme extends Theme {
 
   render() {
     throw new Error("render not implemented hmmmmm")
+  }
+
+  clear() {
+    throw new Error("clear not implemented hmmmmm")
   }
 
   resize() {
@@ -105,17 +117,21 @@ export class PixiTheme extends Theme {
     throw new Error("onTick not implemented hmmmmm")
   }
 
-  async enter() {
+  /** Default duration = 1000ms */
+  async enter(duration = 1000) {
     if (!this.rendered) {
       this.render()
       this.rendered = true
     }
     this.play()
-    await waitForAnimation(fadeIn(this.parentElem))
+    await waitForAnimation(fadeIn(this.parentElem, duration))
   }
 
-  async exit() {
-    await waitForAnimation(fadeOut(this.parentElem))
+  /** Default duration = 1000ms */
+  async exit(duration = 1000) {
+    await waitForAnimation(fadeOut(this.parentElem, duration))
     this.stop()
+    this.clear()
+    this.rendered = false
   }
 }

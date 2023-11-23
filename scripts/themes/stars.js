@@ -3,6 +3,7 @@ import { mousePosition } from "../pixi/engine.js"
 import { PixiTheme } from "./index.js"
 
 const noStarElems = [...document.getElementsByClassName("noStars")]
+
 /**
  * @typedef StarType
  * @type {object}
@@ -34,6 +35,8 @@ export class StarsBg extends PixiTheme {
     this.minSpeed = 0.1
     this.mouseForceRadius = 100
     this.mouseCursorSize = 3
+
+    // TODO why not initialize the stars HERE (somewhere not in render), and then add to stage in render
 
     /** @type {StarType[]} */
     this.stars = []
@@ -219,19 +222,30 @@ export class StarsBg extends PixiTheme {
     this.createStars()
   }
 
-  resize() {
-    // TODO only remove old/recreate new stars when needed?
-    this.stars.forEach((star) => {
-      this.pixiApp.stage.removeChild(star.sprite)
-    })
-    this.stars = []
-    this.createStars()
-  }
-
   /** @param {number} delta */
   onTick(delta) {
     this.lineGraphics.clear()
     this.updateMouseCursor(delta)
     this.updateStars(delta)
+  }
+
+  clear() {
+    this.lineGraphics.destroy()
+    this.mouseCursor.sprite.destroy()
+    this.stars.forEach((star) => {
+      star.sprite.destroy()
+    })
+    this.pixiApp.stage.removeChildren()
+    this.stars = []
+  }
+
+  resize() {
+    // TODO only remove old/recreate new stars when needed?
+    this.stars.forEach((star) => {
+      star.sprite.destroy()
+      this.pixiApp.stage.removeChild(star.sprite)
+    })
+    this.stars = []
+    this.createStars()
   }
 }

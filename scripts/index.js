@@ -3,6 +3,6 @@ import { startTheme } from "./settings.js"
 
 document.body.onload = () => {
   console.log("yo")
-  animateHero()
+  // animateHero()
   startTheme()
 }
