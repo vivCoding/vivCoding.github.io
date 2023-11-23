@@ -1,24 +1,42 @@
-// TODO maybe bring this back into css
+import { waitForAnimations } from "./utils/animation.js"
 
-async function animateHero() {
+const logoInit = document.getElementById("logoInit")
+const logoTop = document.getElementById("logoTop")
+const logoMiddle = document.getElementById("logoMiddle")
+const logoBottom = document.getElementById("logoBottom")
+const logoStroke = document.getElementById("logoStroke")
+
+const heroSeparator = document.getElementById("heroSeparator")
+const heroText = document.getElementById("heroText")
+const heroTitle = document.getElementById("heroTitle")
+const heroDesc = document.getElementById("heroDesc")
+
+// TODO maybe bring this back into css?
+
+export async function animateHero() {
+  animateLogoHeroText()
+}
+
+async function animateLogoHeroText() {
   // initial setup
   logoInit.style.position = "relative"
   logoInit.style.left = "50%"
   logoInit.style.translate = "-50%"
 
-  logoMiddle.style.fillOpacity = 0
-  logoBottom.style.fillOpacity = 0
+  // @ts-ignore
+  logoMiddle.style.fillOpacity = "0"
+  logoBottom.style.fillOpacity = "0"
 
-  logoTop.style.strokeDasharray = 300
-  logoStroke.style.strokeDasharray = 300
+  logoTop.style.strokeDasharray = "300"
+  logoStroke.style.strokeDasharray = "300"
 
   const containerBr = heroText.getBoundingClientRect()
   const dist = containerBr.height / 2
   heroTitle.style.transform = `translateY(calc(${dist}px - 50%))`
 
-  heroText.style.opacity = 0
-  heroDesc.style.opacity = 0
-  heroBorder.style.transform = "scaleY(0)"
+  heroText.style.opacity = "0"
+  heroDesc.style.opacity = "0"
+  heroSeparator.style.transform = "scaleY(0)"
 
   // step 1
   await waitForAnimations([
@@ -55,83 +73,40 @@ async function animateHero() {
 
   // step 2
   await waitForAnimations([
-    logoInit.animate(
-      [
-        {
-          rotate: "3deg",
-        },
-      ],
-      {
-        duration: 250,
-        easing: "ease",
-        fill: "forwards",
-      }
-    ),
-    logoTop.animate(
-      [
-        {
-          transform: "translate(-2px, -3px)",
-        },
-      ],
-      {
-        duration: 250,
-        easing: "ease",
-        fill: "forwards",
-      }
-    ),
-    logoStroke.animate(
-      [
-        {
-          transform: "translate(-2px, -3px)",
-        },
-      ],
-      {
-        duration: 250,
-        easing: "ease",
-        fill: "forwards",
-      }
-    ),
-    logoMiddle.animate(
-      [
-        {
-          fillOpacity: 1,
-          transform: "translate(2px, 3px)",
-        },
-      ],
-      {
-        duration: 250,
-        easing: "ease",
-        fill: "forwards",
-      }
-    ),
-    logoBottom.animate(
-      [
-        {
-          fillOpacity: 1,
-          transform: "translate(5px, 5px)",
-        },
-      ],
-      {
-        duration: 250,
-        easing: "ease",
-        fill: "forwards",
-      }
-    ),
+    logoInit.animate([{ rotate: "3deg" }], {
+      duration: 250,
+      easing: "ease",
+      fill: "forwards",
+    }),
+    logoTop.animate([{ transform: "translate(-2px, -3px)" }], {
+      duration: 250,
+      easing: "ease",
+      fill: "forwards",
+    }),
+    logoStroke.animate([{ transform: "translate(-2px, -3px)" }], {
+      duration: 250,
+      easing: "ease",
+      fill: "forwards",
+    }),
+    logoMiddle.animate([{ fillOpacity: 1, transform: "translate(2px, 3px)" }], {
+      duration: 250,
+      easing: "ease",
+      fill: "forwards",
+    }),
+    logoBottom.animate([{ fillOpacity: 1, transform: "translate(5px, 5px)" }], {
+      duration: 250,
+      easing: "ease",
+      fill: "forwards",
+    }),
   ])
 
   // step 3
   await waitForAnimations([
-    logoInit.animate(
-      {
-        left: "0%",
-        translate: "0%",
-      },
-      {
-        duration: 250,
-        easing: "ease",
-        fill: "forwards",
-      }
-    ),
+    logoInit.animate([{ left: "0%", translate: "0%" }], {
+      duration: 250,
+      easing: "ease",
+      fill: "forwards",
+    }),
     heroText.animate(
       [
         {
@@ -162,7 +137,7 @@ async function animateHero() {
 
   // step 4
   await waitForAnimations([
-    heroBorder.animate(
+    heroSeparator.animate(
       [{ transform: "scaleY(0)" }, { transform: "scaleY(1)" }],
       {
         duration: 400,

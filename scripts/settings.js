@@ -1,45 +1,41 @@
-const currentAnimations = []
-let isAnimating = false
-// possible values: waves, stars
-let currAnimation = "waves"
-const bgTransitionDuration = 1000
+import { ThemeFromHtml } from "./themes/index.js"
+import { StarsBg } from "./themes/stars.js"
+import { delay } from "./utils/animation.js"
 
-starSettingBtn.onclick = async () => {
-  if (isAnimating || currAnimation === "stars") return
-  isAnimating = true
-  await waitForAnimation(fadeOut(wavesBg))
-  await waitForAnimation(fadeIn(starsBg))
-  isAnimating = false
-  currAnimation = "stars"
+/**
+ * @typedef theme
+ * @type {keyof themes | "none"}
+ */
+
+const themes = {
+  waves: new ThemeFromHtml("wavesBg"),
+  stars: new StarsBg(),
+}
+const defaultTheme = "waves"
+
+let isTransitioning = false
+/** @type {theme=} */
+let currentTheme
+
+export function startTheme() {
+  changeTheme(defaultTheme, 1000)
 }
 
-waveSettingBtn.onclick = async () => {
-  if (isAnimating || currAnimation === "waves") return
-  isAnimating = true
-  await waitForAnimation(fadeOut(starsBg))
-  await waitForAnimation(fadeIn(wavesBg))
-  isAnimating = false
-  currAnimation = "waves"
+/** @param {theme} theme */
+export async function changeTheme(theme, delayMs = 0) {
+  if (isTransitioning) return
+  isTransitioning = true
+  await delay(delayMs)
+  if (currentTheme) {
+    await themes[currentTheme].exit()
+  }
+  if (theme !== "none") {
+    await themes[theme].enter()
+  }
+  currentTheme = theme
+  isTransitioning = false
 }
 
-function fadeIn(elem) {
-  return elem.animate(
-    { opacity: [0, 1] },
-    {
-      duration: bgTransitionDuration,
-      fill: "forwards",
-      easing: "linear",
-    }
-  )
-}
-
-function fadeOut(elem) {
-  return elem.animate(
-    { opacity: [1, 0] },
-    {
-      duration: bgTransitionDuration,
-      fill: "forwards",
-      easing: "linear",
-    }
-  )
-}
+// expose this function globally (make dev ez)
+// @ts-ignore
+window.changeTheme = changeTheme

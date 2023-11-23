@@ -11,5 +11,8 @@
   "files.associations": {
     "*.css": "tailwindcss",
     "*.svg": "html"
-  }
+  },
+  "javascript.preferences.importModuleSpecifierEnding": "js",
+  // some type checking may not work properly (e.g. pixi)
+  "js/ts.implicitProjectConfig.checkJs": true
 }

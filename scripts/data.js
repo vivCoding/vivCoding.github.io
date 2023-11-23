@@ -110,4 +110,4 @@ var content = {
         "Website to display my ongoing and completed technical projects",
     },
   ],
-};
+}

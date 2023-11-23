@@ -18,18 +18,21 @@
   }
 }
 
-@keyframes moveWave {
+/* Why we use translateZ */
+/* https://stackoverflow.com/questions/13176746/css-keyframe-animation-cpu-usage-is-high-should-it-be-this-way */
+/* @keyframes moveWave {
   0% {
-    transform: translateX(0) scaleY(1.5);
+    transform: translate3d(0, 0, 0) scaleY(1.5);
   }
   50% {
-    transform: translateX(-25%) scaleY(1.9);
+    transform: translate3d(-25%, 0, 0) scaleY(1.9);
   }
   100% {
-    transform: translateX(-50%) scaleY(1.5);
+    transform: translate3d(-50%, 0, 0) scaleY(1.5);
   }
 }
 
 #wavesVisual g {
   animation: moveWave 30s linear infinite;
-}
+  will-change: transform;
+} */
