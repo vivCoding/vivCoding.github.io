@@ -14,8 +14,8 @@ const themes = {
 const defaultTheme = "waves"
 
 let isTransitioning = false
-/** @type {theme=} */
-let currentTheme
+/** @type {theme} */
+let currentTheme = "none"
 
 export function startTheme() {
   changeTheme(defaultTheme, 1000)
@@ -26,7 +26,7 @@ export async function changeTheme(theme, delayMs = 0) {
   if (isTransitioning) return
   isTransitioning = true
   await delay(delayMs)
-  if (currentTheme) {
+  if (currentTheme !== "none") {
     await themes[currentTheme].exit()
   }
   if (theme !== "none") {

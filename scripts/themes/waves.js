@@ -1,10 +1,7 @@
-import { ThemeFromHtml } from "./index.js"
+import { PixiTheme } from "./index.js"
 
-const wavesBg = document.getElementById("wavesBg")
-const waveGroups = [...document.getElementsByClassName("waveGroup")]
-
-export class Waves extends ThemeFromHtml {
+export class WavesBg extends PixiTheme {
   constructor() {
-    super(wavesBg)
+    super()
   }
 }

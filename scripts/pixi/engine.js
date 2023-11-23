@@ -7,13 +7,10 @@ document.addEventListener("mousemove", (e) => {
 export class PixiEngine {
   /**
    *
-   * @param {HTMLElement|null} elem
+   * @param {HTMLElement | null} elem
    */
   constructor(elem) {
-    if (!elem) {
-      console.error("yuh oh, no elem passed for pixi app")
-      return
-    }
+    if (!elem) throw new Error("yuh oh, no elem passed for pixi app")
     this.pixiApp = new PIXI.Application({
       view: elem,
       resizeTo: window,
@@ -29,6 +26,7 @@ export class PixiEngine {
   }
 
   onResize() {
+    this.pixiApp.renderer.resize(window.innerWidth, window.innerHeight)
     this.resizeFuncs.forEach((func) => func())
   }
 

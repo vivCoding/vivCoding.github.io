@@ -1,6 +1,8 @@
 import { PixiEngine } from "../pixi/engine.js"
 import { fadeIn, fadeOut, waitForAnimation } from "../utils/animation.js"
 
+// TODO check for prefer no motion
+
 export class Theme {
   /**
    * All themes are attached to some main HTML element
