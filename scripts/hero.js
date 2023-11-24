@@ -19,35 +19,27 @@ export async function animateHero() {
 
 async function animateLogoHeroText() {
   // initial setup
-  logoInit.style.position = "relative"
-  logoInit.style.left = "50%"
+  logoInit.style.visibility = "visible"
   logoInit.style.translate = "-50%"
-
-  // @ts-ignore
-  logoMiddle.style.fillOpacity = "0"
-  logoBottom.style.fillOpacity = "0"
+  logoInit.style.translate = "-50%"
 
   logoTop.style.strokeDasharray = "300"
   logoStroke.style.strokeDasharray = "300"
+  logoTop.style.fillOpacity = "0"
+  logoMiddle.style.fillOpacity = "0"
+  logoBottom.style.fillOpacity = "0"
 
   const containerBr = heroText.getBoundingClientRect()
   const dist = containerBr.height / 2
   heroTitle.style.transform = `translateY(calc(${dist}px - 50%))`
 
-  heroText.style.opacity = "0"
-  heroDesc.style.opacity = "0"
-  heroSeparator.style.transform = "scaleY(0)"
-
   // step 1
   await waitForAnimations([
-    logoInit.animate(
-      [{ transform: "translateY(-10px)" }, { transform: "translateY(0)" }],
-      {
-        duration: 500,
-        easing: "ease",
-        fill: "forwards",
-      }
-    ),
+    logoInit.animate([{ transform: "translateY(-10px)" }, { transform: "translateY(0)" }], {
+      duration: 500,
+      easing: "ease",
+      fill: "forwards",
+    }),
     logoTop.animate([{ strokeDashoffset: 300 }, { strokeDashoffset: 475 }], {
       duration: 600,
       easing: "ease",
@@ -137,14 +129,11 @@ async function animateLogoHeroText() {
 
   // step 4
   await waitForAnimations([
-    heroSeparator.animate(
-      [{ transform: "scaleY(0)" }, { transform: "scaleY(1)" }],
-      {
-        duration: 400,
-        easing: "cubic-bezier(0.86, 0, 0.07, 1)",
-        fill: "forwards",
-      }
-    ),
+    heroSeparator.animate([{ transform: "scaleY(0)" }, { transform: "scaleY(1)" }], {
+      duration: 400,
+      easing: "cubic-bezier(0.86, 0, 0.07, 1)",
+      fill: "forwards",
+    }),
     heroTitle.animate(
       { transform: "translateY(0)" },
       { duration: 300, easing: "ease", fill: "forwards", delay: 100 }
@@ -177,8 +166,9 @@ async function animateLogoHeroText() {
   // 1) reset styling for elems that are about to be replaced
   logoInit.style.left = "0%"
   logoInit.style.translate = "0%"
-  logoMiddle.style.fillOpacity = 1
-  logoBottom.style.fillOpacity = 1
+  logoTop.style.fillOpacity = "1"
+  logoMiddle.style.fillOpacity = "1"
+  logoBottom.style.fillOpacity = "1"
   // 2) create node, and change id to use hover effects defined in css
   const newNode = logoInit.cloneNode(true)
   newNode.id = "logo"

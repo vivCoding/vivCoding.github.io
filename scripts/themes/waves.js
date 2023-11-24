@@ -1,38 +1,49 @@
-import { randomFromRange, Vector2d } from "../utils/misc.js"
+import { randomFromRange, randomIntFromRange, shuffle, Vector2d } from "../utils/misc.js"
 import { PixiTheme } from "./index.js"
 
 /**
  * @typedef WavePoint
  * @type {object}
- * @property {PIXI.Sprite} sprite
  * @property {Vector2d} position
  * @property {Vector2d} initialPosition
  * @property {number} speed
  * @property {number} modValue
  * @property {number} amplitude
+ * @property {WaveFunc} waveFunc
+ */
+
+/**
+ * @callback WaveFunc
+ * @param {number} x
+ * @return {number} result of wave function
  */
 
 export class WavesScene extends PixiTheme {
   constructor() {
     super()
 
-    this.numWaves = 3
+    this.minWavesHeight = this.height * 0.5
+    this.maxWavesHeight = this.height * 0.7
+    this.minOpacity = 0.2
+    this.maxOpacity = 0.4
+    const wavesHeight = randomIntFromRange(this.minWavesHeight, this.maxWavesHeight)
 
-    /** @type {Wave[]} */
+    /** @type {WaveShape[]} */
     this.waves = [
-      new Wave(this, "red"),
-      new Wave(this, "#00ff00"),
-      new Wave(this, "#00ffff"),
+      new WaveShape(this, wavesHeight, "#263357"),
+      new WaveShape(this, wavesHeight, "#263357"),
+      new WaveShape(this, wavesHeight, "#374F7A"),
+      new WaveShape(this, wavesHeight, "#476D9E"),
+      new WaveShape(this, wavesHeight, "#5386BB"),
+      new WaveShape(this, wavesHeight, "#5386BB"),
     ]
-
-    // for (let i = 0; i < this.numWaves; i++) {
-    //   const wave = new Wave(this, "red")
-    //   this.waves.push(wave)
-    // }
   }
 
   render() {
+    shuffle(this.waves)
     this.waves.forEach((wave) => {
+      const waveOpacity = randomFromRange(this.minOpacity, this.maxOpacity)
+      wave.opacity = waveOpacity
       wave.render()
     })
   }
@@ -56,138 +67,254 @@ export class WavesScene extends PixiTheme {
   }
 }
 
-class Wave {
+class WaveShape {
+  // TODO could make another class specifically for wave (edge of shape)
+  // TODO wave height resize
   /**
    *
    * @param {WavesScene} wavesScene
+   * @param {number} shapeHeight
    * @param {any} waveColor
+   * @param {number} opacity
    */
-  constructor(wavesScene, waveColor) {
+  constructor(wavesScene, shapeHeight, waveColor, opacity = 1) {
     this.wavesScene = wavesScene
     this.pixiApp = wavesScene.pixiApp
+    this.waveColor = waveColor
+    this.opacity = opacity
 
-    this.pointSize = 1
-    this.numPoints = 20
-    this.pointSpeed = randomFromRange(0.005, 0.03)
-    // this.maxAmplitude = randomFromRange(100, 200)
-    this.maxAmplitude = randomFromRange(75, 150)
-    this.initAmpitude = this.maxAmplitude
-    this.modAmplitudeValue = 0
-    // this.modAmplitudeSpeed = randomFromRange(0.1, 0.25)
-    this.modAmplitudeSpeed = 0
-    this.waveCenter = wavesScene.center.y
+    this.shapeCenter = wavesScene.center.y
 
-    this.minWaveMod = 0.1
-    this.maxWaveMod = 1.2
-    this.midWaveMod = (this.minWaveMod + this.maxWaveMod) / 2
-    // values to modify wave function
-    this.modA = randomFromRange(this.minWaveMod, this.midWaveMod)
-    this.modB = randomFromRange(this.midWaveMod, this.maxWaveMod)
-    this.modC = randomFromRange(0, 10)
+    // height of shape from bottom of shape to top of shape
+    this.shapeHeight = shapeHeight
+    this.topShapeBound = this.shapeCenter + this.shapeHeight / 2
+    this.bottomShapeBound = this.shapeCenter - this.shapeHeight / 2
 
-    /** @type {WavePoint[]} */
+    // vary the center of wave on each edge
+    this.minCenterRange = 0.2
+    this.maxCenterRange = 1.4
+    this.bottomEdgeCenter =
+      this.shapeCenter -
+      (this.shapeHeight / 4) * randomIntFromRange(this.minCenterRange, this.maxCenterRange)
+    this.topEdgeCenter =
+      this.shapeCenter +
+      (this.shapeHeight / 4) * randomIntFromRange(this.minCenterRange, this.maxCenterRange)
+
+    // calculate max amplitude based on distance from nearest bound
+    this.bottomMaxAmplitude = this.bottomEdgeCenter - this.bottomShapeBound
+    this.topMaxAmplitude = this.topShapeBound - this.topEdgeCenter
+
+    // should edges flow in same dir
+    this.edgeSameDirection = false
+
+    // wave function params
+    this.minWaveModAB = 0.1
+    this.maxWaveModAB = 1.2
+    this.minWaveModC = 0
+    this.maxWaveModC = 10
+
+    /**
+     * wave edge points
+     * @type {WavePoint[]}
+     */
+    // TODO maybe break this into two arrays, top and bottom
     this.points = []
 
-    this.waveColor = waveColor
+    // wave values
+    this.minPointSpeed = 0.005
+    this.maxPointSpeed = 0.04
+    // TODO different num points for each edge?
+    this.numPoints = randomIntFromRange(4, 12)
+
+    // masking for when the top edge and bottom edge overlap :))))
+    // (lmao maybe not performant for the user but idgaf it look cool)
+    this.topEdgeGraphics1 = undefined
+    this.topEdgeGraphics2 = undefined
+    this.bottomEdgeGraphics1 = undefined
+    this.bottomEdgeGraphics2 = undefined
   }
 
   createPoints() {
-    const spacing = this.wavesScene.width / this.numPoints
-    for (let i = 0; i <= this.numPoints; i++) {
-      const graphic = new PIXI.Graphics()
-        .beginFill(this.waveColor)
-        .drawCircle(0, 0, this.pointSize)
-        .endFill()
-      const sprite = new PIXI.Sprite(
-        this.pixiApp.renderer.generateTexture(graphic)
-      )
-      sprite.pivot.set(this.pointSize, this.pointSize)
-      graphic.destroy()
+    // random speeds for each wave edge
+    const midSpeed = (this.minPointSpeed + this.maxPointSpeed) / 2
+    const speed1 =
+      randomFromRange(this.minPointSpeed, midSpeed) *
+      (this.edgeSameDirection ? 1 : Math.sign(randomFromRange(-1, 1)))
+    const speed2 =
+      randomFromRange(midSpeed, this.maxPointSpeed) *
+      (this.edgeSameDirection ? 1 : Math.sign(randomFromRange(-1, 1)))
 
-      const normalized = (i / this.numPoints) * 10
-      const value = this.calcWave(normalized)
-      const init = new Vector2d(
-        i * spacing,
-        this.waveCenter + value * this.maxAmplitude
-      )
+    // create two different wave func for each edge
+    const midWaveMod = (this.minWaveModAB + this.maxWaveModAB) / 2
+    const waveFunc1 = this.createWaveFunc(
+      randomFromRange(this.minWaveModAB, midWaveMod),
+      randomFromRange(midWaveMod, this.maxWaveModAB),
+      randomFromRange(this.minWaveModC, 5)
+    )
+    const waveFunc2 = this.createWaveFunc(
+      randomFromRange(this.minWaveModAB, midWaveMod),
+      randomFromRange(midWaveMod, this.maxWaveModAB),
+      randomFromRange(5, this.maxWaveModC)
+    )
 
-      /** @type {WavePoint} */
-      const point = {
-        position: new Vector2d(init.x, init.y),
-        initialPosition: new Vector2d(init.x, this.waveCenter),
-        sprite: sprite,
-        amplitude: this.maxAmplitude,
-        modValue: normalized,
-        speed: this.pointSpeed,
-      }
+    // randomize which edge gets which property
+    const coinFlip = randomFromRange() > 0
+    const coinFlip2 = randomFromRange() > 0
 
-      this.pixiApp.stage.addChild(sprite)
-      this.points.push(point)
+    // overflow the edges a bit
+    const start = Math.round(-this.numPoints / 3)
+    const end = Math.round(this.numPoints * 1.3)
+    const pointSpacing = this.wavesScene.width / this.numPoints
+    // top edge of wave
+    for (let i = start; i <= end; i++) {
+      this.createPoint({
+        position: new Vector2d(i * pointSpacing, this.topEdgeCenter),
+        amplitude: randomFromRange(this.topMaxAmplitude * 0.5, this.topMaxAmplitude),
+        speed: coinFlip ? speed1 : speed2,
+        waveFunc: coinFlip2 ? waveFunc1 : waveFunc2,
+      })
+    }
+    // bottom edge of wave
+    for (let i = end; i >= start; i--) {
+      this.createPoint({
+        position: new Vector2d(i * pointSpacing, this.bottomEdgeCenter),
+        amplitude: randomFromRange(this.bottomMaxAmplitude * 0.5, this.bottomMaxAmplitude),
+        speed: !coinFlip ? speed1 : speed2,
+        waveFunc: !coinFlip2 ? waveFunc1 : waveFunc2,
+      })
     }
   }
 
-  /** @param {number} x */
-  calcWave(x) {
-    // random bs go brr
-    return Math.sin(this.modA * x + this.modC) * Math.cos(this.modB * x)
+  /**
+   * @param {{
+   * position: Vector2d,
+   * speed: number,
+   * amplitude: number,
+   * waveFunc: WaveFunc
+   * color?: any
+   * }} params
+   */
+  createPoint({ position, speed, amplitude, waveFunc, color = this.waveColor }) {
+    // normalize x range to be in 10, so u can view wave func on a 0 <= x <= 10 desmos graph
+    const initModValue = (position.x / this.wavesScene.width) * 10
+    /** @type {WavePoint} */
+    const point = {
+      position: position,
+      initialPosition: position.copy(),
+      modValue: initModValue,
+      amplitude,
+      speed,
+      waveFunc,
+    }
+
+    this.points.push(point)
   }
 
   /**
-   * A clamping function
+   * Creates a new wave function with params
    *
-   * @param {number} min
-   * @param {number} max
-   * @param {number} x
-   * */
-  calcClamp(min, max, x) {
-    const range = max - min
-    // const val = x - min + Math.sin(x - min)
-    const val = x - min
-    const steps = Math.floor(val / range)
-    const reverse = steps % 2 === 1
-    const rem = val % range
-    const percentage = Math.sin(val / 20) / 2 + 0.5
-    // const percentage = reverse ? (range - rem) / range : rem / range
-    // console.log(percentage)
-    return min + percentage * range
+   * f(x) = sin(Ax + C) * cos(Bx)
+   * @param {number} modA
+   * @param {number} modB
+   * @param {number} modC
+   * @returns {WaveFunc} wave function f(x)
+   */
+  createWaveFunc(modA, modB, modC) {
+    return (x) =>
+      // random bs func go brr
+      Math.sin(modA * x + modC) * Math.cos(modB * x)
+    // Math.sin(x)
   }
 
   /** @param {number} delta */
   updateWave(delta) {
-    this.lineGraphics.clear()
-    this.lineGraphics.lineStyle(5, this.waveColor)
-    this.lineGraphics.moveTo(
-      this.points[0].position.x,
-      this.points[0].position.y
-    )
+    // update point value with wave movement
     this.points.forEach((point) => {
-      point.sprite.position.set(point.position.x, point.position.y)
       point.modValue += point.speed * delta
-      let calc = this.calcWave(point.modValue)
-      point.position.y = point.initialPosition.y + calc * this.maxAmplitude
-      this.lineGraphics.lineTo(point.position.x, point.position.y)
+      point.position.y = point.initialPosition.y + point.waveFunc(point.modValue) * point.amplitude
     })
 
-    // update values for funsies
-    this.modAmplitudeValue += this.modAmplitudeSpeed * delta
-    this.maxAmplitude = this.calcClamp(
-      this.initAmpitude / 2,
-      this.initAmpitude,
-      this.initAmpitude + this.modAmplitudeValue
-    )
+    // draw top edge, as well as shape for masking
+    let prev = this.points[0].position.copy()
+    this.topEdgeGraphics1.clear()
+    this.topEdgeGraphics1.beginFill(this.waveColor, this.opacity)
+    this.topEdgeGraphics1.moveTo(prev.x, this.bottomShapeBound)
+
+    this.topEdgeGraphics2.clear()
+    this.topEdgeGraphics2.beginFill(this.waveColor, this.opacity)
+    this.topEdgeGraphics2.moveTo(prev.x, this.topShapeBound)
+
+    for (let i = 0; i < this.points.length / 2; i++) {
+      const point = this.points[i]
+      // draw curve using median between two points (use median else won't curve)
+      const mx = (prev.x + point.position.x) / 2
+      const my = (prev.y + point.position.y) / 2
+      this.topEdgeGraphics1.quadraticCurveTo(prev.x, prev.y, mx, my)
+      this.topEdgeGraphics2.quadraticCurveTo(prev.x, prev.y, mx, my)
+      prev = point.position.copy()
+    }
+
+    this.topEdgeGraphics1.lineTo(prev.x, this.bottomShapeBound)
+    this.topEdgeGraphics1.closePath()
+    this.topEdgeGraphics1.endFill()
+
+    this.topEdgeGraphics2.lineTo(prev.x, this.topShapeBound)
+    this.topEdgeGraphics2.closePath()
+    this.topEdgeGraphics2.endFill()
+
+    // draw bottom edge, as well as shape for masking
+    prev = this.points[this.points.length / 2].position.copy()
+    this.bottomEdgeGraphics1.clear()
+    this.bottomEdgeGraphics1.beginFill(this.waveColor, this.opacity)
+    this.bottomEdgeGraphics1.moveTo(prev.x, this.bottomShapeBound)
+
+    this.bottomEdgeGraphics2.clear()
+    this.bottomEdgeGraphics2.beginFill(this.waveColor, this.opacity)
+    this.bottomEdgeGraphics2.moveTo(prev.x, this.topShapeBound)
+
+    for (let i = this.points.length / 2; i < this.points.length; i++) {
+      const point = this.points[i]
+      // draw curve using median between two points (use median else won't curve)
+      const mx = (prev.x + point.position.x) / 2
+      const my = (prev.y + point.position.y) / 2
+      this.bottomEdgeGraphics1.quadraticCurveTo(prev.x, prev.y, mx, my)
+      this.bottomEdgeGraphics2.quadraticCurveTo(prev.x, prev.y, mx, my)
+      prev = point.position.copy()
+    }
+
+    this.bottomEdgeGraphics1.lineTo(prev.x, this.bottomShapeBound)
+    this.bottomEdgeGraphics1.closePath()
+    this.bottomEdgeGraphics1.endFill()
+
+    this.bottomEdgeGraphics2.lineTo(prev.x, this.topShapeBound)
+    this.bottomEdgeGraphics2.closePath()
+    this.bottomEdgeGraphics2.endFill()
   }
 
   render() {
-    this.lineGraphics = new PIXI.Graphics()
-    this.pixiApp.stage.addChild(this.lineGraphics)
+    this.topEdgeGraphics1 = new PIXI.Graphics()
+    this.topEdgeGraphics2 = new PIXI.Graphics()
+    this.bottomEdgeGraphics1 = new PIXI.Graphics()
+    this.bottomEdgeGraphics2 = new PIXI.Graphics()
+    this.pixiApp.stage.addChild(
+      this.topEdgeGraphics1,
+      this.topEdgeGraphics2,
+      this.bottomEdgeGraphics1,
+      this.bottomEdgeGraphics2
+    )
+    this.topEdgeGraphics1.mask = this.bottomEdgeGraphics2
+    this.bottomEdgeGraphics1.mask = this.topEdgeGraphics2
+
     this.createPoints()
   }
 
   clear() {
-    this.points.forEach((point) => {
-      point.sprite.destroy()
-    })
-    this.lineGraphics.destroy()
+    this.topEdgeGraphics1.destroy()
+    this.topEdgeGraphics2.destroy()
+    this.bottomEdgeGraphics1.destroy()
+    this.bottomEdgeGraphics2.destroy()
     this.points = []
   }
+
+  resize() {}
 }

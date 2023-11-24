@@ -2,7 +2,9 @@
   "scripts": {
     "dev": "node test-server.js",
     "css-build": "tailwindcss -i ./styles/index.css -o ./styles/tw.css",
-    "css-build:watch": "pnpm css-build --watch"
+    "css-build:watch": "pnpm css-build --watch",
+    "prettier": "prettier *.html *.css *.js *.json **/*.html **/*.css **/*.js **/*.json  --check",
+    "prettier:fix": "prettier *.html *.css *.js *.json **/*.html **/*.css **/*.js **/*.json  --write"
   },
   "devDependencies": {
     "prettier": "^3.1.0",

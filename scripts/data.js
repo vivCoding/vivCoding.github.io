@@ -58,8 +58,7 @@ var content = {
       title: "BF Interpreter",
       link: "https://github.com/vivCoding/bf-interpreter",
       image: "assets/bfLogo.png",
-      description:
-        "A Brainfuck interpreter writen in C. Has basic error checking.",
+      description: "A Brainfuck interpreter writen in C. Has basic error checking.",
     },
     {
       title: "vsearch",
@@ -72,8 +71,7 @@ var content = {
       title: "vBlocker",
       link: "https://github.com/vivCoding/vBlocker",
       image: "assets/code_icon.png",
-      description:
-        "Simple browser extension that blocks user specified domains with a password",
+      description: "Simple browser extension that blocks user specified domains with a password",
     },
     {
       title: "HealthEye",
@@ -106,8 +104,7 @@ var content = {
       title: "Portfolio Website",
       link: "https://github.com/vivCoding/vivCoding.github.io",
       image: "assets/code_icon.png",
-      description:
-        "Website to display my ongoing and completed technical projects",
+      description: "Website to display my ongoing and completed technical projects",
     },
   ],
 }

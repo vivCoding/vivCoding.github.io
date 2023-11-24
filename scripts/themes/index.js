@@ -11,10 +11,7 @@ export class Theme {
    * @param {HTMLElement | string | null} parentElem - Parent element obj or id
    */
   constructor(parentElem) {
-    const elem =
-      typeof parentElem === "string"
-        ? document.getElementById(parentElem)
-        : parentElem
+    const elem = typeof parentElem === "string" ? document.getElementById(parentElem) : parentElem
     if (!elem) throw new Error("bruh no elem for theme")
     this.parentElem = elem
   }

@@ -17,9 +17,9 @@ const defaultTheme = "waves"
 /** @type {theme} */
 let currentTheme = "none"
 let isTransitioning = false
-const initialDelay = 0
-// const initialDelay = 1000
-const transitionDuration = 0
+// const initialDelay = 0
+const initialDelay = 1000
+const transitionDuration = 1000
 
 export function startTheme() {
   changeTheme(defaultTheme, initialDelay)

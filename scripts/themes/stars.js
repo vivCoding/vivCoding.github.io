@@ -42,10 +42,9 @@ export class StarsBg extends PixiTheme {
     this.stars = []
 
     /**  @type {MouseCursorType} */
-    this.mouseCursor
-
+    this.mouseCursor = undefined
     /**  @type {PIXI.Graphics} */
-    this.lineGraphics
+    this.lineGraphics = undefined
   }
 
   createMouseCursor() {
@@ -54,17 +53,12 @@ export class StarsBg extends PixiTheme {
       .drawCircle(0, 0, this.mouseCursorSize)
       .endFill()
     this.mouseCursor = {
-      sprite: new PIXI.Sprite(
-        this.pixiApp.renderer.generateTexture(mouseCursorGraphic)
-      ),
+      sprite: new PIXI.Sprite(this.pixiApp.renderer.generateTexture(mouseCursorGraphic)),
       size: this.mouseCursorSize,
       position: new Vector2d(),
       velocity: new Vector2d(),
     }
-    this.mouseCursor.sprite.pivot.set(
-      this.mouseCursor.size,
-      this.mouseCursor.size
-    )
+    this.mouseCursor.sprite.pivot.set(this.mouseCursor.size, this.mouseCursor.size)
     this.pixiApp.stage.addChild(this.mouseCursor.sprite)
     mouseCursorGraphic.destroy()
   }
@@ -89,9 +83,7 @@ export class StarsBg extends PixiTheme {
         graphic.beginFill("white", alpha).drawRect(0, 0, rSize, rSize).endFill()
         // create sprite with graphic texture
         // (sprites are apparently a lil' more performant than graphics)
-        const sprite = new PIXI.Sprite(
-          this.pixiApp.renderer.generateTexture(graphic)
-        )
+        const sprite = new PIXI.Sprite(this.pixiApp.renderer.generateTexture(graphic))
         // set pivot and initial transform, and add to list
         sprite.pivot.set(rSize / 2, rSize / 2)
         sprite.angle = rAngle
@@ -134,10 +126,7 @@ export class StarsBg extends PixiTheme {
 
     this.mouseCursor.position.x += this.mouseCursor.velocity.x * delta
     this.mouseCursor.position.y += this.mouseCursor.velocity.y * delta
-    this.mouseCursor.sprite.position.set(
-      this.mouseCursor.position.x,
-      this.mouseCursor.position.y
-    )
+    this.mouseCursor.sprite.position.set(this.mouseCursor.position.x, this.mouseCursor.position.y)
     // some velocity dampening
     this.mouseCursor.velocity.x *= 0.8
     this.mouseCursor.velocity.y *= 0.8
@@ -201,8 +190,7 @@ export class StarsBg extends PixiTheme {
 
       // add lines to show mouse gravity
       if (mouseInteraction) {
-        const percentDist =
-          (this.mouseForceRadius - mDist) / this.mouseForceRadius
+        const percentDist = (this.mouseForceRadius - mDist) / this.mouseForceRadius
         this.lineGraphics
           .lineStyle(
             clampValue(1, 5, percentDist ** 0.5 * 5),
