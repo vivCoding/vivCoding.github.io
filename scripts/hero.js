@@ -33,6 +33,10 @@ async function animateLogoHeroText() {
   const dist = containerBr.height / 2
   heroTitle.style.transform = `translateY(calc(${dist}px - 50%))`
 
+  // to prevent overlapping elems
+  const heroDescParent = heroDesc.parentElement
+  heroDescParent.style.overflowY = "clip"
+
   // step 1
   await waitForAnimations([
     logoInit.animate([{ transform: "translateY(-10px)" }, { transform: "translateY(0)" }], {
@@ -177,4 +181,7 @@ async function animateLogoHeroText() {
   const sibling = logoInit.nextSibling
   logoInit.remove()
   parent.insertBefore(newNode, sibling)
+
+  // also reset hero description parent
+  heroDescParent.style.overflowY = "visible"
 }
