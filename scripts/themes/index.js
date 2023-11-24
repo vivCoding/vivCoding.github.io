@@ -5,39 +5,12 @@ import { Vector2d } from "../utils/misc.js"
 // TODO check for prefer no motion
 
 export class Theme {
-  /**
-   * All themes are attached to some main HTML element
-   *
-   * @param {HTMLElement | string | null} parentElem - Parent element obj or id
-   */
-  constructor(parentElem) {
-    const elem = typeof parentElem === "string" ? document.getElementById(parentElem) : parentElem
-    if (!elem) throw new Error("bruh no elem for theme")
-    this.parentElem = elem
-  }
-
   async enter() {
     throw new Error("bruh enter not implemented")
   }
 
   async exit() {
     throw new Error("bruh exit not implemented")
-  }
-}
-
-/**
- * Basic theme that only adds html elements and only uses CSS animations (no js needed)
- * Has basic fade in/out as transition
- */
-export class ThemeFromHtml extends Theme {
-  /** Default duration = 1000ms */
-  async enter(duration = 1000) {
-    await waitForAnimation(fadeIn(this.parentElem, duration))
-  }
-
-  /** Default duration = 1000ms */
-  async exit(duration = 1000) {
-    await waitForAnimation(fadeOut(this.parentElem, duration))
   }
 }
 
@@ -50,10 +23,8 @@ export class PixiTheme extends Theme {
   static pixiEngine = new PixiEngine(PixiTheme.pixiCanvas)
 
   constructor() {
-    if (!PixiTheme.pixiCanvas) {
-      throw new Error("welp no pixi canvas, no cool pixi theme")
-    }
-    super(PixiTheme.pixiCanvas)
+    if (!PixiTheme.pixiCanvas) throw new Error("welp no pixi canvas, no cool pixi theme")
+    super()
     this.pixiApp = PixiTheme.pixiEngine.pixiApp
 
     /** @type {number} */
@@ -65,12 +36,12 @@ export class PixiTheme extends Theme {
 
     PixiTheme.pixiEngine.addOnResize(
       (() => {
+        this.width = this.pixiApp.screen.width
+        this.height = this.pixiApp.screen.width
+        this.center.x = this.width / 2
+        this.center.y = this.height / 2
+        this.center.set(this.width / 2, this.height / 2)
         if (this.rendered) {
-          this.width = this.pixiApp.screen.width
-          this.height = this.pixiApp.screen.width
-          this.center.x = this.width / 2
-          this.center.y = this.height / 2
-          this.center.set(this.width / 2, this.height / 2)
           this.resize()
         }
       }).bind(this)
@@ -116,19 +87,25 @@ export class PixiTheme extends Theme {
 
   /** Default duration = 1000ms */
   async enter(duration = 1000) {
+    if (!PixiTheme.pixiCanvas) throw new Error("welp no pixi canvas, no cool pixi theme")
+    this.pixiApp.start()
+    this.pixiApp.ticker.start()
     if (!this.rendered) {
       this.render()
       this.rendered = true
     }
     this.play()
-    await waitForAnimation(fadeIn(this.parentElem, duration))
+    await waitForAnimation(fadeIn(PixiTheme.pixiCanvas, duration))
   }
 
   /** Default duration = 1000ms */
   async exit(duration = 1000) {
-    await waitForAnimation(fadeOut(this.parentElem, duration))
+    if (!PixiTheme.pixiCanvas) throw new Error("welp no pixi canvas, no cool pixi theme")
+    await waitForAnimation(fadeOut(PixiTheme.pixiCanvas, duration))
     this.stop()
     this.clear()
     this.rendered = false
+    this.pixiApp.ticker.stop()
+    this.pixiApp.stop()
   }
 }

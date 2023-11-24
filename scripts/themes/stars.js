@@ -2,8 +2,6 @@ import { clampValue, randomFromRange, Vector2d } from "../utils/misc.js"
 import { mousePosition } from "../pixi/engine.js"
 import { PixiTheme } from "./index.js"
 
-const noStarElems = [...document.getElementsByClassName("noStars")]
-
 /**
  * @typedef StarType
  * @type {object}
@@ -26,7 +24,7 @@ const noStarElems = [...document.getElementsByClassName("noStars")]
  * @property {Vector2d} velocity
  */
 
-export class StarsBg extends PixiTheme {
+export class StarsScene extends PixiTheme {
   constructor() {
     super()
     this.spacing = 80
@@ -69,8 +67,9 @@ export class StarsBg extends PixiTheme {
   }
 
   createStars() {
-    for (let x = 0; x < this.width; x += this.spacing) {
-      for (let y = 0; y < this.height; y += this.spacing) {
+    const offset = 100
+    for (let x = -offset; x < this.width + offset; x += this.spacing) {
+      for (let y = -offset; y < this.height + offset; y += this.spacing) {
         // randomize position, size, and color
         const rx = randomFromRange(x - this.spacing, x + this.spacing)
         const ry = randomFromRange(y - this.spacing, y + this.spacing)
@@ -128,8 +127,8 @@ export class StarsBg extends PixiTheme {
     this.mouseCursor.position.y += this.mouseCursor.velocity.y * delta
     this.mouseCursor.sprite.position.set(this.mouseCursor.position.x, this.mouseCursor.position.y)
     // some velocity dampening
-    this.mouseCursor.velocity.x *= 0.8
-    this.mouseCursor.velocity.y *= 0.8
+    this.mouseCursor.velocity.x *= 0.6
+    this.mouseCursor.velocity.y *= 0.6
   }
 
   /** @param {number} delta */
@@ -155,8 +154,8 @@ export class StarsBg extends PixiTheme {
       star.sprite.position.set(star.position.x, star.position.y)
 
       // velocity loss
-      star.velocity.x *= 0.6
-      star.velocity.y *= 0.6
+      star.velocity.x *= 0.5
+      star.velocity.y *= 0.5
 
       // prevent excess oscillation
       // if (Math.abs(star.velocity.x) < minSpeed) star.velocity.x = 0

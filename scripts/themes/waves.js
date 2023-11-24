@@ -23,19 +23,19 @@ export class WavesScene extends PixiTheme {
     super()
 
     this.minWavesHeight = this.height * 0.5
-    this.maxWavesHeight = this.height * 0.7
+    this.maxWavesHeight = this.height * 0.9
     this.minOpacity = 0.2
     this.maxOpacity = 0.4
     const wavesHeight = randomIntFromRange(this.minWavesHeight, this.maxWavesHeight)
 
     /** @type {WaveShape[]} */
     this.waves = [
-      new WaveShape(this, wavesHeight, "#263357"),
-      new WaveShape(this, wavesHeight, "#263357"),
-      new WaveShape(this, wavesHeight, "#374F7A"),
-      new WaveShape(this, wavesHeight, "#476D9E"),
-      new WaveShape(this, wavesHeight, "#5386BB"),
-      new WaveShape(this, wavesHeight, "#5386BB"),
+      new WaveShape(this, randomIntFromRange(this.minWavesHeight, this.maxWavesHeight), "#263357"),
+      new WaveShape(this, randomIntFromRange(this.minWavesHeight, this.maxWavesHeight), "#263357"),
+      new WaveShape(this, randomIntFromRange(this.minWavesHeight, this.maxWavesHeight), "#374F7A"),
+      new WaveShape(this, randomIntFromRange(this.minWavesHeight, this.maxWavesHeight), "#476D9E"),
+      new WaveShape(this, randomIntFromRange(this.minWavesHeight, this.maxWavesHeight), "#5386BB"),
+      new WaveShape(this, randomIntFromRange(this.minWavesHeight, this.maxWavesHeight), "#5386BB"),
     ]
   }
 

@@ -1,7 +1,8 @@
-import { ThemeFromHtml } from "./themes/index.js"
-import { StarsBg } from "./themes/stars.js"
+import { BlobBg } from "./themes/blob.js"
+import { StarsScene } from "./themes/stars.js"
 import { WavesScene } from "./themes/waves.js"
 import { delay } from "./utils/animation.js"
+import { randomFromRange, randomIntFromRange } from "./utils/misc.js"
 
 /**
  * @typedef theme
@@ -10,19 +11,21 @@ import { delay } from "./utils/animation.js"
 
 const themes = {
   waves: new WavesScene(),
-  stars: new StarsBg(),
+  stars: new StarsScene(),
+  blob: new BlobBg(),
 }
-const defaultTheme = "waves"
+/** @type {theme} */
+// @ts-ignore
+const initialTheme = Object.keys(themes)[randomIntFromRange(0, Object.keys(themes).length - 1)]
 
 /** @type {theme} */
 let currentTheme = "none"
 let isTransitioning = false
-// const initialDelay = 0
 const initialDelay = 1000
 const transitionDuration = 1000
 
 export function startTheme() {
-  changeTheme(defaultTheme, initialDelay)
+  changeTheme(initialTheme, initialDelay)
 }
 
 /** @param {theme} theme */
@@ -41,5 +44,4 @@ export async function changeTheme(theme, delayMs = 0) {
 }
 
 // expose this function globally (to bind to buttons easily)
-// @ts-ignore
 window.changeTheme = changeTheme
