@@ -46,6 +46,13 @@ export class Vector2d {
     return this
   }
 
+  /** @param {number} m */
+  scale(m) {
+    this.x *= m
+    this.y *= m
+    return this
+  }
+
   /** Returns a copy of this vector */
   copy() {
     return new Vector2d(this.x, this.y)

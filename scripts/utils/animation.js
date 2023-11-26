@@ -17,11 +17,12 @@ export function waitForAnimations(animations) {
  * Default duration = 1000ms
  * @param {HTMLElement} elem
  * */
-export function fadeIn(elem, duration = 1000) {
+export function fadeIn(elem, duration = 1000, delay = 0) {
   return elem.animate(
     { opacity: [0, 1] },
     {
       duration,
+      delay,
       fill: "forwards",
       easing: "linear",
     }
@@ -32,11 +33,12 @@ export function fadeIn(elem, duration = 1000) {
  * Default duration = 1000ms
  * @param {HTMLElement} elem
  * */
-export function fadeOut(elem, duration = 1000) {
+export function fadeOut(elem, duration = 1000, delay = 0) {
   return elem.animate(
     { opacity: [1, 0] },
     {
       duration,
+      delay,
       fill: "forwards",
       easing: "linear",
     }

@@ -1,4 +1,5 @@
 import { BlobBg } from "./themes/blob.js"
+import { FlowField } from "./themes/flowField.js"
 import { StarsScene } from "./themes/stars.js"
 import { WavesScene } from "./themes/waves.js"
 import { delay } from "./utils/animation.js"
@@ -13,10 +14,15 @@ const themes = {
   waves: new WavesScene(),
   stars: new StarsScene(),
   blob: new BlobBg(),
+  // TODO flow field
+  // flowField: new FlowField(),
 }
+const themeNames = Object.keys(themes)
 /** @type {theme} */
 // @ts-ignore
-const initialTheme = Object.keys(themes)[randomIntFromRange(0, Object.keys(themes).length - 1)]
+// choose random initial theme
+const initialTheme = themeNames[randomIntFromRange(0, themeNames.length - 1)]
+// const initialTheme = "stars"
 
 /** @type {theme} */
 let currentTheme = "none"
@@ -32,12 +38,11 @@ export function startTheme() {
 export async function changeTheme(theme, delayMs = 0) {
   if (isTransitioning) return
   isTransitioning = true
-  await delay(delayMs)
   if (currentTheme !== "none") {
-    await themes[currentTheme].exit(transitionDuration)
+    await themes[currentTheme].exit(transitionDuration, delayMs)
   }
   if (theme !== "none") {
-    await themes[theme].enter(transitionDuration)
+    await themes[theme].enter(transitionDuration, delayMs)
   }
   currentTheme = theme
   isTransitioning = false

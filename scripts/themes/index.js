@@ -1,5 +1,5 @@
 import { PixiEngine } from "../pixi/engine.js"
-import { fadeIn, fadeOut, waitForAnimation } from "../utils/animation.js"
+import { delay, fadeIn, fadeOut, waitForAnimation } from "../utils/animation.js"
 import { Vector2d } from "../utils/misc.js"
 
 // TODO check for prefer no motion
@@ -86,7 +86,7 @@ export class PixiTheme extends Theme {
   }
 
   /** Default duration = 1000ms */
-  async enter(duration = 1000) {
+  async enter(duration = 1000, delayMs = 0) {
     if (!PixiTheme.pixiCanvas) throw new Error("welp no pixi canvas, no cool pixi theme")
     this.pixiApp.start()
     this.pixiApp.ticker.start()
@@ -95,12 +95,13 @@ export class PixiTheme extends Theme {
       this.rendered = true
     }
     this.play()
-    await waitForAnimation(fadeIn(PixiTheme.pixiCanvas, duration))
+    await waitForAnimation(fadeIn(PixiTheme.pixiCanvas, duration, delayMs))
   }
 
   /** Default duration = 1000ms */
-  async exit(duration = 1000) {
+  async exit(duration = 1000, delayMs = 0) {
     if (!PixiTheme.pixiCanvas) throw new Error("welp no pixi canvas, no cool pixi theme")
+    await delay(delayMs)
     await waitForAnimation(fadeOut(PixiTheme.pixiCanvas, duration))
     this.stop()
     this.clear()

@@ -1,3 +1,4 @@
+import { mousePosition } from "../pixi/engine.js"
 import { randomFromRange, randomIntFromRange, shuffle, Vector2d } from "../utils/misc.js"
 import { PixiTheme } from "./index.js"
 
@@ -26,7 +27,6 @@ export class WavesScene extends PixiTheme {
     this.maxWavesHeight = this.height * 0.9
     this.minOpacity = 0.2
     this.maxOpacity = 0.4
-    const wavesHeight = randomIntFromRange(this.minWavesHeight, this.maxWavesHeight)
 
     /** @type {WaveShape[]} */
     this.waves = [
@@ -68,8 +68,12 @@ export class WavesScene extends PixiTheme {
 }
 
 class WaveShape {
-  // TODO could make another class specifically for wave (edge of shape)
-  // TODO wave height resize
+  /*
+    TODO could make another class specifically for wave (edge of shape)
+    TODO wave height resize
+    TODO do some cool stuff with mouse?
+    maybe make wave center curvey rather than a horizontal line? idk
+  */
   /**
    *
    * @param {WavesScene} wavesScene
@@ -124,6 +128,7 @@ class WaveShape {
     this.minPointSpeed = 0.005
     this.maxPointSpeed = 0.04
     // TODO different num points for each edge?
+    // this.numPoints = randomIntFromRange(4, 12)
     this.numPoints = randomIntFromRange(4, 12)
 
     // masking for when the top edge and bottom edge overlap :))))
@@ -169,7 +174,7 @@ class WaveShape {
     for (let i = start; i <= end; i++) {
       this.createPoint({
         position: new Vector2d(i * pointSpacing, this.topEdgeCenter),
-        amplitude: randomFromRange(this.topMaxAmplitude * 0.5, this.topMaxAmplitude),
+        amplitude: randomFromRange(this.topMaxAmplitude * 0.25, this.topMaxAmplitude),
         speed: coinFlip ? speed1 : speed2,
         waveFunc: coinFlip2 ? waveFunc1 : waveFunc2,
       })
@@ -178,7 +183,7 @@ class WaveShape {
     for (let i = end; i >= start; i--) {
       this.createPoint({
         position: new Vector2d(i * pointSpacing, this.bottomEdgeCenter),
-        amplitude: randomFromRange(this.bottomMaxAmplitude * 0.5, this.bottomMaxAmplitude),
+        amplitude: randomFromRange(this.bottomMaxAmplitude * 0.25, this.bottomMaxAmplitude),
         speed: !coinFlip ? speed1 : speed2,
         waveFunc: !coinFlip2 ? waveFunc1 : waveFunc2,
       })

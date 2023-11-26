@@ -22,18 +22,25 @@
     <canvas id="pixiCanvas" class="fixed left-0 top-0 -z-10 opacity-0"></canvas>
     <div id="blobBg" class="fixed left-0 top-0 z-[-10] h-screen w-screen opacity-0">
       <div
-        class="blob animate-spin-slow fixed z-[-10] aspect-square h-[60vh] origin-[30%_50%] rounded-full bg-gradient-to-r from-[#00C2FF] to-[#213941] blur-[200px] animation-duration-[5s]"
+        class="blob fixed z-[-10] aspect-square h-[60vh] origin-[30%_50%] animate-spin-slow rounded-full bg-gradient-to-r from-[#00C2FF] to-[#213941] blur-[200px] animation-duration-[5s]"
       ></div>
       <div
-        class="blob animate-spin-slow fixed z-[-10] aspect-square h-[60vh] origin-[50%_70%] rounded-full bg-gradient-to-r from-[#00C2FF] to-[#213941] blur-[200px] animation-duration-[10s]"
+        class="blob fixed z-[-10] aspect-square h-[60vh] origin-[50%_70%] animate-spin-slow rounded-full bg-gradient-to-r from-[#00C2FF] to-[#213941] blur-[200px] animation-duration-[10s]"
       ></div>
     </div>
+    <nav class="fixed z-50">
+      <div id="pages" class="flex flex-row text-xl">
+        <a class="inline-block">Home</a>
+        <a class="inline-block">About</a>
+        <a class="inline-block">Projects</a>
+      </div>
+    </nav>
     <div
       id="buttonOverlay"
       class="group/overlay fixed right-0 top-0 z-[99] flex animate-fade-in-left flex-col items-center justify-center p-6 opacity-0 animation-delay-[2s] animation-duration-500"
     >
       <button
-        class="rotate-90 rounded-full bg-[#0D0F20] bg-opacity-0 p-3 text-3xl transition duration-300 ease-in-out group-hover/overlay:rotate-0 group-hover/overlay:scale-125 group-hover/overlay:bg-opacity-80"
+        class="rotate-90 rounded-full bg-[#0D0F20] bg-opacity-0 p-3 text-3xl transition duration-300 ease-in-out group-hover/overlay:rotate-0 group-hover/overlay:scale-125 group-hover/overlay:bg-opacity-90"
       >
         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
           <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -44,7 +51,7 @@
       </button>
       <div class="relative overflow-y-clip">
         <div
-          class="flex -translate-y-full scale-75 flex-col items-center rounded-b-full bg-[#0D0F20] bg-opacity-0 p-2 pb-4 pt-2 opacity-0 transition group-hover/overlay:translate-y-0 group-hover/overlay:scale-100 group-hover/overlay:bg-opacity-80 group-hover/overlay:opacity-100"
+          class="flex -translate-y-full scale-75 flex-col items-center rounded-b-full bg-[#0D0F20] bg-opacity-0 p-2 pb-4 pt-2 opacity-0 transition group-hover/overlay:translate-y-0 group-hover/overlay:scale-100 group-hover/overlay:bg-opacity-90 group-hover/overlay:opacity-100"
         >
           <button
             id="waveSettingBtn"
@@ -73,7 +80,7 @@
               />
             </svg>
             <span
-              class="pointer-events-none absolute left-0 top-1/2 -ml-4 inline-block w-16 -translate-x-full -translate-y-1/2 rounded bg-slate-700 bg-opacity-70 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:translate-x-full after:border-y-8 after:border-l-8 after:border-y-transparent after:border-l-slate-700 after:border-opacity-70 after:bg-opacity-70 after:content-[''] group-hover/waveBtn:pointer-events-auto group-hover/waveBtn:opacity-100"
+              class="pointer-events-none absolute left-0 top-1/2 -ml-4 inline-block w-16 -translate-x-full -translate-y-1/2 rounded bg-slate-700 bg-opacity-90 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:translate-x-full after:border-y-8 after:border-l-8 after:border-y-transparent after:border-l-slate-700 after:border-opacity-90 after:bg-opacity-90 after:content-[''] group-hover/waveBtn:pointer-events-auto group-hover/waveBtn:opacity-100"
             >
               Waves!
             </span>
@@ -104,11 +111,37 @@
               <path d="M17 19h4" />
             </svg>
             <span
-              class="pointer-events-none absolute left-0 top-1/2 -ml-4 inline-block w-16 -translate-x-full -translate-y-1/2 rounded bg-slate-700 bg-opacity-70 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:translate-x-full after:border-y-8 after:border-l-8 after:border-y-transparent after:border-l-slate-700 after:border-opacity-70 after:bg-opacity-70 after:content-[''] group-hover/starsBtn:pointer-events-auto group-hover/starsBtn:opacity-100"
+              class="pointer-events-none absolute left-0 top-1/2 -ml-4 inline-block w-16 -translate-x-full -translate-y-1/2 rounded bg-slate-700 bg-opacity-90 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:translate-x-full after:border-y-8 after:border-l-8 after:border-y-transparent after:border-l-slate-700 after:border-opacity-90 after:bg-opacity-90 after:content-[''] group-hover/starsBtn:pointer-events-auto group-hover/starsBtn:opacity-100"
             >
               Stars!
             </span>
           </button>
+          <!-- <button
+            title="Flow Field!"
+            class="group/flowBtn relative mt-2 text-2xl"
+            onclick="changeTheme('flowField')"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="1em"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-wind transition hover:scale-125 hover:opacity-70"
+            >
+              <path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2" />
+              <path d="M9.6 4.6A2 2 0 1 1 11 8H2" />
+              <path d="M12.6 19.4A2 2 0 1 0 14 16H2" />
+            </svg>
+            <span
+              class="pointer-events-none absolute left-0 top-1/2 -ml-4 inline-block w-32 -translate-x-full -translate-y-1/2 rounded bg-slate-700 bg-opacity-90 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:translate-x-full after:border-y-8 after:border-l-8 after:border-y-transparent after:border-l-slate-700 after:border-opacity-90 after:bg-opacity-90 after:content-[''] group-hover/flowBtn:pointer-events-auto group-hover/flowBtn:opacity-100"
+            >
+              Flow Field!
+            </span>
+          </button> -->
           <button
             title="Blob"
             class="group/blobBtn relative mt-2 text-2xl"
@@ -126,12 +159,12 @@
               class="lucide lucide-cloud rotate-45 transition hover:scale-125 hover:opacity-70"
             >
               <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
-              <span
-                class="pointer-events-none absolute left-0 top-1/2 -ml-4 inline-block w-16 -translate-x-full -translate-y-1/2 rounded bg-slate-700 bg-opacity-70 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:translate-x-full after:border-y-8 after:border-l-8 after:border-y-transparent after:border-l-slate-700 after:border-opacity-70 after:bg-opacity-70 after:content-[''] group-hover/blobBtn:pointer-events-auto group-hover/blobBtn:opacity-100"
-              >
-                Blob
-              </span>
             </svg>
+            <span
+              class="pointer-events-none absolute left-0 top-1/2 -ml-4 inline-block w-16 -translate-x-full -translate-y-1/2 rounded bg-slate-700 bg-opacity-90 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:translate-x-full after:border-y-8 after:border-l-8 after:border-y-transparent after:border-l-slate-700 after:border-opacity-90 after:bg-opacity-90 after:content-[''] group-hover/blobBtn:pointer-events-auto group-hover/blobBtn:opacity-100"
+            >
+              Blob
+            </span>
           </button>
           <button
             title="No Theme"
@@ -155,7 +188,7 @@
               />
             </svg>
             <span
-              class="pointer-events-none absolute left-0 top-1/2 -ml-4 inline-block w-24 -translate-x-full -translate-y-1/2 rounded bg-slate-700 bg-opacity-70 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:translate-x-full after:border-y-8 after:border-l-8 after:border-y-transparent after:border-l-slate-700 after:border-opacity-70 after:bg-opacity-70 after:content-[''] group-hover/noneBtn:pointer-events-auto group-hover/noneBtn:opacity-100"
+              class="pointer-events-none absolute left-0 top-1/2 -ml-4 inline-block w-24 -translate-x-full -translate-y-1/2 rounded bg-slate-700 bg-opacity-90 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:translate-x-full after:border-y-8 after:border-l-8 after:border-y-transparent after:border-l-slate-700 after:border-opacity-90 after:bg-opacity-90 after:content-[''] group-hover/noneBtn:pointer-events-auto group-hover/noneBtn:opacity-100"
             >
               No Theme
             </span>
@@ -239,7 +272,7 @@
                     </svg>
                     <!-- TODO change opacity of tooltip -->
                     <span
-                      class="pointer-events-none absolute left-1/2 top-full mt-3 block w-24 -translate-x-1/2 rounded bg-slate-700 bg-opacity-70 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:left-1/2 after:top-0 after:-translate-x-1/2 after:-translate-y-full after:border-x-8 after:border-b-8 after:border-x-transparent after:border-b-slate-700 after:border-opacity-70 after:bg-opacity-70 after:content-[''] group-hover:pointer-events-auto group-hover:opacity-100"
+                      class="pointer-events-none absolute left-1/2 top-full mt-3 block w-24 -translate-x-1/2 rounded bg-slate-700 bg-opacity-90 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:left-1/2 after:top-0 after:-translate-x-1/2 after:-translate-y-full after:border-x-8 after:border-b-8 after:border-x-transparent after:border-b-slate-700 after:border-opacity-90 after:bg-opacity-90 after:content-[''] group-hover:pointer-events-auto group-hover:opacity-100"
                     >
                       View my GitHub
                     </span>
@@ -268,7 +301,7 @@
                       />
                     </svg>
                     <span
-                      class="pointer-events-none absolute left-1/2 top-full mt-3 block w-24 -translate-x-1/2 rounded bg-slate-700 bg-opacity-70 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:left-1/2 after:top-0 after:-translate-x-1/2 after:-translate-y-full after:border-x-8 after:border-b-8 after:border-x-transparent after:border-b-slate-700 after:border-opacity-70 after:bg-opacity-70 after:content-[''] group-hover:pointer-events-auto group-hover:opacity-100"
+                      class="pointer-events-none absolute left-1/2 top-full mt-3 block w-24 -translate-x-1/2 rounded bg-slate-700 bg-opacity-90 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:left-1/2 after:top-0 after:-translate-x-1/2 after:-translate-y-full after:border-x-8 after:border-b-8 after:border-x-transparent after:border-b-slate-700 after:border-opacity-90 after:bg-opacity-90 after:content-[''] group-hover:pointer-events-auto group-hover:opacity-100"
                     >
                       View my LinkedIn
                     </span>

@@ -127,8 +127,8 @@ export class StarsScene extends PixiTheme {
     this.mouseCursor.position.y += this.mouseCursor.velocity.y * delta
     this.mouseCursor.sprite.position.set(this.mouseCursor.position.x, this.mouseCursor.position.y)
     // some velocity dampening
-    this.mouseCursor.velocity.x *= 0.6
-    this.mouseCursor.velocity.y *= 0.6
+    this.mouseCursor.velocity.x *= 0.8
+    this.mouseCursor.velocity.y *= 0.8
   }
 
   /** @param {number} delta */
