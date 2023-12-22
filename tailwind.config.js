@@ -15,16 +15,16 @@ module.exports = {
           "100%": { opacity: 1 },
         },
         "fade-in-down": {
-          "0%": { opacity: 0, transform: "translateY(-100%)" },
-          "100%": { opacity: 1, transform: "translateY(0%)" },
+          "0%": { opacity: 0, translate: "0 -100%" },
+          "100%": { opacity: 1, transform: "0 0%" },
         },
         "fade-in-left": {
-          "0%": { opacity: 0, transform: "translateX(100%)" },
-          "100%": { opacity: 1, transform: "translateX(0%)" },
+          "0%": { opacity: 0, translate: "100% 0" },
+          "100%": { opacity: 1, translate: "0% 0" },
         },
         "fade-in-right": {
-          "0%": { opacity: 0, transform: "translateX(-100%)" },
-          "100%": { opacity: 1, transform: "translateX(0%)" },
+          "0%": { opacity: 0, translate: "-100% 0" },
+          "100%": { opacity: 1, translate: "0% 0" },
         },
         "spin-slow": {
           "0%": { transform: "translate3d(0, 0, 0) scale3d(1, 1)", rotate: "0deg" },
