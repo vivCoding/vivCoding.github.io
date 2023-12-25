@@ -1,5 +1,5 @@
 import { waitForAnimations } from "./utils/animation.js"
-import { useScroll } from "./utils/hooks.js"
+import { usePercentageSeen } from "./utils/hooks.js"
 
 const introSection = document.getElementById("intro")
 const hero = document.getElementById("hero")
@@ -212,13 +212,13 @@ async function animateLogoHeroText() {
 
 function animateScroll() {
   if (!hero || !bgOverlay || !buttonOverlay) throw "bruh no hero"
-  useScroll(introSection, (percentage) => {
+  usePercentageSeen(introSection, (percentage) => {
     if (percentage >= 0.55) {
       hero.style.opacity = `${(0.67 - percentage) / 0.12}`
       buttonOverlay.style.zIndex = "-20"
     } else {
       hero.style.opacity = "1"
-      buttonOverlay.style.zIndex = "0"
+      buttonOverlay.style.zIndex = "11"
     }
     bgOverlay.style.opacity = `${1 - (0.65 - percentage) / 0.15}`
   })

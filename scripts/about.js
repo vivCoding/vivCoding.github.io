@@ -1,4 +1,4 @@
-import { useScroll } from "./utils/hooks.js"
+import { usePercentageSeen } from "./utils/hooks.js"
 import { clampValue } from "./utils/misc.js"
 
 const aboutSection = document.getElementById("about")
@@ -23,14 +23,13 @@ export function animateAbout() {
   hideLines()
 
   // use intro section to relate the scrolling of intro section to about section
-  useScroll(introSection, (percentage) => {
+  usePercentageSeen(introSection, (percentage) => {
     if (percentage >= FIRST_LINE_TRIGGER) {
       showLines()
       aboutSection.style.opacity = "1"
     } else {
       const opacity = (percentage - 0.6) / (FIRST_LINE_TRIGGER - 0.6)
       aboutSection.style.opacity = `${opacity}`
-      console.log("got", opacity)
       if (opacity <= 0) {
         hideLines()
       }

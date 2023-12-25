@@ -29,7 +29,31 @@
         class="blob fixed z-[-10] aspect-square h-[60vh] origin-[50%_70%] animate-spin-slow rounded-full bg-gradient-to-r from-[#00C2FF] to-[#213941] blur-[200px] animation-duration-[10s]"
       ></div>
     </div>
-    <div id="bgOverlay" class="fixed h-screen w-screen bg-[#0D0F20] opacity-0"></div>
+    <div id="bgOverlay" class="fixed -z-10 h-screen w-screen bg-[#0D0F20] opacity-0"></div>
+    <nav id="navbar" class="fixed z-10 w-full bg-[#0D0F20] p-6 pl-9">
+      <div id="pages" class="flex flex-row gap-x-7 text-base font-medium">
+        <a
+          class="inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.5s] animation-duration-500 hover:scale-125"
+          href="/#"
+          >Home</a
+        >
+        <a
+          class="inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.6s] animation-duration-500 hover:scale-125"
+          href="/#about"
+          >About</a
+        >
+        <a
+          class="inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.7s] animation-duration-500 hover:scale-125"
+          href="/"
+          >Projects</a
+        >
+        <a
+          class="inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.8s] animation-duration-500 hover:scale-125"
+          href="/"
+          >Contact</a
+        >
+      </div>
+    </nav>
     <div
       id="buttonOverlay"
       class="group/overlay fixed right-0 top-0 z-[99] flex animate-fade-in-left flex-col items-center justify-center p-6 opacity-0 animation-delay-[2s] animation-duration-500"
@@ -191,30 +215,6 @@
         </div>
       </div>
     </div>
-    <nav class="fixed z-50 m-6 ml-9">
-      <div id="pages" class="flex flex-row gap-x-7 text-base font-medium">
-        <a
-          class="inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.5s] animation-duration-500 hover:scale-125"
-          href="/"
-          >Home</a
-        >
-        <a
-          class="inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.6s] animation-duration-500 hover:scale-125"
-          href="/about.html"
-          >About</a
-        >
-        <a
-          class="inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.7s] animation-duration-500 hover:scale-125"
-          href="/"
-          >Projects</a
-        >
-        <a
-          class="inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.8s] animation-duration-500 hover:scale-125"
-          href="/"
-          >Contact</a
-        >
-      </div>
-    </nav>
     <section id="intro" class="flex h-screen w-full items-center justify-center">
       <div id="hero" class="relative flex w-fit flex-row items-center justify-center">
         <svg
@@ -329,14 +329,14 @@
         </div>
       </div>
     </section>
-    <section id="about" class="-mt-28 p-20 pt-0">
-      <div class="mx-auto w-[90%]">
+    <section id="about" class="-mt-28 px-32">
+      <div class="">
         <h1 class="mb-20 text-7xl font-medium">
           <span class="line1 animate-rise-word animation-delay-[250ms]">About</span>
           <span class="line1 animate-rise-word animation-delay-[500ms]">Me</span>
           <span
             id="line1-emoji"
-            class="animate-wave -ml-8 origin-bottom-right animation-delay-[750ms] animation-duration-500"
+            class="animate-wave -ml-8 origin-bottom-right animation-delay-[750ms] animation-duration-500 hover:animate-[wave_infinite]"
             >👋</span
           >
         </h1>
@@ -381,6 +381,17 @@
           <span class="line4 animate-rise-word animation-delay-[3150ms]">sleepsort.</span>
         </p>
       </div>
+    </section>
+    <section id="projects" class="mt-40 px-32">
+      <h1 class="text-7xl font-medium">
+        Projects
+        <span class="-ml-6">👨‍💻</span>
+      </h1>
+      <h6 class="mt-8 text-xl">A collection of my works, big and small</h6>
+    </section>
+    <section id="contact" class="my-40 px-32">
+      <h1 class="text-7xl font-medium">Contact</h1>
+      <h6 class="mt-8 text-xl">Ask me a question!</h6>
     </section>
   </body>
   <script src="scripts/pixi.min.js"></script>

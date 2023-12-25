@@ -36,6 +36,9 @@ module.exports = {
           "100%": { opacity: 1, transform: "translateY(0%)" },
         },
         wave: {
+          "0%": {
+            opacity: 1,
+          },
           "25%": {
             opacity: 1,
             transform: "rotate3d(0, 0, 1, 5deg)",
