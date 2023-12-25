@@ -3,7 +3,7 @@ import { FlowField } from "./themes/flowField.js"
 import { StarsScene } from "./themes/stars.js"
 import { WavesScene } from "./themes/waves.js"
 import { delay } from "./utils/animation.js"
-import { randomFromRange, randomIntFromRange } from "./utils/misc.js"
+import { randomIntFromRange } from "./utils/misc.js"
 
 /**
  * @typedef theme

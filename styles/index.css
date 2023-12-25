@@ -50,3 +50,17 @@
 
   /* #endregion font */
 }
+
+@layer utilities {
+  .animate-rise-word {
+    opacity: 0;
+    transform: translateY(30%);
+    display: inline-block;
+  }
+
+  .animate-wave {
+    opacity: 0;
+    display: inline-block;
+    /* transform-origin: bottom center; */
+  }
+}

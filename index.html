@@ -20,8 +20,8 @@
     <title>Vincent V</title>
   </head>
   <body class="bg-[#0D0F20] text-white">
-    <canvas id="pixiCanvas" class="fixed left-0 top-0 -z-10 opacity-0"></canvas>
-    <div id="blobBg" class="fixed left-0 top-0 z-[-10] h-screen w-screen opacity-0">
+    <canvas id="pixiCanvas" class="fixed left-0 top-0 -z-30 opacity-0"></canvas>
+    <div id="blobBg" class="fixed left-0 top-0 -z-30 h-screen w-screen opacity-0">
       <div
         class="blob fixed z-[-10] aspect-square h-[60vh] origin-[30%_50%] animate-spin-slow rounded-full bg-gradient-to-r from-[#00C2FF] to-[#213941] blur-[200px] animation-duration-[5s]"
       ></div>
@@ -29,30 +29,7 @@
         class="blob fixed z-[-10] aspect-square h-[60vh] origin-[50%_70%] animate-spin-slow rounded-full bg-gradient-to-r from-[#00C2FF] to-[#213941] blur-[200px] animation-duration-[10s]"
       ></div>
     </div>
-    <nav class="fixed z-50 m-6 ml-9">
-      <div id="pages" class="flex flex-row gap-x-7 text-base font-medium">
-        <a
-          class="inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.5s] animation-duration-500 hover:scale-125"
-          href="/"
-          >Home</a
-        >
-        <a
-          class="inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.6s] animation-duration-500 hover:scale-125"
-          href="/about.html"
-          >About</a
-        >
-        <a
-          class="inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.7s] animation-duration-500 hover:scale-125"
-          href="/"
-          >Projects</a
-        >
-        <a
-          class="inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.8s] animation-duration-500 hover:scale-125"
-          href="/"
-          >Contact</a
-        >
-      </div>
-    </nav>
+    <div id="bgOverlay" class="fixed h-screen w-screen bg-[#0D0F20] opacity-0"></div>
     <div
       id="buttonOverlay"
       class="group/overlay fixed right-0 top-0 z-[99] flex animate-fade-in-left flex-col items-center justify-center p-6 opacity-0 animation-delay-[2s] animation-duration-500"
@@ -214,10 +191,32 @@
         </div>
       </div>
     </div>
-    <section id="hero" class="h-screen">
-      <div
-        class="relative left-1/2 top-1/2 flex w-fit -translate-x-1/2 -translate-y-1/2 flex-row items-center justify-center"
-      >
+    <nav class="fixed z-50 m-6 ml-9">
+      <div id="pages" class="flex flex-row gap-x-7 text-base font-medium">
+        <a
+          class="inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.5s] animation-duration-500 hover:scale-125"
+          href="/"
+          >Home</a
+        >
+        <a
+          class="inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.6s] animation-duration-500 hover:scale-125"
+          href="/about.html"
+          >About</a
+        >
+        <a
+          class="inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.7s] animation-duration-500 hover:scale-125"
+          href="/"
+          >Projects</a
+        >
+        <a
+          class="inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.8s] animation-duration-500 hover:scale-125"
+          href="/"
+          >Contact</a
+        >
+      </div>
+    </nav>
+    <section id="intro" class="flex h-screen w-full items-center justify-center">
+      <div id="hero" class="relative flex w-fit flex-row items-center justify-center">
         <svg
           id="logoInit"
           width="175"
@@ -328,6 +327,59 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+    <section id="about" class="-mt-28 p-20 pt-0">
+      <div class="mx-auto w-[90%]">
+        <h1 class="mb-20 text-7xl font-medium">
+          <span class="line1 animate-rise-word animation-delay-[250ms]">About</span>
+          <span class="line1 animate-rise-word animation-delay-[500ms]">Me</span>
+          <span
+            id="line1-emoji"
+            class="animate-wave -ml-8 origin-bottom-right animation-delay-[750ms] animation-duration-500"
+            >👋</span
+          >
+        </h1>
+        <p class="my-14 text-4xl">
+          <span class="line2 animate-rise-word animation-delay-[1000ms]">I</span>
+          <span class="line2 animate-rise-word animation-delay-[1050ms]">am</span>
+          <span class="line2 animate-rise-word animation-delay-[1100ms]">currently</span>
+          <span class="line2 animate-rise-word animation-delay-[1150ms]">a</span>
+          <span class="line2 animate-rise-word animation-delay-[1200ms]">Master's </span>
+          <span class="line2 animate-rise-word animation-delay-[1250ms]">student </span>
+          <span class="line2 animate-rise-word animation-delay-[1300ms]">in </span>
+          <span class="line2 animate-rise-word animation-delay-[1350ms]">CS</span>
+          <span class="line2 animate-rise-word animation-delay-[1400ms]">at</span>
+          <span class="line2 animate-rise-word animation-delay-[1450ms]">Purdue</span>
+          <span class="line2 animate-rise-word animation-delay-[1500ms]">University. </span>
+        </p>
+        <p class="my-14 text-4xl">
+          <span class="line3 animate-rise-word animation-delay-[1750ms]">I</span>
+          <span class="line3 animate-rise-word animation-delay-[1800ms]">like</span>
+          <span class="line3 animate-rise-word animation-delay-[1850ms]">making </span>
+          <span class="line3 animate-rise-word animation-delay-[1900ms]">fun </span>
+          <span class="line3 animate-rise-word animation-delay-[1950ms]">and </span>
+          <span class="line3 animate-rise-word animation-delay-[2000ms]">useful </span>
+          <span class="line3 animate-rise-word animation-delay-[2050ms]">things.</span>
+        </p>
+        <p class="my-14 text-4xl">
+          <span class="line3 animate-rise-word animation-delay-[2300ms]">I</span>
+          <span class="line3 animate-rise-word animation-delay-[2350ms]">also</span>
+          <span class="line3 animate-rise-word animation-delay-[2400ms]">like </span>
+          <span class="line3 animate-rise-word animation-delay-[2450ms]">web</span>
+          <span class="line3 animate-rise-word animation-delay-[2500ms]">dev</span>
+          <span class="line3 animate-rise-word animation-delay-[2550ms]">and</span>
+          <span class="line3 animate-rise-word animation-delay-[2600ms]">AI.</span>
+        </p>
+        <p class="my-14 text-4xl">
+          <span class="line4 animate-rise-word animation-delay-[2850ms]">My</span>
+          <span class="line4 animate-rise-word animation-delay-[2900ms]">current</span>
+          <span class="line4 animate-rise-word animation-delay-[2950ms]">favorite </span>
+          <span class="line4 animate-rise-word animation-delay-[3000ms]">sorting </span>
+          <span class="line4 animate-rise-word animation-delay-[3050ms]">algorithm </span>
+          <span class="line4 animate-rise-word animation-delay-[3100ms]">is </span>
+          <span class="line4 animate-rise-word animation-delay-[3150ms]">sleepsort.</span>
+        </p>
       </div>
     </section>
   </body>

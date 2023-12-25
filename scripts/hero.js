@@ -1,4 +1,8 @@
 import { waitForAnimations } from "./utils/animation.js"
+import { useScroll } from "./utils/hooks.js"
+
+const introSection = document.getElementById("intro")
+const hero = document.getElementById("hero")
 
 const logoInit = document.getElementById("logoInit")
 const logoTop = document.getElementById("logoTop")
@@ -11,13 +15,30 @@ const heroText = document.getElementById("heroText")
 const heroTitle = document.getElementById("heroTitle")
 const heroDesc = document.getElementById("heroDesc")
 
+const bgOverlay = document.getElementById("bgOverlay")
+const buttonOverlay = document.getElementById("buttonOverlay")
+
 // TODO maybe bring this back into css?
 
 export async function animateHero() {
   animateLogoHeroText()
+  animateScroll()
 }
 
 async function animateLogoHeroText() {
+  if (
+    !logoInit ||
+    !logoTop ||
+    !logoMiddle ||
+    !logoBottom ||
+    !logoStroke ||
+    !heroSeparator ||
+    !heroText ||
+    !heroTitle ||
+    !heroDesc
+  )
+    throw new Error("no logo hero elems")
+
   // initial setup
   logoInit.style.visibility = "visible"
   logoInit.style.translate = "-50%"
@@ -35,6 +56,7 @@ async function animateLogoHeroText() {
 
   // to prevent overlapping elems
   const heroDescParent = heroDesc.parentElement
+  if (!heroDescParent) throw "no heroDescParent"
   heroDescParent.style.overflowY = "clip"
 
   // step 1
@@ -175,13 +197,29 @@ async function animateLogoHeroText() {
   logoBottom.style.fillOpacity = "1"
   // 2) create node, and change id to use hover effects defined in css
   const newNode = logoInit.cloneNode(true)
+  // @ts-ignore
   newNode.id = "logo"
   // 3) remove old node and replace with new one
   const parent = logoInit.parentNode
   const sibling = logoInit.nextSibling
   logoInit.remove()
+  if (!parent) throw "no logoInit parent"
   parent.insertBefore(newNode, sibling)
 
   // also reset hero description parent
   heroDescParent.style.overflowY = "visible"
+}
+
+function animateScroll() {
+  if (!hero || !bgOverlay || !buttonOverlay) throw "bruh no hero"
+  useScroll(introSection, (percentage) => {
+    if (percentage >= 0.55) {
+      hero.style.opacity = `${(0.67 - percentage) / 0.12}`
+      buttonOverlay.style.zIndex = "-20"
+    } else {
+      hero.style.opacity = "1"
+      buttonOverlay.style.zIndex = "0"
+    }
+    bgOverlay.style.opacity = `${1 - (0.65 - percentage) / 0.15}`
+  })
 }
