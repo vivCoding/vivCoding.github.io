@@ -52,15 +52,13 @@
 }
 
 @layer utilities {
-  .animate-rise-word {
+  .text-appear {
+    /* initial setup. Then, u add animate-wave or animate-rise-word or wtv */
     opacity: 0;
-    transform: translateY(30%);
     display: inline-block;
   }
 
-  .animate-wave {
-    opacity: 0;
-    display: inline-block;
-    /* transform-origin: bottom center; */
+  .animate-rise-word {
+    transform: translateY(30%);
   }
 }

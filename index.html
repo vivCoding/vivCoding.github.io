@@ -1,3 +1,4 @@
+<!-- TODO  make responsive, compatible with reduced motion, and js disabled -->
 <!doctype html>
 <html lang="en">
   <head>
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="styles/tw.css" />
     <link rel="stylesheet" href="styles/logo.css" />
     <link rel="stylesheet" href="styles/waves.css" />
+    <link rel="stylesheet" href="styles/test.css" />
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/logo-bg.svg" />
     <!-- TODO maybe add light mode favicon? -->
 
@@ -72,11 +74,7 @@
         <div
           class="flex -translate-y-full scale-75 flex-col items-center rounded-b-full bg-[#0D0F20] bg-opacity-0 p-2 pb-4 pt-2 opacity-0 transition group-hover/overlay:translate-y-0 group-hover/overlay:scale-100 group-hover/overlay:bg-opacity-90 group-hover/overlay:opacity-100"
         >
-          <button
-            id="waveSettingBtn"
-            class="group/waveBtn relative text-2xl transition"
-            onclick="changeTheme('waves')"
-          >
+          <button id="waveSettingBtn" class="group/waveBtn relative text-2xl transition" onclick="changeTheme('waves')">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="1em"
@@ -88,15 +86,9 @@
               stroke-linejoin="round"
               class="lucide lucide-waves hover:scale-125 hover:opacity-70"
             >
-              <path
-                d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"
-              />
-              <path
-                d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"
-              />
-              <path
-                d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"
-              />
+              <path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
+              <path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
+              <path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
             </svg>
             <span
               class="pointer-events-none absolute left-0 top-1/2 -ml-4 inline-block w-16 -translate-x-full -translate-y-1/2 rounded bg-slate-700 bg-opacity-90 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:translate-x-full after:border-y-8 after:border-l-8 after:border-y-transparent after:border-l-slate-700 after:border-opacity-90 after:bg-opacity-90 after:content-[''] group-hover/waveBtn:pointer-events-auto group-hover/waveBtn:opacity-100"
@@ -161,11 +153,7 @@
               Flow Field!
             </span>
           </button> -->
-          <button
-            title="Blob"
-            class="group/blobBtn relative mt-2 text-2xl"
-            onclick="changeTheme('blob')"
-          >
+          <button title="Blob" class="group/blobBtn relative mt-2 text-2xl" onclick="changeTheme('blob')">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="1em"
@@ -185,11 +173,7 @@
               Blob
             </span>
           </button>
-          <button
-            title="No Theme"
-            class="group/noneBtn relative mt-3 text-2xl"
-            onclick="changeTheme('none')"
-          >
+          <button title="No Theme" class="group/noneBtn relative mt-3 text-2xl" onclick="changeTheme('none')">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="1em"
@@ -260,9 +244,7 @@
             <h1 id="heroTitle" class="text-6xl font-semibold">Vincent V</h1>
             <div class="mt-5">
               <div id="heroDesc" class="opacity-0">
-                <h3 id="subtitle" class="pl-1 text-lg font-medium">
-                  CS Master's @ Purdue University
-                </h3>
+                <h3 id="subtitle" class="pl-1 text-lg font-medium">CS Master's @ Purdue University</h3>
                 <div id="links" class="mt-5 pl-0.5 text-4xl">
                   <a
                     class="group relative inline-block hover:cursor-pointer"
@@ -329,67 +311,80 @@
         </div>
       </div>
     </section>
-    <section id="about" class="-mt-28 px-32">
+    <section id="about" class="-mt-20 min-h-[80vh] px-32">
       <div class="">
-        <h1 class="mb-20 text-7xl font-medium">
-          <span class="line1 animate-rise-word animation-delay-[250ms]">About</span>
-          <span class="line1 animate-rise-word animation-delay-[500ms]">Me</span>
+        <h1 class="mb-16 text-7xl font-medium">
+          <span class="about-line-word text-appear animation-delay-[0ms]">About</span>
+          <span class="about-line-word text-appear animation-delay-[250ms]">Me</span>
           <span
-            id="line1-emoji"
-            class="animate-wave -ml-8 origin-bottom-right animation-delay-[750ms] animation-duration-500 hover:animate-[wave_infinite]"
+            id="about-line-emoji"
+            class="text-appear -ml-8 origin-bottom-right animate-wave animation-delay-[500ms] animation-duration-500 hover:animate-[wave_infinite]"
             >👋</span
           >
         </h1>
         <p class="my-14 text-4xl">
-          <span class="line2 animate-rise-word animation-delay-[1000ms]">I</span>
-          <span class="line2 animate-rise-word animation-delay-[1050ms]">am</span>
-          <span class="line2 animate-rise-word animation-delay-[1100ms]">currently</span>
-          <span class="line2 animate-rise-word animation-delay-[1150ms]">a</span>
-          <span class="line2 animate-rise-word animation-delay-[1200ms]">Master's </span>
-          <span class="line2 animate-rise-word animation-delay-[1250ms]">student </span>
-          <span class="line2 animate-rise-word animation-delay-[1300ms]">in </span>
-          <span class="line2 animate-rise-word animation-delay-[1350ms]">CS</span>
-          <span class="line2 animate-rise-word animation-delay-[1400ms]">at</span>
-          <span class="line2 animate-rise-word animation-delay-[1450ms]">Purdue</span>
-          <span class="line2 animate-rise-word animation-delay-[1500ms]">University. </span>
+          <span class="about-line-word text-appear animation-delay-[750ms]">I</span>
+          <span class="about-line-word text-appear animation-delay-[800ms]">am</span>
+          <span class="about-line-word text-appear animation-delay-[850ms]">currently</span>
+          <span class="about-line-word text-appear animation-delay-[900ms]">a</span>
+          <span class="about-line-word text-appear animation-delay-[950ms]">Master's </span>
+          <span class="about-line-word text-appear animation-delay-[1000ms]">student </span>
+          <span class="about-line-word text-appear animation-delay-[1050ms]">in </span>
+          <span class="about-line-word text-appear animation-delay-[1100ms]">CS</span>
+          <span class="about-line-word text-appear animation-delay-[1150ms]">at</span>
+          <span class="about-line-word text-appear animation-delay-[1200ms]">Purdue</span>
+          <span class="about-line-word text-appear animation-delay-[1250ms]">University. </span>
         </p>
         <p class="my-14 text-4xl">
-          <span class="line3 animate-rise-word animation-delay-[1750ms]">I</span>
-          <span class="line3 animate-rise-word animation-delay-[1800ms]">like</span>
-          <span class="line3 animate-rise-word animation-delay-[1850ms]">web</span>
-          <span class="line3 animate-rise-word animation-delay-[1900ms]">dev</span>
-          <span class="line3 animate-rise-word animation-delay-[1950ms]">and</span>
-          <span class="line3 animate-rise-word animation-delay-[2000ms]">AI.</span>
+          <span class="about-line-word text-appear animation-delay-[1500ms]">I</span>
+          <span class="about-line-word text-appear animation-delay-[1550ms]">like</span>
+          <span class="about-line-word text-appear animation-delay-[1600ms]">web</span>
+          <span class="about-line-word text-appear animation-delay-[1650ms]">dev</span>
+          <span class="about-line-word text-appear animation-delay-[1700ms]">and</span>
+          <span class="about-line-word text-appear animation-delay-[1750ms]">AI.</span>
         </p>
         <p class="my-14 text-4xl">
-          <span class="line3 animate-rise-word animation-delay-[2250ms]">I</span>
-          <span class="line3 animate-rise-word animation-delay-[2300ms]">also</span>
-          <span class="line3 animate-rise-word animation-delay-[2350ms]">like </span>
-          <span class="line3 animate-rise-word animation-delay-[2400ms]">making</span>
-          <span class="line3 animate-rise-word animation-delay-[2450ms]">fun</span>
-          <span class="line3 animate-rise-word animation-delay-[2500ms]">and</span>
-          <span class="line3 animate-rise-word animation-delay-[2550ms]">useful</span>
-          <span class="line3 animate-rise-word animation-delay-[2600ms]">things.</span>
+          <span class="about-line-word text-appear animation-delay-[2000ms]">I</span>
+          <span class="about-line-word text-appear animation-delay-[2050ms]">also</span>
+          <span class="about-line-word text-appear animation-delay-[2100ms]">like </span>
+          <span class="about-line-word text-appear animation-delay-[2150ms]">making</span>
+          <span class="about-line-word text-appear animation-delay-[2200ms]">fun</span>
+          <span class="about-line-word text-appear animation-delay-[2250ms]">and</span>
+          <span class="about-line-word text-appear animation-delay-[2300ms]">useful</span>
+          <span class="about-line-word text-appear animation-delay-[2350ms]">things.</span>
         </p>
         <p class="my-14 text-4xl">
-          <span class="line4 animate-rise-word animation-delay-[2850ms]">My</span>
-          <span class="line4 animate-rise-word animation-delay-[2900ms]">current</span>
-          <span class="line4 animate-rise-word animation-delay-[2950ms]">favorite </span>
-          <span class="line4 animate-rise-word animation-delay-[3000ms]">sorting </span>
-          <span class="line4 animate-rise-word animation-delay-[3050ms]">algorithm </span>
-          <span class="line4 animate-rise-word animation-delay-[3100ms]">is </span>
-          <span class="line4 animate-rise-word animation-delay-[3150ms]">sleepsort.</span>
+          <span class="about-line-word text-appear animation-delay-[2600ms]">My</span>
+          <span class="about-line-word text-appear animation-delay-[2650ms]">current</span>
+          <span class="about-line-word text-appear animation-delay-[2700ms]">favorite </span>
+          <span class="about-line-word text-appear animation-delay-[2750ms]">sorting </span>
+          <span class="about-line-word text-appear animation-delay-[2800ms]">algorithm </span>
+          <span class="about-line-word text-appear animation-delay-[2850ms]">is </span>
+          <span class="about-line-word text-appear animation-delay-[2900ms]">sleepsort.</span>
         </p>
       </div>
     </section>
-    <section id="projects" class="mt-40 px-32">
+    <section id="projects" class="my-20 min-h-[80vh] px-32">
       <h1 class="text-7xl font-medium">
-        Projects
-        <span class="-ml-6">👨‍💻</span>
+        <span class="projects-line-word text-appear">Projects</span>
+        <span
+          id="projects-line-emoji"
+          class="animate-bop text-appear -ml-6 animation-delay-[250ms] animation-duration-1000 hover:animate-[bop_infinite]"
+          >👨‍💻</span
+        >
       </h1>
-      <h6 class="mt-8 text-xl">A collection of my works, big and small</h6>
+      <h6 class="mt-8 text-xl">
+        <span class="projects-line-word text-appear animation-delay-[750ms]">A</span>
+        <span class="projects-line-word text-appear animation-delay-[800ms]">collection</span>
+        <span class="projects-line-word text-appear animation-delay-[850ms]">of</span>
+        <span class="projects-line-word text-appear animation-delay-[900ms]">my</span>
+        <span class="projects-line-word text-appear animation-delay-[950ms]">works,</span>
+        <span class="projects-line-word text-appear animation-delay-[1000ms]">big</span>
+        <span class="projects-line-word text-appear animation-delay-[1050ms]">and</span>
+        <span class="projects-line-word text-appear animation-delay-[1100ms]">small</span>
+      </h6>
     </section>
-    <section id="contact" class="my-40 px-32">
+    <section id="contact" class="my-20 px-32">
       <h1 class="text-7xl font-medium">Contact</h1>
       <h6 class="mt-8 text-xl">Ask me a question!</h6>
     </section>

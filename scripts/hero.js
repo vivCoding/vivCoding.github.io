@@ -215,6 +215,7 @@ function animateScroll() {
   usePercentageSeen(introSection, (percentage) => {
     if (percentage >= 0.55) {
       hero.style.opacity = `${(0.67 - percentage) / 0.12}`
+      // eh not ideal, have to look at z-indexes of other stuff
       buttonOverlay.style.zIndex = "-20"
     } else {
       hero.style.opacity = "1"
