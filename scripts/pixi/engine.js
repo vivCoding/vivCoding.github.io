@@ -4,6 +4,7 @@ document.addEventListener("mousemove", (e) => {
   mousePosition.y = e.clientY
 })
 
+// Abstracts some of the initial pixi setup
 export class PixiEngine {
   /**
    *

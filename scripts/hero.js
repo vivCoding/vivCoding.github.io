@@ -22,7 +22,7 @@ const buttonOverlay = document.getElementById("buttonOverlay")
 
 export async function animateHero() {
   animateLogoHeroText()
-  animateScroll()
+  updateOnScroll()
 }
 
 async function animateLogoHeroText() {
@@ -160,10 +160,7 @@ async function animateLogoHeroText() {
       easing: "cubic-bezier(0.86, 0, 0.07, 1)",
       fill: "forwards",
     }),
-    heroTitle.animate(
-      { transform: "translateY(0)" },
-      { duration: 300, easing: "ease", fill: "forwards", delay: 100 }
-    ),
+    heroTitle.animate({ transform: "translateY(0)" }, { duration: 300, easing: "ease", fill: "forwards", delay: 100 }),
     heroDesc.animate(
       [
         {
@@ -210,7 +207,7 @@ async function animateLogoHeroText() {
   heroDescParent.style.overflowY = "visible"
 }
 
-function animateScroll() {
+function updateOnScroll() {
   if (!hero || !bgOverlay || !buttonOverlay) throw "bruh no hero"
   usePercentageSeen(introSection, (percentage) => {
     if (percentage >= 0.55) {

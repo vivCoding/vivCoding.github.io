@@ -38,9 +38,9 @@ module.exports = {
           "100%": { transform: "translate3d(0, 0, 0) scale3d(1, 1)", rotate: "360deg" },
         },
         rise: {
-          "0%": { opacity: 0, transform: "translateY(50%)" },
+          "0%": { opacity: 0, translate: "0 50%" },
           "50%": { opacity: 1 },
-          "100%": { opacity: 1, transform: "translateY(0%)" },
+          "100%": { opacity: 1, translate: "0 0%" },
         },
         wave: {
           "0%": {

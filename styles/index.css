@@ -57,8 +57,4 @@
     opacity: 0;
     display: inline-block;
   }
-
-  .animate-rise-word {
-    transform: translateY(30%);
-  }
 }

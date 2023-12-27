@@ -49,4 +49,5 @@ export async function changeTheme(theme, delayMs = 0) {
 }
 
 // expose this function globally (to bind to buttons easily)
+// @ts-ignore
 window.changeTheme = changeTheme

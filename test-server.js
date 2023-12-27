@@ -32,7 +32,7 @@ const server = http.createServer((req, res) => {
   )
 
   try {
-    const filePath = path.join(home, req.url == "/" ? "index.html" : req.url)
+    const filePath = path.join(home, req.url === "/" ? "index.html" : req.url)
     const extname = path.extname(filePath)
     const contentType = extToType[extname]
 
