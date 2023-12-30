@@ -6,6 +6,8 @@ const plugin = require("tailwindcss/plugin")
 
 module.exports = {
   content: ["./**/*.{html,js}"],
+  // ensure classes are generated (these classes get added with js)
+  safelist: ["animate-rise-word", "animate-wave", "animate-bop"],
   theme: {
     extend: {
       fontFamily: {

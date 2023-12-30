@@ -1,53 +1,41 @@
-/**
- * Inclusive range. Default range from 0 to 1
- */
+/** Inclusive range. Default range from 0 to 1 */
 export function randomFromRange(min = 0, max = 1) {
   return Math.random() * (max - min) + min
 }
 
-/**
- * Inclusive range. Default range from 0 to 1
- */
+/** Inclusive range. Default range from 0 to 1 */
 export function randomIntFromRange(min = 0, max = 1) {
   return Math.round(randomFromRange(min, max))
 }
 
-/**
- * Inclusive range
- *
- * @param {number} min
- * @param {number} max
- * @param {number} value
- */
-export function clampValue(min, max, value) {
+/** Ensures value is between min and max. Inclusive range */
+export function clampValue(min: number, max: number, value: number) {
   return Math.max(min, Math.min(value, max))
 }
 
-/**
- * just a simple obj to hold {x, y}
- */
+/** just a simple obj to hold {x, y} */
 export class Vector2d {
+  x: number
+  y: number
+
   constructor(x = 0, y = 0) {
     this.x = x
     this.y = y
   }
 
-  /** @param {number} x, @param {number} y */
-  set(x, y) {
+  set(x: number, y: number) {
     this.x = x
     this.y = y
     return this
   }
 
-  /** @param {number} x, @param {number} y */
-  add(x, y) {
+  add(x: number, y: number) {
     this.x += x
     this.y += y
     return this
   }
 
-  /** @param {number} m */
-  scale(m) {
+  scale(m: number) {
     this.x *= m
     this.y *= m
     return this
@@ -63,9 +51,8 @@ export class Vector2d {
  * Shuffle array in-place
  *
  * https://bost.ocks.org/mike/shuffle/
- * @param {Array} array
  */
-export function shuffle(array) {
+export function shuffle(array: Array<any>) {
   let m = array.length,
     t,
     i

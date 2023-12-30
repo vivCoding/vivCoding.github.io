@@ -1,24 +1,23 @@
 // https://github.com/joeiddon/perlin/blob/master/perlin.js
 export const perlin = {
+  ct: 0,
+  ct2: 0,
+  memory: {} as Record<number, Record<number, number>>,
+  gradients: {} as Record<number, Record<number, { x: number; y: number }>>,
+
   seed: function () {
     this.gradients = {}
     this.memory = {}
     this.ct = 0
     this.ct2 = 0
   },
+
   rand_vect: function () {
     let theta = Math.random() * 2 * Math.PI
     return { x: Math.cos(theta), y: Math.sin(theta) }
   },
-  /**
-   *
-   * @param {number} x
-   * @param {number} y
-   * @param {number} vx
-   * @param {number} vy
-   * @returns
-   */
-  dot_prod_grid: function (x, y, vx, vy) {
+
+  dot_prod_grid: function (x: number, y: number, vx: number, vy: number): number {
     let g_vect
     let d_vect = { x: x - vx, y: y - vy }
     // vx = +vx.toFixed(2)
@@ -33,31 +32,16 @@ export const perlin = {
     }
     return d_vect.x * g_vect.x + d_vect.y * g_vect.y
   },
-  /**
-   *
-   * @param {number} x
-   * @returns
-   */
-  smootherstep: function (x) {
+
+  smootherstep: function (x: number) {
     return 6 * x ** 5 - 15 * x ** 4 + 10 * x ** 3
   },
-  /**
-   *
-   * @param {number} x
-   * @param {number} a
-   * @param {number} b
-   * @returns
-   */
-  interp: function (x, a, b) {
+
+  interp: function (x: number, a: number, b: number) {
     return a + this.smootherstep(x) * (b - a)
   },
-  /**
-   *
-   * @param {number} x
-   * @param {number} y
-   * @returns {number}
-   */
-  get: function (x, y) {
+
+  get: function (x: number, y: number): number {
     // x = +x.toFixed(2)
     // y = +y.toFixed(2)
     if (!!this.memory[x] && !!this.memory[x][y]) return this.memory[x][y]

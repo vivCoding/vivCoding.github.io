@@ -1,30 +1,21 @@
 import { BlobBg } from "./themes/blob.js"
-import { FlowField } from "./themes/flowField.js"
+import { Theme } from "./themes/index.js"
 import { StarsScene } from "./themes/stars.js"
 import { WavesScene } from "./themes/waves.js"
-import { delay } from "./utils/animation.js"
 import { randomIntFromRange } from "./utils/misc.js"
 
-/**
- * @typedef theme
- * @type {keyof themes | "none"}
- */
-
-const themes = {
+const themes: Record<string, Theme> = {
   waves: new WavesScene(),
   stars: new StarsScene(),
   blob: new BlobBg(),
   // TODO flow field
   // flowField: new FlowField(),
 }
+
 const themeNames = Object.keys(themes)
-/** @type {theme} */
-// @ts-ignore
 // choose random initial theme
 const initialTheme = themeNames[randomIntFromRange(0, themeNames.length - 1)]
-// const initialTheme = "stars"
 
-/** @type {theme} */
 let currentTheme = "none"
 let isTransitioning = false
 const initialDelay = 1000
@@ -34,8 +25,7 @@ export function startTheme() {
   changeTheme(initialTheme, initialDelay)
 }
 
-/** @param {theme} theme */
-export async function changeTheme(theme, delayMs = 0) {
+export async function changeTheme(theme: string, delayMs = 0) {
   if (isTransitioning) return
   isTransitioning = true
   if (currentTheme !== "none") {
@@ -49,5 +39,4 @@ export async function changeTheme(theme, delayMs = 0) {
 }
 
 // expose this function globally (to bind to buttons easily)
-// @ts-ignore
 window.changeTheme = changeTheme

@@ -1,10 +1,8 @@
-import { usePercentageSeen } from "./utils/hooks.js"
+import { usePercentageSeen } from "./utils/hooks"
 
 const aboutSection = document.getElementById("about")
 const introSection = document.getElementById("intro")
-/** @type {HTMLElement[]} */
-// @ts-ignore
-const words = [...document.getElementsByClassName("about-line-word")]
+const words = [...document.getElementsByClassName("about-line-word")] as HTMLElement[]
 const emoji = document.getElementById("about-line-emoji")
 
 const PERCENTAGE_TRIGGER = 0.68
@@ -30,6 +28,8 @@ export function animateAbout() {
       }
     }
   })
+
+  console.log("got", words)
 }
 
 function hideLines() {

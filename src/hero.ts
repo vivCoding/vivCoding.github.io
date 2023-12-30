@@ -1,5 +1,5 @@
-import { waitForAnimations } from "./utils/animation.js"
-import { usePercentageSeen } from "./utils/hooks.js"
+import { waitForAnimations } from "./utils/animation"
+import { usePercentageSeen } from "./utils/hooks"
 
 const introSection = document.getElementById("intro")
 const hero = document.getElementById("hero")

@@ -1,38 +1,41 @@
-import { PixiEngine } from "../pixi/engine.js"
-import { delay, fadeIn, fadeOut, waitForAnimation } from "../utils/animation.js"
-import { Vector2d } from "../utils/misc.js"
-
-// TODO check for prefer no motion
+import { PixiEngine } from "../pixi/engine"
+import * as PIXI from "pixi.js"
+import { Vector2d } from "../utils/misc"
+import { delay, fadeIn, fadeOut, waitForAnimation } from "../utils/animation"
 
 export class Theme {
-  async enter() {
+  /** play when theme enters */
+  async enter(transitionDuration: number, delay: number) {
     throw new Error("bruh enter not implemented")
   }
 
-  async exit() {
+  /** play when theme exits */
+  async exit(transitionDuration: number, delay: number) {
     throw new Error("bruh exit not implemented")
   }
 }
 
-/**
- * Theme uses pixijs. Is always attached to pixi canvas
- */
+/** Theme that uses pixijs. Is always attached to pixi canvas */
 export class PixiTheme extends Theme {
   // This theme always uses the same canvas. Instantiate only one engine
   static pixiCanvas = document.getElementById("pixiCanvas")
   static pixiEngine = new PixiEngine(PixiTheme.pixiCanvas)
 
+  // upon review, can prob be static too but eh
+  pixiApp = PixiTheme.pixiEngine.pixiApp
+
+  width = this.pixiApp.screen.width
+  height = this.pixiApp.screen.height
+  center = new Vector2d(this.width / 2, this.height / 2)
+
+  rendered = false
+  playing = false
+
+  _updateFunc?: PIXI.TickerCallback<any> = undefined
+
   constructor() {
     if (!PixiTheme.pixiCanvas) throw new Error("welp no pixi canvas, no cool pixi theme")
     super()
-    this.pixiApp = PixiTheme.pixiEngine.pixiApp
-
-    /** @type {number} */
-    this.width = this.pixiApp.screen.width
-    /** @type {number} */
-    this.height = this.pixiApp.screen.height
-
-    this.center = new Vector2d(this.width / 2, this.height / 2)
 
     PixiTheme.pixiEngine.addOnResize(
       (() => {
@@ -46,11 +49,6 @@ export class PixiTheme extends Theme {
         }
       }).bind(this)
     )
-    this.playing = false
-    this.rendered = false
-
-    /** @type {Function=} */
-    this.updateFunc = undefined
   }
 
   render() {
@@ -68,20 +66,19 @@ export class PixiTheme extends Theme {
   play() {
     if (!this.playing) {
       this.playing = true
-      this.updateFunc = (delta) => this.onTick(delta)
-      this.pixiApp.ticker.add(this.updateFunc)
+      this._updateFunc = (delta: number) => this.onTick(delta)
+      this.pixiApp.ticker.add(this._updateFunc)
     }
   }
 
   stop() {
-    if (this.playing) {
+    if (this.playing && this._updateFunc) {
       this.playing = false
-      this.pixiApp.ticker.remove(this.updateFunc)
+      this.pixiApp.ticker.remove(this._updateFunc)
     }
   }
 
-  /** @param {number} delta */
-  onTick(delta) {
+  onTick(delta: number) {
     throw new Error("onTick not implemented hmmmmm")
   }
 

@@ -1,23 +1,17 @@
-/** @param {number} time */
-export function delay(time) {
+export function delay(time: number) {
   return new Promise((resolve) => setTimeout(resolve, time))
 }
 
-/** @param {Animation} animation */
-export function waitForAnimation(animation) {
+export function waitForAnimation(animation: Animation) {
   return new Promise((resolve) => (animation.onfinish = resolve))
 }
 
-/** @param {Animation[]} animations */
-export function waitForAnimations(animations) {
+export function waitForAnimations(animations: Animation[]) {
   return Promise.all(animations.map((a) => waitForAnimation(a)))
 }
 
-/**
- * Default duration = 1000ms
- * @param {HTMLElement} elem
- * */
-export function fadeIn(elem, duration = 1000, delay = 0) {
+/** Default duration = 1000ms */
+export function fadeIn(elem: HTMLElement, duration = 1000, delay = 0) {
   return elem.animate(
     { opacity: [0, 1] },
     {
@@ -29,11 +23,8 @@ export function fadeIn(elem, duration = 1000, delay = 0) {
   )
 }
 
-/**
- * Default duration = 1000ms
- * @param {HTMLElement} elem
- * */
-export function fadeOut(elem, duration = 1000, delay = 0) {
+/** Default duration = 1000ms */
+export function fadeOut(elem: HTMLElement, duration = 1000, delay = 0) {
   return elem.animate(
     { opacity: [1, 0] },
     {

@@ -1,34 +1,27 @@
-import { mousePosition } from "../pixi/engine.js"
-import { randomFromRange, randomIntFromRange, shuffle, Vector2d } from "../utils/misc.js"
-import { PixiTheme } from "./index.js"
+import { randomFromRange, randomIntFromRange, shuffle, Vector2d } from "../utils/misc"
+import { PixiTheme } from "./index"
+import * as PIXI from "pixi.js"
 
-/**
- * @typedef WavePoint
- * @type {object}
- * @property {Vector2d} position
- * @property {Vector2d} initialPosition
- * @property {number} speed
- * @property {number} modValue
- * @property {number} amplitude
- * @property {WaveFunc} waveFunc
- */
+type WaveFunc = (x: number) => number
 
-/**
- * @callback WaveFunc
- * @param {number} x
- * @return {number} result of wave function
- */
+type WavePoint = {
+  position: Vector2d
+  initialPosition: Vector2d
+  speed: number
+  modValue: number
+  amplitude: number
+  waveFunc: WaveFunc
+}
 
 export class WavesScene extends PixiTheme {
+  minWavesHeight = this.height * 0.5
+  maxWavesHeight = this.height * 0.9
+  minOpacity = 0.2
+  maxOpacity = 0.4
+  waves: WaveShape[]
+
   constructor() {
     super()
-
-    this.minWavesHeight = this.height * 0.5
-    this.maxWavesHeight = this.height * 0.9
-    this.minOpacity = 0.2
-    this.maxOpacity = 0.4
-
-    /** @type {WaveShape[]} */
     this.waves = [
       new WaveShape(this, randomIntFromRange(this.minWavesHeight, this.maxWavesHeight), "#263357"),
       new WaveShape(this, randomIntFromRange(this.minWavesHeight, this.maxWavesHeight), "#263357"),
@@ -48,8 +41,7 @@ export class WavesScene extends PixiTheme {
     })
   }
 
-  /** @param {number} delta */
-  onTick(delta) {
+  onTick(delta: number) {
     this.waves.forEach((wave) => {
       wave.updateWave(delta)
     })
@@ -74,14 +66,44 @@ class WaveShape {
     TODO do some cool stuff with mouse?
     maybe make wave center curvey rather than a horizontal line? idk
   */
-  /**
-   *
-   * @param {WavesScene} wavesScene
-   * @param {number} shapeHeight
-   * @param {any} waveColor
-   * @param {number} opacity
-   */
-  constructor(wavesScene, shapeHeight, waveColor, opacity = 1) {
+
+  wavesScene: WavesScene
+  pixiApp: PIXI.Application
+  waveColor: string
+  opacity: number
+
+  shapeCenter: number
+  shapeHeight: number
+  topShapeBound: number
+  bottomShapeBound: number
+
+  minCenterRange: number
+  maxCenterRange: number
+  bottomEdgeCenter: number
+  topEdgeCenter: number
+
+  bottomMaxAmplitude: number
+  topMaxAmplitude: number
+
+  edgeSameDirection: boolean
+
+  minWaveModAB: number
+  maxWaveModAB: number
+  minWaveModC: number
+  maxWaveModC: number
+
+  points: WavePoint[]
+
+  minPointSpeed: number
+  maxPointSpeed: number
+  numPoints: number
+
+  topEdgeGraphics1?: PIXI.Graphics = undefined
+  topEdgeGraphics2?: PIXI.Graphics = undefined
+  bottomEdgeGraphics1?: PIXI.Graphics = undefined
+  bottomEdgeGraphics2?: PIXI.Graphics = undefined
+
+  constructor(wavesScene: WavesScene, shapeHeight: number, waveColor: string, opacity = 1) {
     this.wavesScene = wavesScene
     this.pixiApp = wavesScene.pixiApp
     this.waveColor = waveColor
@@ -98,11 +120,9 @@ class WaveShape {
     this.minCenterRange = 0.2
     this.maxCenterRange = 1.4
     this.bottomEdgeCenter =
-      this.shapeCenter -
-      (this.shapeHeight / 4) * randomIntFromRange(this.minCenterRange, this.maxCenterRange)
+      this.shapeCenter - (this.shapeHeight / 4) * randomIntFromRange(this.minCenterRange, this.maxCenterRange)
     this.topEdgeCenter =
-      this.shapeCenter +
-      (this.shapeHeight / 4) * randomIntFromRange(this.minCenterRange, this.maxCenterRange)
+      this.shapeCenter + (this.shapeHeight / 4) * randomIntFromRange(this.minCenterRange, this.maxCenterRange)
 
     // calculate max amplitude based on distance from nearest bound
     this.bottomMaxAmplitude = this.bottomEdgeCenter - this.bottomShapeBound
@@ -117,18 +137,14 @@ class WaveShape {
     this.minWaveModC = 0
     this.maxWaveModC = 10
 
-    /**
-     * wave edge points
-     * @type {WavePoint[]}
-     */
-    // TODO maybe break this into two arrays, top and bottom
+    // wave edge points
+    // TODO maybe break this into two arrays, top edge points and bottom edge points?
     this.points = []
 
     // wave values
     this.minPointSpeed = 0.005
     this.maxPointSpeed = 0.04
     // TODO different num points for each edge?
-    // this.numPoints = randomIntFromRange(4, 12)
     this.numPoints = randomIntFromRange(4, 12)
 
     // masking for when the top edge and bottom edge overlap :))))
@@ -143,11 +159,9 @@ class WaveShape {
     // random speeds for each wave edge
     const midSpeed = (this.minPointSpeed + this.maxPointSpeed) / 2
     const speed1 =
-      randomFromRange(this.minPointSpeed, midSpeed) *
-      (this.edgeSameDirection ? 1 : Math.sign(randomFromRange(-1, 1)))
+      randomFromRange(this.minPointSpeed, midSpeed) * (this.edgeSameDirection ? 1 : Math.sign(randomFromRange(-1, 1)))
     const speed2 =
-      randomFromRange(midSpeed, this.maxPointSpeed) *
-      (this.edgeSameDirection ? 1 : Math.sign(randomFromRange(-1, 1)))
+      randomFromRange(midSpeed, this.maxPointSpeed) * (this.edgeSameDirection ? 1 : Math.sign(randomFromRange(-1, 1)))
 
     // create two different wave func for each edge
     const midWaveMod = (this.minWaveModAB + this.maxWaveModAB) / 2
@@ -190,20 +204,20 @@ class WaveShape {
     }
   }
 
-  /**
-   * @param {{
-   * position: Vector2d,
-   * speed: number,
-   * amplitude: number,
-   * waveFunc: WaveFunc
-   * color?: any
-   * }} params
-   */
-  createPoint({ position, speed, amplitude, waveFunc, color = this.waveColor }) {
+  createPoint({
+    position,
+    speed,
+    amplitude,
+    waveFunc,
+  }: {
+    position: Vector2d
+    speed: number
+    amplitude: number
+    waveFunc: WaveFunc
+  }) {
     // normalize x range to be in 10, so u can view wave func on a 0 <= x <= 10 desmos graph
     const initModValue = (position.x / this.wavesScene.width) * 10
-    /** @type {WavePoint} */
-    const point = {
+    const point: WavePoint = {
       position: position,
       initialPosition: position.copy(),
       modValue: initModValue,
@@ -219,12 +233,8 @@ class WaveShape {
    * Creates a new wave function with params
    *
    * f(x) = sin(Ax + C) * cos(Bx)
-   * @param {number} modA
-   * @param {number} modB
-   * @param {number} modC
-   * @returns {WaveFunc} wave function f(x)
    */
-  createWaveFunc(modA, modB, modC) {
+  createWaveFunc(modA: number, modB: number, modC: number): WaveFunc {
     return (x) =>
       // random bs func go brr
       Math.sin(modA * x + modC) * Math.cos(modB * x)
@@ -232,7 +242,9 @@ class WaveShape {
   }
 
   /** @param {number} delta */
-  updateWave(delta) {
+  updateWave(delta: number) {
+    if (!this.topEdgeGraphics1 || !this.topEdgeGraphics2 || !this.bottomEdgeGraphics1 || !this.bottomEdgeGraphics2)
+      throw "wtf no edge grpahics??"
     // update point value with wave movement
     this.points.forEach((point) => {
       point.modValue += point.speed * delta
@@ -314,10 +326,10 @@ class WaveShape {
   }
 
   clear() {
-    this.topEdgeGraphics1.destroy()
-    this.topEdgeGraphics2.destroy()
-    this.bottomEdgeGraphics1.destroy()
-    this.bottomEdgeGraphics2.destroy()
+    if (this.topEdgeGraphics1) this.topEdgeGraphics1.destroy()
+    if (this.topEdgeGraphics2) this.topEdgeGraphics2.destroy()
+    if (this.bottomEdgeGraphics1) this.bottomEdgeGraphics1.destroy()
+    if (this.bottomEdgeGraphics2) this.bottomEdgeGraphics2.destroy()
     this.points = []
   }
 

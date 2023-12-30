@@ -1,48 +1,42 @@
 import { clampValue, randomFromRange, Vector2d } from "../utils/misc.js"
 import { mousePosition } from "../pixi/engine.js"
 import { PixiTheme } from "./index.js"
+import * as PIXI from "pixi.js"
 
-/**
- * @typedef StarType
- * @type {object}
- * @property {PIXI.Sprite} sprite
- * @property {number} size
- * @property {number} alpha
- * @property {Vector2d} position
- * @property {Vector2d} center
- * @property {Vector2d} velocity
- * @property {Vector2d} startVelocity
- * @property {{ h: number, s: number, l: number }} lineColor
- */
+type StarType = {
+  sprite: PIXI.Sprite
+  size: number
+  alpha: number
+  position: Vector2d
+  center: Vector2d
+  velocity: Vector2d
+  startVelocity: Vector2d
+  lineColor: { h: number; s: number; l: number }
+}
 
-/**
- * @typedef MouseCursorType
- * @type {object}
- * @property {PIXI.Sprite} sprite
- * @property {number} size
- * @property {Vector2d} position
- * @property {Vector2d} velocity
- */
+type MouseCursorType = {
+  sprite: PIXI.Sprite
+  size: number
+  position: Vector2d
+  velocity: Vector2d
+}
 
 export class StarsScene extends PixiTheme {
+  spacing = 80
+  maxStarSize = 3.5
+  baseSpeed = 1
+  minSpeed = 0.1
+  mouseForceRadius = 100
+  mouseCursorSize = 3
+
+  stars: StarType[] = []
+  mouseCursor?: MouseCursorType = undefined
+  lineGraphics?: PIXI.Graphics = undefined
+
   constructor() {
     super()
-    this.spacing = 80
-    this.maxStarSize = 3.5
-    this.baseSpeed = 1
-    this.minSpeed = 0.1
-    this.mouseForceRadius = 100
-    this.mouseCursorSize = 3
 
     // TODO why not initialize the stars HERE (somewhere not in render), and then add to stage in render
-
-    /** @type {StarType[]} */
-    this.stars = []
-
-    /**  @type {MouseCursorType} */
-    this.mouseCursor = undefined
-    /**  @type {PIXI.Graphics} */
-    this.lineGraphics = undefined
   }
 
   createMouseCursor() {
@@ -107,9 +101,9 @@ export class StarsScene extends PixiTheme {
     }
   }
 
-  /** @param {number} delta */
-  updateMouseCursor(delta) {
+  updateMouseCursor(delta: number) {
     // mouse cursor simple gravity
+    if (!this.mouseCursor) throw "wtf no mouse cursor sprite?"
     const mcxDiff = mousePosition.x - this.mouseCursor.position.x
     const mcyDiff = mousePosition.y - this.mouseCursor.position.y
     const mcDistSquared = mcxDiff ** 2 + mcyDiff ** 2
@@ -131,8 +125,7 @@ export class StarsScene extends PixiTheme {
     this.mouseCursor.velocity.y *= 0.8
   }
 
-  /** @param {number} delta */
-  updateStars(delta) {
+  updateStars(delta: number) {
     // TODO maybe break this into diff funcs
     this.stars.forEach((star) => {
       // apply movement (including forces)
@@ -162,6 +155,7 @@ export class StarsScene extends PixiTheme {
       // if (Math.abs(star.velocity.y) < minSpeed) star.velocity.y = 0
 
       // mouse force
+      if (!this.mouseCursor) throw "wtf no mouse cursor sprite?"
       const mxDiff = star.position.x - this.mouseCursor.position.x
       const myDiff = star.position.y - this.mouseCursor.position.y
       const mDistSquared = mxDiff ** 2 + myDiff ** 2
@@ -190,6 +184,7 @@ export class StarsScene extends PixiTheme {
       // add lines to show mouse gravity
       if (mouseInteraction) {
         const percentDist = (this.mouseForceRadius - mDist) / this.mouseForceRadius
+        if (!this.lineGraphics) throw "wtf no lineGraphics?"
         this.lineGraphics
           .lineStyle(
             clampValue(1, 5, percentDist ** 0.5 * 5),
@@ -209,16 +204,15 @@ export class StarsScene extends PixiTheme {
     this.createStars()
   }
 
-  /** @param {number} delta */
-  onTick(delta) {
-    this.lineGraphics.clear()
+  onTick(delta: number) {
+    if (this.lineGraphics) this.lineGraphics.clear()
     this.updateMouseCursor(delta)
     this.updateStars(delta)
   }
 
   clear() {
-    this.lineGraphics.destroy()
-    this.mouseCursor.sprite.destroy()
+    if (this.lineGraphics) this.lineGraphics.destroy()
+    if (this.mouseCursor) this.mouseCursor.sprite.destroy()
     this.stars.forEach((star) => {
       star.sprite.destroy()
     })

@@ -1,13 +1,11 @@
 // TODO this is basically copy paste from aboutSection
 // dont repeat urself?
-import { content } from "./data.js"
-import { usePercentageSeen } from "./utils/hooks.js"
+import { content } from "./data"
+import { usePercentageSeen } from "./utils/hooks"
 
 const projectsSection = document.getElementById("projects")
 const aboutSection = document.getElementById("about")
-/** @type {HTMLElement[]} */
-// @ts-ignore
-const words = [...document.getElementsByClassName("projects-line-word")]
+const words = [...document.getElementsByClassName("projects-line-word")] as HTMLElement[]
 const emoji = document.getElementById("projects-line-emoji")
 const description = document.getElementById("projectsDescription")
 const projectsList = document.getElementById("projectsList")
@@ -114,14 +112,12 @@ function initProjects() {
     const template = document.createElement("template")
     template.innerHTML = newElemHtml.trim()
     projectsList.appendChild(template.content.children[0])
-    console.log("coool", idx)
+    // console.log("coool", idx)
   })
 }
 
 function showProjects() {
-  /** @type {HTMLElement[]} */
-  // @ts-ignore
-  const projectCards = [...document.getElementsByClassName("projectCard")]
+  const projectCards = [...document.getElementsByClassName("projectCard")] as HTMLElement[]
   projectCards.forEach((projectCard) => {
     projectCard.style.visibility = "visible"
     projectCard.classList.add("animate-rise-word")
@@ -129,9 +125,7 @@ function showProjects() {
 }
 
 function hideProjects() {
-  /** @type {HTMLElement[]} */
-  // @ts-ignore
-  const projectCards = [...document.getElementsByClassName("projectCard")]
+  const projectCards = [...document.getElementsByClassName("projectCard")] as HTMLElement[]
   projectCards.forEach((projectCard) => {
     projectCard.style.visibility = "hidden"
     projectCard.classList.remove("animate-rise-word")

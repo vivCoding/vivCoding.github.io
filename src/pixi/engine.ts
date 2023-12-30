@@ -1,4 +1,7 @@
+import * as PIXI from "pixi.js"
+
 export const mousePosition = { x: 0, y: 0 }
+
 document.addEventListener("mousemove", (e) => {
   mousePosition.x = e.clientX
   mousePosition.y = e.clientY
@@ -6,21 +9,18 @@ document.addEventListener("mousemove", (e) => {
 
 // Abstracts some of the initial pixi setup
 export class PixiEngine {
-  /**
-   *
-   * @param {HTMLElement | null} elem
-   */
-  constructor(elem) {
+  pixiApp: PIXI.Application
+  resizeFuncs: Function[]
+
+  constructor(elem: HTMLElement | null) {
     if (!elem) throw new Error("yuh oh, no elem passed for pixi app")
     this.pixiApp = new PIXI.Application({
-      view: elem,
+      view: elem as HTMLCanvasElement,
       resizeTo: window,
-      autoResize: true,
       backgroundAlpha: 0,
     })
-    document.body.appendChild(this.pixiApp.view)
+    document.body.appendChild(this.pixiApp.view as HTMLCanvasElement)
 
-    /** @type {Function[]} */
     this.resizeFuncs = []
 
     window.addEventListener("resize", this.onResize.bind(this))
@@ -31,8 +31,7 @@ export class PixiEngine {
     this.resizeFuncs.forEach((func) => func())
   }
 
-  /** @param {Function} func */
-  addOnResize(func) {
+  addOnResize(func: Function) {
     this.resizeFuncs.push(func)
   }
 }

@@ -1,8 +1,14 @@
+// TODO revise and convert back to ts
+
 import { randomFromRange, randomIntFromRange, shuffle, Vector2d } from "../utils/misc.js"
 import { perlin } from "../utils/perlin.js"
 import { PixiTheme } from "./index.js"
+import * as PIXI from "pixi.js"
 
 export class FlowField extends PixiTheme {
+  numParticles = 1
+  particleSpeed = 5
+
   constructor() {
     super()
 
@@ -34,9 +40,7 @@ export class FlowField extends PixiTheme {
   onTick(delta) {
     this.particles.forEach((particle) => {
       // const newPos = new Vector2d(200 + Math.sin(this.ct) * 100, 200 + Math.cos(this.ct) * 100)
-      const newPos = new Vector2d(2, 1)
-        .scale(delta * delta)
-        .add(particle.position.x, particle.position.y)
+      const newPos = new Vector2d(2, 1).scale(delta * delta).add(particle.position.x, particle.position.y)
       // const px = +(particle.position.x / this.width).toFixed(2)
       // const py = +(particle.position.y / this.height).toFixed(2)
       // const noise = perlin.get(px, py)
@@ -101,10 +105,7 @@ class Particle {
     })
 
     for (let i = 1; i <= this.trailLength; i++) {
-      const graphic = new PIXI.Graphics()
-        .beginFill(this.trailColor)
-        .drawCircle(0, 0, this.trailSize)
-        .endFill()
+      const graphic = new PIXI.Graphics().beginFill(this.trailColor).drawCircle(0, 0, this.trailSize).endFill()
       const sprite = new PIXI.Sprite(this.flowFieldScene.pixiApp.renderer.generateTexture(graphic))
       this.trail.unshift({
         position: this.position.copy(),
@@ -128,10 +129,7 @@ class Particle {
       this.position.y < 0 ||
       this.position.y >= this.flowFieldScene.height
     ) {
-      this.position.set(
-        randomFromRange(0, this.flowFieldScene.width),
-        randomFromRange(0, this.flowFieldScene.width)
-      )
+      this.position.set(randomFromRange(0, this.flowFieldScene.width), randomFromRange(0, this.flowFieldScene.width))
       this.trail.forEach((trailParticle) => {
         // trailParticle.position.set(this.position.x, this.position.y)
         trailParticle.sprite.alpha = 0

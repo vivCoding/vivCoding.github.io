@@ -1,13 +1,7 @@
-import { clampValue } from "./misc.js"
+import { clampValue } from "./misc"
 
-/**
- * @param {HTMLElement | null} element
- * @param {(percentage: number) => void} onChange
- */
-export function usePercentageSeen(element, onChange) {
-  if (!element) {
-    throw new Error("no elem for useScroll")
-  }
+export function usePercentageSeen(element: HTMLElement | null, onChange: (percentage: number) => any) {
+  if (!element) throw new Error("no elem for useScroll")
 
   const handleScroll = () => {
     // Get the relevant measurements and positions
@@ -27,10 +21,7 @@ export function usePercentageSeen(element, onChange) {
   handleScroll()
 }
 
-/**
- * @param {({ yPos, yPercentage}: { yPos: number, yPercentage: number}) => void} onChange
- */
-export function useScrollPosition(onChange) {
+export function useScrollPosition(onChange: ({ yPos, yPercentage }: { yPos: number; yPercentage: number }) => any) {
   const handleScroll = () => {
     const yPos = window.scrollY
     const yPercentage =

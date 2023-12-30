@@ -1,17 +1,15 @@
-import { animateAbout } from "./about.js"
-import { animateHero } from "./hero.js"
-import { animateProject } from "./projects.js"
+import { animateHero } from "./hero"
 import { startTheme } from "./settings.js"
+import { animateAbout } from "./about"
+import { animateProject } from "./projects"
 import { useScrollPosition } from "./utils/hooks.js"
 
 const navbar = document.getElementById("navbar")
-/** @type {HTMLElement[]} */
-// @ts-ignore
-const navbarLinks = [...document.getElementsByClassName("navbarLink")]
+const navbarLinks = [...document.getElementsByClassName("navbarLink")] as HTMLElement[]
 const NAVBAR_ANIMATION = "animate-fade-in-down"
 
 document.body.onload = () => {
-  console.log("yo")
+  console.log("😎")
   updateNavbarOnScroll()
   animateHero()
   startTheme()
