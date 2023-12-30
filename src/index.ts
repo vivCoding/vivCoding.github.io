@@ -1,8 +1,8 @@
-import { animateHero } from "./hero"
-import { startTheme } from "./settings.js"
 import { animateAbout } from "./about"
+import { animateHero } from "./hero"
 import { animateProject } from "./projects"
-import { useScrollPosition } from "./utils/hooks.js"
+import { startTheme } from "./settings"
+import { useScrollPosition } from "./utils/hooks"
 
 const navbar = document.getElementById("navbar")
 const navbarLinks = [...document.getElementsByClassName("navbarLink")] as HTMLElement[]

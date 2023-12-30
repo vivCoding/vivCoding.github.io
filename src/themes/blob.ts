@@ -1,5 +1,5 @@
-import { fadeIn, fadeOut, waitForAnimations } from "../utils/animation"
-import { Theme } from "./index"
+import { fadeIn, fadeOut, waitForAnimations } from "@/utils/animation"
+import { Theme } from "."
 
 export class BlobBg extends Theme {
   blobBg = document.getElementById("blobBg")

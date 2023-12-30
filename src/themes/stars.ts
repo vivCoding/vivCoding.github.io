@@ -1,7 +1,7 @@
-import { clampValue, randomFromRange, Vector2d } from "../utils/misc.js"
-import { mousePosition } from "../pixi/engine.js"
-import { PixiTheme } from "./index.js"
+import { mousePosition } from "@/pixi/engine"
+import { Vector2d, clampValue, randomFromRange } from "@/utils/misc"
 import * as PIXI from "pixi.js"
+import { PixiTheme } from "."
 
 type StarType = {
   sprite: PIXI.Sprite

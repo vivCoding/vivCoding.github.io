@@ -1,5 +1,6 @@
 // TODO this is basically copy paste from aboutSection
 // dont repeat urself?
+
 import { content } from "./data"
 import { usePercentageSeen } from "./utils/hooks"
 
@@ -112,7 +113,6 @@ function initProjects() {
     const template = document.createElement("template")
     template.innerHTML = newElemHtml.trim()
     projectsList.appendChild(template.content.children[0])
-    // console.log("coool", idx)
   })
 }
 

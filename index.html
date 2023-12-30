@@ -6,7 +6,7 @@
 
     <link rel="stylesheet" href="styles/index.css" />
     <link rel="stylesheet" href="styles/logo.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/logo-bg.svg" />
+    <link rel="shortcut icon" type="image/x-icon" href="/images/logo-bg.svg" />
 
     <title>Vincent V</title>
   </head>
@@ -14,32 +14,32 @@
     <canvas id="pixiCanvas" class="fixed left-0 top-0 -z-30 opacity-0"></canvas>
     <div id="blobBg" class="fixed left-0 top-0 -z-30 h-screen w-screen opacity-0">
       <div
-        class="blob animate-spin-slow animation-duration-[5s] fixed z-[-10] aspect-square h-[60vh] origin-[30%_50%] rounded-full bg-gradient-to-r from-[#00C2FF] to-[#213941] blur-[200px]"
+        class="blob fixed z-[-10] aspect-square h-[60vh] origin-[30%_50%] animate-spin-slow rounded-full bg-gradient-to-r from-[#00C2FF] to-[#213941] blur-[200px] animation-duration-[5s]"
       ></div>
       <div
-        class="blob animate-spin-slow animation-duration-[10s] fixed z-[-10] aspect-square h-[60vh] origin-[50%_70%] rounded-full bg-gradient-to-r from-[#00C2FF] to-[#213941] blur-[200px]"
+        class="blob fixed z-[-10] aspect-square h-[60vh] origin-[50%_70%] animate-spin-slow rounded-full bg-gradient-to-r from-[#00C2FF] to-[#213941] blur-[200px] animation-duration-[10s]"
       ></div>
     </div>
     <div id="bgOverlay" class="fixed -z-10 h-screen w-screen bg-[#0D0F20] opacity-0"></div>
     <nav id="navbar" class="fixed z-10 w-full bg-[#0D0F20] p-6 pl-9">
       <div class="flex flex-row gap-x-7 text-base font-medium">
         <a
-          class="navbarLink animate-fade-in-down animation-delay-[1.5s] animation-duration-500 inline-block opacity-0 transition hover:scale-125"
+          class="navbarLink inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.5s] animation-duration-500 hover:scale-125"
           href="/#"
           >Home</a
         >
         <a
-          class="navbarLink animate-fade-in-down animation-delay-[1.6s] animation-duration-500 inline-block opacity-0 transition hover:scale-125"
+          class="navbarLink inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.6s] animation-duration-500 hover:scale-125"
           href="/#about"
           >About</a
         >
         <a
-          class="navbarLink animate-fade-in-down animation-delay-[1.7s] animation-duration-500 inline-block opacity-0 transition hover:scale-125"
+          class="navbarLink inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.7s] animation-duration-500 hover:scale-125"
           href="/"
           >Projects</a
         >
         <a
-          class="navbarLink animate-fade-in-down animation-delay-[1.8s] animation-duration-500 inline-block opacity-0 transition hover:scale-125"
+          class="navbarLink inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.8s] animation-duration-500 hover:scale-125"
           href="/"
           >Contact</a
         >
@@ -47,7 +47,7 @@
     </nav>
     <div
       id="buttonOverlay"
-      class="group/overlay animate-fade-in-left animation-delay-[2s] animation-duration-500 fixed right-0 top-0 z-[99] flex flex-col items-center justify-center p-6 opacity-0"
+      class="group/overlay fixed right-0 top-0 z-[99] flex animate-fade-in-left flex-col items-center justify-center p-6 opacity-0 animation-delay-[2s] animation-duration-500"
     >
       <button
         class="rotate-90 rounded-full bg-[#0D0F20] bg-opacity-0 p-3 text-3xl transition duration-300 ease-in-out group-hover/overlay:rotate-0 group-hover/overlay:scale-125 group-hover/overlay:bg-opacity-90"
@@ -292,7 +292,7 @@
           <span class="about-line-word text-appear animation-delay-[250ms]">Me</span>
           <span
             id="about-line-emoji"
-            class="text-appear animate-wave animation-delay-[500ms] animation-duration-500 -ml-8 origin-bottom-right hover:animate-[wave_infinite]"
+            class="text-appear -ml-8 origin-bottom-right animate-wave animation-delay-[500ms] animation-duration-500 hover:animate-[wave_infinite]"
             >👋</span
           >
         </h1>
@@ -343,7 +343,7 @@
         <span class="projects-line-word text-appear">Projects</span>
         <span
           id="projects-line-emoji"
-          class="text-appear animate-bop animation-delay-[250ms] animation-duration-1000 -ml-6 hover:animate-[bop_infinite]"
+          class="text-appear -ml-6 animate-bop animation-delay-[250ms] animation-duration-1000 hover:animate-[bop_infinite]"
           >👨‍💻</span
         >
       </h1>
@@ -360,11 +360,11 @@
       <div id="projectsList" class="mt-8 grid grid-cols-2 gap-8">
         <!-- populated with js. Maybe time to use a framework??? -->
         <div
-          class="projectCard animation-delay-[250ms] group flex w-full flex-row items-center rounded-2xl bg-white text-black opacity-0 transition hover:scale-105"
+          class="projectCard group flex w-full flex-row items-center rounded-2xl bg-white text-black opacity-0 transition animation-delay-[250ms] hover:scale-105"
         >
           <div class="flex w-full flex-row items-center p-5 pr-0">
             <img
-              src="assets/images/projects/code_icon.png"
+              src="/images/projects/code_icon.png"
               class="max-h-32 w-32 rounded border-2 border-solid border-slate-200"
             />
             <div class="projectCardContent ml-5">

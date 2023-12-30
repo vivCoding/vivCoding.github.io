@@ -1,6 +1,6 @@
-import { randomFromRange, randomIntFromRange, shuffle, Vector2d } from "../utils/misc"
-import { PixiTheme } from "./index"
+import { Vector2d, randomFromRange, randomIntFromRange, shuffle } from "@/utils/misc"
 import * as PIXI from "pixi.js"
+import { PixiTheme } from "."
 
 type WaveFunc = (x: number) => number
 

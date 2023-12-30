@@ -1,7 +1,7 @@
-import { PixiEngine } from "../pixi/engine"
+import { PixiEngine } from "@/pixi/engine"
+import { delay, fadeIn, fadeOut, waitForAnimation } from "@/utils/animation"
+import { Vector2d } from "@/utils/misc"
 import * as PIXI from "pixi.js"
-import { Vector2d } from "../utils/misc"
-import { delay, fadeIn, fadeOut, waitForAnimation } from "../utils/animation"
 
 export class Theme {
   /** play when theme enters */

@@ -1,4 +1,4 @@
-import { changeTheme } from "../settings"
+import { changeTheme } from "@/settings"
 
 declare global {
   interface Window {

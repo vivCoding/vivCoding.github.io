@@ -1,8 +1,8 @@
-import { BlobBg } from "./themes/blob.js"
-import { Theme } from "./themes/index.js"
-import { StarsScene } from "./themes/stars.js"
-import { WavesScene } from "./themes/waves.js"
-import { randomIntFromRange } from "./utils/misc.js"
+import { Theme } from "./themes"
+import { BlobBg } from "./themes/blob"
+import { StarsScene } from "./themes/stars"
+import { WavesScene } from "./themes/waves"
+import { randomIntFromRange } from "./utils/misc"
 
 const themes: Record<string, Theme> = {
   waves: new WavesScene(),

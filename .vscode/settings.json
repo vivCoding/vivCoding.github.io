@@ -4,6 +4,10 @@
   },
 
   "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.organizeImports": true
+  },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
 
   // override user's indentation settings (helps when creating new files/auto commenting)
