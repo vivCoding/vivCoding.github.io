@@ -20,12 +20,12 @@ const buttonOverlay = document.getElementById("buttonOverlay")
 
 // TODO maybe bring this back into css?
 
-export async function animateHero() {
-  animateLogoHeroText()
+export async function animateIntro() {
+  animateHero()
   updateOnScroll()
 }
 
-async function animateLogoHeroText() {
+async function animateHero() {
   if (
     !logoInit ||
     !logoTop ||

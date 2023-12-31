@@ -1,5 +1,5 @@
 import { animateAbout } from "./about"
-import { animateHero } from "./hero"
+import { animateIntro } from "./intro"
 import { animateProject } from "./projects"
 import { startTheme } from "./settings"
 import { useScrollPosition } from "./utils/hooks"
@@ -11,7 +11,7 @@ const NAVBAR_ANIMATION = "animate-fade-in-down"
 document.body.onload = () => {
   console.log("😎")
   updateNavbarOnScroll()
-  animateHero()
+  animateIntro()
   startTheme()
   animateAbout()
   animateProject()

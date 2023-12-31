@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 const defaultTheme = require("tailwindcss/defaultTheme")
 const plugin = require("tailwindcss/plugin")
+const { transform } = require("typescript")
 
 // TODO maybe move animations into separate css file
 
@@ -35,9 +36,9 @@ module.exports = {
           "100%": { opacity: 1, translate: "0% 0" },
         },
         "spin-slow": {
-          "0%": { transform: "translate3d(0, 0, 0) scale3d(1, 1)", rotate: "0deg" },
-          "50%": { transform: "translate3d(0, 0, 0) scale3d(1.4, 1)" },
-          "100%": { transform: "translate3d(0, 0, 0) scale3d(1, 1)", rotate: "360deg" },
+          "0%": { transform: "translate3d(0, 0, 0) scale3d(1, 1, 1)", rotate: "0deg" },
+          "50%": { transform: "translate3d(0, 0, 0) scale3d(1.4, 1, 1)" },
+          "100%": { transform: "translate3d(0, 0, 0) scale3d(1, 1, 1)", rotate: "360deg" },
         },
         rise: {
           "0%": { opacity: 0, translate: "0 50%" },
@@ -47,20 +48,20 @@ module.exports = {
         wave: {
           "0%": {
             opacity: 1,
-            transform: "rotate3d(0, 0, 1, 0deg)",
+            rotate: "0deg",
           },
           "25%": {
-            transform: "rotate3d(0, 0, 1, 10deg)",
+            rotate: "10deg",
           },
           "50%": {
-            transform: "rotate3d(0, 0, 1, 0deg)",
+            rotate: "0deg",
           },
           "75%": {
-            transform: "rotate3d(0, 0, 1, 10deg)",
+            rotate: "10deg",
           },
           "100%": {
             opacity: 1,
-            transform: "rotate3d(0, 0, 1, 0deg)",
+            rotate: "0deg",
           },
         },
         bop: {
@@ -90,6 +91,42 @@ module.exports = {
             transform: "rotate3d(0, 0, 1, 0deg)",
           },
         },
+        "swoosh-in": {
+          "0%": {
+            translate: "-100% 0",
+            transform: "skew(10deg)",
+            opacity: 0,
+            // clipPath: "inset(0 0 -10% 100%)",
+            clipPath: "inset(0 0 -10% 0)",
+          },
+          "50%": {
+            opacity: 0,
+            transform: "skew(10deg)",
+          },
+
+          "100%": {
+            translate: "0 0",
+            transform: "skew(0deg)",
+            opacity: 1,
+            clipPath: "inset(0 0 -10% 0)",
+          },
+        },
+        "swoosh-out": {
+          "0%": {
+            translate: "0ex 0",
+            // opacity: 1,
+            clipPath: "inset(0 0 -10% 0)",
+          },
+          "50%": {
+            // opacity: 1,
+          },
+          "100%": {
+            translate: "1ex 0",
+            transform: "skew(10deg)",
+            // opacity: 0,
+            clipPath: "inset(0 1ex -10% 0)",
+          },
+        },
       },
       animation: {
         "fade-in": "fade-in 1s linear forwards",
@@ -101,6 +138,8 @@ module.exports = {
         "rise-word": "rise 300ms cubic-bezier(0.86, 0, 0.07, 1) 1 forwards",
         wave: "wave 1000ms linear forwards",
         bop: "bop 1s ease-in-out forwards",
+        swoosh:
+          "swoosh-out 100ms ease-in 0ms 1 alternate forwards running, swoosh-in 200ms ease-in 100ms 1 normal forwards running",
       },
     },
   },
