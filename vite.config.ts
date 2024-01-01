@@ -11,6 +11,12 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, "index.html"),
       },
+      output: {
+        // put pixijs in separate chunk
+        manualChunks: {
+          "pixi.js": ["pixi.js"],
+        },
+      },
     },
   },
   preview: {
