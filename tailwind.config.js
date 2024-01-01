@@ -1,14 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 const defaultTheme = require("tailwindcss/defaultTheme")
 const plugin = require("tailwindcss/plugin")
-const { transform } = require("typescript")
 
 // TODO maybe move animations into separate css file
 
 module.exports = {
   content: ["./**/*.{html,js}"],
-  // ensure classes are generated (these classes get added with js)
-  // safelist: ["animate-rise-word", "animate-wave", "animate-bop"],
+  // safelist some classes, cuz they only get used in js created elems(?)
+  safeList: ["animate-swoosh"],
   theme: {
     extend: {
       fontFamily: {
@@ -114,17 +113,17 @@ module.exports = {
         "swoosh-out": {
           "0%": {
             translate: "0ex 0",
-            // opacity: 1,
-            clipPath: "inset(0 0 -10% 0)",
+            opacity: 1,
+            // clipPath: "inset(0 0 -10% 0)",
           },
           "50%": {
-            // opacity: 1,
+            // opacity: 0,
           },
           "100%": {
             translate: "1ex 0",
             transform: "skew(10deg)",
-            // opacity: 0,
-            clipPath: "inset(0 1ex -10% 0)",
+            opacity: 0,
+            // clipPath: "inset(0 1ex -10% 0)",
           },
         },
       },

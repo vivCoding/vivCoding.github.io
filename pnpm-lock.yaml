@@ -5,11 +5,17 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  alpinejs:
+    specifier: ^3.13.3
+    version: 3.13.3
   pixi.js:
     specifier: ^7.3.2
     version: 7.3.2(@pixi/utils@7.3.2)
 
 devDependencies:
+  '@types/alpinejs':
+    specifier: ^3.13.5
+    version: 3.13.5
   '@types/node':
     specifier: ^20.10.5
     version: 20.10.5
@@ -778,6 +784,10 @@ packages:
     dev: true
     optional: true
 
+  /@types/alpinejs@3.13.5:
+    resolution: {integrity: sha512-BSNTroRhmBkNiyd7ELK/5Boja92hnQMST6H4z1BqXKeMVzHjp9o1j5poqd5Tyhjd8oMFwxYC4I00eghfg2xrTA==}
+    dev: true
+
   /@types/css-font-loading-module@0.0.7:
     resolution: {integrity: sha512-nl09VhutdjINdWyXxHWN/w9zlNCfr60JUqJbd24YXUuCwgeL0TpFSdElCwb6cxfB6ybE19Gjj4g0jsgkXxKv1Q==}
     dev: false
@@ -794,6 +804,22 @@ packages:
 
   /@types/offscreencanvas@2019.7.3:
     resolution: {integrity: sha512-ieXiYmgSRXUDeOntE1InxjWyvEelZGP63M+cGuquuRLuIKKT1osnkXjxev9B7d1nXSug5vpunx+gNlbVxMlC9A==}
+    dev: false
+
+  /@vue/reactivity@3.1.5:
+    resolution: {integrity: sha512-1tdfLmNjWG6t/CsPldh+foumYFo3cpyCHgBYQ34ylaMsJ+SNHQ1kApMIa8jN+i593zQuaw3AdWH0nJTARzCFhg==}
+    dependencies:
+      '@vue/shared': 3.1.5
+    dev: false
+
+  /@vue/shared@3.1.5:
+    resolution: {integrity: sha512-oJ4F3TnvpXaQwZJNF3ZK+kLPHKarDmJjJ6jyzVNDKH9md1dptjC7lWR//jrGuLdek/U6iltWxqAnYOu8gCiOvA==}
+    dev: false
+
+  /alpinejs@3.13.3:
+    resolution: {integrity: sha512-WZ6WQjkAOl+WdW/jukzNHq9zHFDNKmkk/x6WF7WdyNDD6woinrfXCVsZXm0galjbco+pEpYmJLtwlZwcOfIVdg==}
+    dependencies:
+      '@vue/reactivity': 3.1.5
     dev: false
 
   /ansi-regex@5.0.1:

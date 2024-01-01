@@ -28,8 +28,6 @@ export function animateAbout() {
       }
     }
   })
-
-  console.log("got", words)
 }
 
 function hideLines() {

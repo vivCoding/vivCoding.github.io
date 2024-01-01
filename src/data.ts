@@ -80,11 +80,11 @@ export const content = {
       description:
         'Converts regular images to text characters based on pixel intensity, adding some "text-ure" to them!',
     },
-    // {
-    //   title: "Portfolio Website",
-    //   link: "https://github.com/vivCoding/vivCoding.github.io",
-    //   image: "/images/projects/code_icon.png",
-    //   description: "Website to showcase my projects and personal links",
-    // },
+    {
+      title: "Portfolio Website",
+      link: "https://github.com/vivCoding/vivCoding.github.io",
+      image: "/images/projects/code_icon.png",
+      description: "Website to showcase my projects and personal links",
+    },
   ],
 }
