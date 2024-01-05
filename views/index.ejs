@@ -299,11 +299,12 @@
         <% about.description.forEach((sentence, idx) => { %>
         <p class="my-14 text-4xl">
           <% const words = sentence.split(" ") %>
+          <!-- TODO why do i hve to do prettier ignore -->
           <!-- prettier-ignore -->
           <% const initialDelay = 250 + about.description.slice(0, idx).reduce((prev, curr) => curr.split(" ").length * 50 + 50 + prev, 0) %>
           <% words.forEach((word, idx2) => { %>
           <!-- prettier-ignore -->
-          <span class="about-line-word text-appear animation-delay-[<%- initialDelay + 50 * idx2 %>ms]">
+          <span class="about-line-word text-appear animation-delay-[<%= initialDelay + 50 * idx2 %>ms]">
             <%= word %>
           </span>
           <% }) %>
@@ -344,7 +345,7 @@
       <h6 class="mt-8 text-xl">
         <% "Send me a message!".split(" ").forEach((word, idx) => { %>
         <!--prettier-ignore-->
-        <span class="projects-line-word text-appear animation-delay-[<%- 250 + 50 * idx %>ms]"> <%= word %> </span>
+        <span class="projects-line-word text-appear animation-delay-[<%= 250 + 50 * idx %>ms]"> <%= word %> </span>
         <% }) %>
       </h6>
     </section>
