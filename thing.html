@@ -1,0 +1,22 @@
+<section id="contact" class="my-20 px-32">
+  <h1 class="group w-fit text-7xl font-medium">
+    <span class="contact-line-word text-appear">Contact</span>
+    <span id="contact-line-emoji" class="text-appear -ml-10 animation-delay-[250ms]">
+      <span class="inline-block -translate-y-2">
+        <span class="inline-block group-hover:animate-swoosh">📨</span>
+      </span>
+    </span>
+  </h1>
+  <h6 class="mt-8 text-xl">
+    <% "Send me a message!".split(" ").forEach((word, idx) => { %>
+    <span class="projects-line-word text-appear animation-delay-[<%- 250 + 50 * idx %>ms]"> <%= word %> </span>
+    <% }) %>
+  </h6>
+  <h6 class="mt-8 text-xl">
+    <% "lorem ipsum dorem jazz".split(" ").forEach((word, idx) => { %>
+    <span class="animation-delay-[<%- 50 * idx %>ms]"> <%= word %> </span>
+    <% }) %>
+  </h6>
+  <!-- const initialDelay = 250 + about.description.slice(0, idx).reduce((prev, curr) => curr.split(" ").length * 50 + 50 + prev, 0) -->
+  <!-- words.forEach((word, idx2) => { -->
+</section>

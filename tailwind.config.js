@@ -92,36 +92,34 @@ module.exports = {
         },
         "swoosh-in": {
           "0%": {
-            translate: "-100% 0",
-            transform: "skew(10deg)",
+            transform: "skew(10deg) translate3d(-100%, 0, 0)",
             opacity: 0,
-            // clipPath: "inset(0 0 -10% 100%)",
-            clipPath: "inset(0 0 -10% 0)",
+            // clipPath: "inset(0 0 -10% 0)",
           },
           "50%": {
-            opacity: 0,
-            transform: "skew(10deg)",
+            opacity: 0.25,
+            transform: "skew(10deg) translate3d(-50%, 0, 0)",
           },
 
           "100%": {
             translate: "0 0",
-            transform: "skew(0deg)",
+            transform: "skew(0deg) translate3d(0, 0, 0)",
             opacity: 1,
-            clipPath: "inset(0 0 -10% 0)",
+            // clipPath: "inset(0 0 -10% 0)",
           },
         },
         "swoosh-out": {
           "0%": {
-            translate: "0ex 0",
+            transform: "skew(0deg) translate3d(0, 0, 0)",
             opacity: 1,
             // clipPath: "inset(0 0 -10% 0)",
           },
           "50%": {
-            // opacity: 0,
+            transform: "skew(10deg) translate3d(50%, 0, 0)",
+            opacity: 0,
           },
           "100%": {
-            translate: "1ex 0",
-            transform: "skew(10deg)",
+            transform: "skew(10deg) translate3d(100%, 0, 0)",
             opacity: 0,
             // clipPath: "inset(0 1ex -10% 0)",
           },
@@ -138,7 +136,7 @@ module.exports = {
         wave: "wave 1000ms linear forwards",
         bop: "bop 1s ease-in-out forwards",
         swoosh:
-          "swoosh-out 100ms ease-in 0ms 1 alternate forwards running, swoosh-in 200ms ease-in 100ms 1 normal forwards running",
+          "swoosh-out 100ms ease-in 0ms forwards, swoosh-in 200ms ease-in 100ms forwards",
       },
     },
   },

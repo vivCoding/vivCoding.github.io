@@ -9,6 +9,8 @@
     "source.organizeImports": "explicit"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // force usage of local config
+  "prettier.configPath": ".prettierrc",
 
   // override user's indentation settings (helps when creating new files/auto commenting)
   "editor.indentSize": 2,
@@ -17,6 +19,7 @@
 
   "files.associations": {
     "*.css": "tailwindcss",
-    "*.svg": "html"
+    "*.svg": "html",
+    "*.ejs": "html"
   }
 }

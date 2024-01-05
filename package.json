@@ -1,24 +1,28 @@
 {
   "type": "module",
+  "source": [
+    "views/index.ejs"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "prettier": "prettier *.html *.css *.js *.json **/*.html **/*.css **/*.js **/*.json  --check",
-    "prettier:fix": "prettier *.html *.css *.js *.json **/*.html **/*.css **/*.js **/*.json  --write"
+    "dev": "parcel serve -p 3000 --no-cache",
+    "build": "parcel build",
+    "prettier": "prettier --check *.{html,css,js,ts,json,pug} **/*.{html,css,js,ts,json,pug}",
+    "prettier:fix": "prettier --write *.{html,css,js,ts,json,pug} **/*.{html,css,js,ts,json,pug}"
   },
   "devDependencies": {
     "@types/alpinejs": "^3.13.5",
-    "@types/node": "^20.10.5",
-    "autoprefixer": "^10.4.16",
+    "parcel": "^2.11.0",
+    "parcel-transformer-templ": "workspace:^",
     "postcss": "^8.4.32",
     "prettier": "^3.1.1",
+    "prettier-plugin-ejs": "^0.0.19",
     "prettier-plugin-tailwindcss": "^0.5.10",
+    "punycode": "^1.4.1",
     "tailwindcss": "^3.4.0",
-    "typescript": "^5.2.2",
-    "vite": "^5.0.8"
+    "url": "^0.11.0"
   },
   "dependencies": {
+    "@parcel/config-default": "^2.11.0",
     "alpinejs": "^3.13.3",
     "pixi.js": "^7.3.2"
   }
