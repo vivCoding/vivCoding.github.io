@@ -302,7 +302,8 @@
           <!-- prettier-ignore -->
           <% const initialDelay = 250 + about.description.slice(0, idx).reduce((prev, curr) => curr.split(" ").length * 50 + 50 + prev, 0) %>
           <% words.forEach((word, idx2) => { %>
-          <span class="about-line-word text-appear animation-delay-[<!- initialDelay + 50 * idx2 !>ms]">
+          <!-- prettier-ignore -->
+          <span class="about-line-word text-appear animation-delay-[<%- initialDelay + 50 * idx2 %>ms]">
             <%= word %>
           </span>
           <% }) %>
