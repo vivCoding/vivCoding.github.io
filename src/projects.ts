@@ -1,7 +1,6 @@
 // TODO this is basically copy paste from aboutSection
 // dont repeat urself?
 
-import { content } from "./data"
 import { usePercentageSeen } from "./utils/hooks"
 
 const projectsSection = document.getElementById("projects")
@@ -15,14 +14,11 @@ const WORD_ANIMATION = "animate-rise-word"
 const EMOJI_ANIMATION = "animate-bop"
 const DESC_ANIMATION = "animate-fade-in-up"
 
-import Alpine from "alpinejs"
-
 export function animateProject() {
   if (!projectsSection) throw "no section"
 
   // initial
   hideLines()
-  // initProjects()
 
   // use intro section to relate the scrolling of intro section to about section
   usePercentageSeen(aboutSection, (percentage) => {
@@ -69,12 +65,6 @@ function showLines() {
   // if (!description) throw "no description"
   // description.style.visibility = "visible"
   // description.classList.add(DESC_ANIMATION)
-}
-
-export function initProjects() {
-  Alpine.data("projectsData", () => ({
-    projects: content.projects,
-  }))
 }
 
 function showProjects() {

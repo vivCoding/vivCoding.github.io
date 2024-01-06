@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="styles/index.css" />
-    <link rel="stylesheet" href="styles/logo.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="/images/logo-bg.svg" />
+    <link rel="stylesheet" href="/styles/index.css">
+    <link rel="stylesheet" href="/styles/logo.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/logo-bg.svg">
 
     <title>Vincent V</title>
   </head>
@@ -95,7 +95,7 @@
               xmlns="http://www.w3.org/2000/svg"
               height="1em"
               viewBox="0 0 24 24"
-              fill="none"
+              fill="white"
               stroke="currentColor"
               stroke-width="2"
               stroke-linecap="round"
@@ -116,38 +116,40 @@
               Stars!
             </span>
           </button>
-          <!-- <button
-            title="Flow Field!"
-            class="group/flowBtn relative mt-2 text-2xl"
-            onclick="changeTheme('flowField')"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="1em"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-wind transition hover:scale-125 hover:opacity-70"
+          <!--
+            <button
+              title="Flow Field!"
+              class="group/flowBtn relative mt-2 text-2xl"
+              onclick="changeTheme('flowField')"
             >
-              <path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2" />
-              <path d="M9.6 4.6A2 2 0 1 1 11 8H2" />
-              <path d="M12.6 19.4A2 2 0 1 0 14 16H2" />
-            </svg>
-            <span
-              class="pointer-events-none absolute left-0 top-1/2 -ml-4 inline-block w-32 -translate-x-full -translate-y-1/2 rounded bg-slate-700 bg-opacity-90 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:translate-x-full after:border-y-8 after:border-l-8 after:border-y-transparent after:border-l-slate-700 after:border-opacity-90 after:bg-opacity-90 after:content-[''] group-hover/flowBtn:pointer-events-auto group-hover/flowBtn:opacity-100"
-            >
-              Flow Field!
-            </span>
-          </button> -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="1em"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-wind transition hover:scale-125 hover:opacity-70"
+              >
+                <path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2" />
+                <path d="M9.6 4.6A2 2 0 1 1 11 8H2" />
+                <path d="M12.6 19.4A2 2 0 1 0 14 16H2" />
+              </svg>
+              <span
+                class="pointer-events-none absolute left-0 top-1/2 -ml-4 inline-block w-32 -translate-x-full -translate-y-1/2 rounded bg-slate-700 bg-opacity-90 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:translate-x-full after:border-y-8 after:border-l-8 after:border-y-transparent after:border-l-slate-700 after:border-opacity-90 after:bg-opacity-90 after:content-[''] group-hover/flowBtn:pointer-events-auto group-hover/flowBtn:opacity-100"
+              >
+                Flow Field!
+              </span>
+            </button>
+          -->
           <button title="Blob" class="group/blobBtn relative mt-2 text-2xl" onclick="changeTheme('blob')">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="1em"
               viewBox="0 0 24 24"
-              fill="none"
+              fill="white"
               stroke="currentColor"
               stroke-width="2"
               stroke-linecap="round"
@@ -188,7 +190,7 @@
         <svg
           id="logoInit"
           width="175"
-          class="invisible relative left-1/2 z-10 -translate-x-1/2 overflow-visible py-4"
+          class="invisible relative left-1/2 z-10 overflow-visible py-4"
           viewBox="0 0 65 54"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -296,47 +298,19 @@
             >👋</span
           >
         </h1>
-        <!-- TODO use alpinejs for this maybe -->
-        <p class="my-14 text-4xl">
-          <span class="about-line-word text-appear animation-delay-[500ms]">I</span>
-          <span class="about-line-word text-appear animation-delay-[550ms]">am</span>
-          <span class="about-line-word text-appear animation-delay-[600ms]">currently</span>
-          <span class="about-line-word text-appear animation-delay-[650ms]">a</span>
-          <span class="about-line-word text-appear animation-delay-[700ms]">Master's </span>
-          <span class="about-line-word text-appear animation-delay-[750ms]">student </span>
-          <span class="about-line-word text-appear animation-delay-[800ms]">in </span>
-          <span class="about-line-word text-appear animation-delay-[850ms]">CS</span>
-          <span class="about-line-word text-appear animation-delay-[900ms]">at</span>
-          <span class="about-line-word text-appear animation-delay-[950ms]">Purdue</span>
-          <span class="about-line-word text-appear animation-delay-[1000ms]">University. </span>
-        </p>
-        <p class="my-14 text-4xl">
-          <span class="about-line-word text-appear animation-delay-[1100ms]">I</span>
-          <span class="about-line-word text-appear animation-delay-[1150ms]">like</span>
-          <span class="about-line-word text-appear animation-delay-[1200ms]">web</span>
-          <span class="about-line-word text-appear animation-delay-[1250ms]">dev</span>
-          <span class="about-line-word text-appear animation-delay-[1300ms]">and</span>
-          <span class="about-line-word text-appear animation-delay-[1350ms]">AI.</span>
-        </p>
-        <p class="my-14 text-4xl">
-          <span class="about-line-word text-appear animation-delay-[1450ms]">I</span>
-          <span class="about-line-word text-appear animation-delay-[1500ms]">also</span>
-          <span class="about-line-word text-appear animation-delay-[1550ms]">like </span>
-          <span class="about-line-word text-appear animation-delay-[1600ms]">making</span>
-          <span class="about-line-word text-appear animation-delay-[1650ms]">fun</span>
-          <span class="about-line-word text-appear animation-delay-[1700ms]">and</span>
-          <span class="about-line-word text-appear animation-delay-[1750ms]">useful</span>
-          <span class="about-line-word text-appear animation-delay-[1800ms]">things.</span>
-        </p>
-        <p class="my-14 text-4xl">
-          <span class="about-line-word text-appear animation-delay-[1900ms]">My</span>
-          <span class="about-line-word text-appear animation-delay-[1950ms]">current</span>
-          <span class="about-line-word text-appear animation-delay-[2000ms]">favorite </span>
-          <span class="about-line-word text-appear animation-delay-[2050ms]">sorting </span>
-          <span class="about-line-word text-appear animation-delay-[2100ms]">algorithm </span>
-          <span class="about-line-word text-appear animation-delay-[2150ms]">is </span>
-          <span class="about-line-word text-appear animation-delay-[2200ms]">sleepsort.</span>
-        </p>
+        {% assign delay = 500 %}
+        {% for sentence in about.description %}
+          {% assign words = sentence | split: " " %}
+          <p class="my-14 text-4xl">
+            {% for word in words %}
+              <span class="about-line-word text-appear animation-delay-[{{ delay }}ms]">
+                {{ word }}
+              </span>
+              {% assign delay = delay | plus: 50 %}
+            {% endfor %}
+          </p>
+          {% assign delay = delay | plus: 50 %}
+        {% endfor %}
       </div>
     </section>
     <section id="projects" class="my-20 min-h-[80vh] px-32">
@@ -345,37 +319,33 @@
         <span
           id="projects-line-emoji"
           class="text-appear -ml-6 animate-bop animation-delay-[250ms] animation-duration-1000 group-hover:animate-[bop_infinite]"
-          >👨‍💻</span
         >
+          👨‍💻
+        </span>
       </h1>
       <h5 class="mt-10 text-xl">
-        <span class="projects-line-word text-appear animation-delay-[250ms]">A</span>
-        <span class="projects-line-word text-appear animation-delay-[300ms]">collection</span>
-        <span class="projects-line-word text-appear animation-delay-[350ms]">of</span>
-        <span class="projects-line-word text-appear animation-delay-[400ms]">my</span>
-        <span class="projects-line-word text-appear animation-delay-[450ms]">works,</span>
-        <span class="projects-line-word text-appear animation-delay-[500ms]">big</span>
-        <span class="projects-line-word text-appear animation-delay-[550ms]">and</span>
-        <span class="projects-line-word text-appear animation-delay-[600ms]">small</span>
+        {% assign text = "A collection of my works, big and small" | split: " " %}
+        {% for word in text %}
+          <span class="projects-line-word text-appear animation-delay-[{{ forloop.index0 | times: 50 | plus: 250  }}ms]">
+            {{ word }}
+          </span>
+        {% endfor %}
       </h5>
       <div id="projectsList" class="mt-8 grid grid-cols-2 gap-8" x-data="projectsData">
-        <template x-for="(project, idx) in projects" :key="idx">
+        {% for project in projects %}
           <div
-            class="projectCard group flex w-full flex-row items-center rounded-2xl bg-white text-black opacity-0 transition hover:scale-105"
-            x-bind:style="{ animationDelay: `${50 * idx + 250}ms` }"
+            class="projectCard animation-delay-[{{ forloop.index0 |  times: 50 |  plus: 250 }}ms] group flex w-full flex-row items-center rounded-2xl bg-white text-black opacity-0 transition hover:scale-105"
           >
             <div class="flex w-full flex-row items-center p-5 pr-0">
-              <img x-bind:src="project.image" class="max-h-32 w-32 rounded border-2 border-solid border-slate-200" />
+              <img src="{{ project.image }}" class="max-h-32 w-32 rounded border-2 border-solid border-slate-200">
               <div class="projectCardContent ml-5">
-                <h6 x-text="project.title" class="text-lg font-medium"></h6>
-                <p x-text="project.description" class="mt-2"></p>
+                <h6 class="text-lg font-medium">{{ project.title }}</h6>
+                <p class="mt-2">{{ project.description }}</p>
               </div>
             </div>
             <a
-              href="https://github.com/vivCoding/vivCoding.github.io"
-              x-bind:href="project.link"
-              x-bind:title="project.title"
-              title="Portfolio Website"
+              href="{{ project.link }}"
+              title="{{ project.title }}"
               target="_blank"
               rel="noreferrer noopener"
               class="ml-1 block h-full w-8 rounded-2xl rounded-l-none bg-clip-content transition hover:bg-slate-200"
@@ -394,7 +364,7 @@
               </svg>
             </a>
           </div>
-        </template>
+        {% endfor %}
       </div>
     </section>
     <section id="contact" class="my-20 px-32">
@@ -407,12 +377,14 @@
         </span>
       </h1>
       <h6 class="mt-8 text-xl">
-        <span class="contact-line-word text-appear animation-delay-[250ms]">Send</span>
-        <span class="contact-line-word text-appear animation-delay-[300ms]">me</span>
-        <span class="contact-line-word text-appear animation-delay-[350ms]">a</span>
-        <span class="contact-line-word text-appear animation-delay-[400ms]">message!</span>
+        {% assign text = "Send me a message!" | split: " " %}
+        {% for word in text %}
+          <span class="contact-line-word text-appear animation-delay-[{{ forloop.index0 | times: 50 | plus: 250  }}ms]">
+            {{- word -}}
+          </span>
+        {% endfor %}
       </h6>
     </section>
   </body>
-  <script type="module" src="src/index.ts"></script>
+  <script type="module" src="/src/index.ts"></script>
 </html>

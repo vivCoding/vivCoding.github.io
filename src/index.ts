@@ -1,23 +1,13 @@
-import Alpine from "alpinejs"
 import { animateAbout } from "./about"
 import { animateContact } from "./contact"
 import { animateIntro } from "./intro"
-import { animateProject, initProjects } from "./projects"
+import { animateProject } from "./projects"
 import { startTheme } from "./settings"
 import { useScrollPosition } from "./utils/hooks"
 
 const navbar = document.getElementById("navbar")
 const navbarLinks = [...document.getElementsByClassName("navbarLink")] as HTMLElement[]
 const NAVBAR_ANIMATION = "animate-fade-in-down"
-
-// alpine:init triggers before body.onload
-document.addEventListener("alpine:init", () => {
-  initProjects()
-})
-
-// after adding alpine event listener, start alpine
-window.Alpine = Alpine
-Alpine.start()
 
 document.body.onload = () => {
   console.log("😎")

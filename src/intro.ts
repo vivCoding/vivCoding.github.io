@@ -42,7 +42,6 @@ async function animateHero() {
   // initial setup
   logoInit.style.visibility = "visible"
   logoInit.style.translate = "-50%"
-  logoInit.style.translate = "-50%"
 
   logoTop.style.strokeDasharray = "300"
   logoStroke.style.strokeDasharray = "300"
@@ -59,9 +58,9 @@ async function animateHero() {
   if (!heroDescParent) throw "no heroDescParent"
   heroDescParent.style.overflowY = "clip"
 
-  // step 1
+  // step 1: logo fill in
   await waitForAnimations([
-    logoInit.animate([{ transform: "translateY(-10px)" }, { transform: "translateY(0)" }], {
+    logoInit.animate([{ translate: "-50% -10px" }, { translate: "-50% 0" }], {
       duration: 500,
       easing: "ease",
       fill: "forwards",
@@ -89,7 +88,7 @@ async function animateHero() {
     ),
   ])
 
-  // step 2
+  // step 2: logo expand into layers
   await waitForAnimations([
     logoInit.animate([{ rotate: "3deg" }], {
       duration: 250,
@@ -118,7 +117,7 @@ async function animateHero() {
     }),
   ])
 
-  // step 3
+  // step 3: logo moves left, text moves right (but only showing name)
   await waitForAnimations([
     logoInit.animate([{ left: "0%", translate: "0%" }], {
       duration: 250,
@@ -153,7 +152,7 @@ async function animateHero() {
     ),
   ])
 
-  // step 4
+  // step 4: text expands, showing description and links. Name moves up, desc/links move down
   await waitForAnimations([
     heroSeparator.animate([{ transform: "scaleY(0)" }, { transform: "scaleY(1)" }], {
       duration: 400,
@@ -184,8 +183,9 @@ async function animateHero() {
     ),
   ])
 
+  // need to add logo hover effects now
   // using animation fill forward to retain new transforms and adding hover effects afterwards is kinda whack
-  // hacky fix: just replace the node
+  // so, hacky fix: just replace the node
   // 1) reset styling for elems that are about to be replaced
   logoInit.style.left = "0%"
   logoInit.style.translate = "0%"

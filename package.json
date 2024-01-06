@@ -1,18 +1,23 @@
 {
   "type": "module",
   "source": [
-    "views/index.ejs"
+    "pages/index.liquid"
   ],
   "scripts": {
     "dev": "parcel serve -p 3000 --no-cache",
     "build": "parcel build",
-    "prettier": "prettier --check *.{html,css,js,ts,json,pug} **/*.{html,css,js,ts,json,pug}",
-    "prettier:fix": "prettier --write *.{html,css,js,ts,json,pug} **/*.{html,css,js,ts,json,pug}"
+    "prettier": "prettier --check *.{html,css,js,ts,json,liquid} **/*.{html,css,js,ts,json,liquid}",
+    "prettier:fix": "prettier --write *.{html,css,js,ts,json,liquid} **/*.{html,css,js,ts,json,liquid}"
+  },
+  "dependencies": {
+    "pixi.js": "^7.3.2"
   },
   "devDependencies": {
+    "@parcel/config-default": "^2.11.0",
+    "@shopify/prettier-plugin-liquid": "^1.4.0",
     "@types/alpinejs": "^3.13.5",
     "parcel": "^2.11.0",
-    "parcel-transformer-templ": "workspace:^",
+    "parcel-transformer-liquid": "^1.1.0",
     "postcss": "^8.4.32",
     "prettier": "^3.1.1",
     "prettier-plugin-ejs": "^0.0.19",
@@ -20,10 +25,5 @@
     "punycode": "^1.4.1",
     "tailwindcss": "^3.4.0",
     "url": "^0.11.0"
-  },
-  "dependencies": {
-    "@parcel/config-default": "^2.11.0",
-    "alpinejs": "^3.13.3",
-    "pixi.js": "^7.3.2"
   }
 }

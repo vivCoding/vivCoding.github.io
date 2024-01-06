@@ -19,7 +19,6 @@
 
   "files.associations": {
     "*.css": "tailwindcss",
-    "*.svg": "html",
-    "*.ejs": "html"
+    "*.svg": "html"
   }
 }
