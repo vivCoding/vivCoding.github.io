@@ -3,11 +3,6 @@
   "source": [
     "pages/index.liquid"
   ],
-  "targets": {
-    "default": {
-      "publicUrl": "./"
-    }
-  },
   "scripts": {
     "dev": "parcel serve -p 3000 --no-cache",
     "build": "parcel build",
@@ -19,13 +14,11 @@
   },
   "devDependencies": {
     "@parcel/config-default": "^2.11.0",
+    "@parcel/plugin": "^2.11.0",
     "@shopify/prettier-plugin-liquid": "^1.4.0",
-    "@types/alpinejs": "^3.13.5",
     "parcel": "^2.11.0",
-    "parcel-transformer-liquid": "^1.1.0",
     "postcss": "^8.4.32",
     "prettier": "^3.1.1",
-    "prettier-plugin-ejs": "^0.0.19",
     "prettier-plugin-tailwindcss": "^0.5.10",
     "punycode": "^1.4.1",
     "tailwindcss": "^3.4.0",

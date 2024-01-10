@@ -5,7 +5,7 @@ const plugin = require("tailwindcss/plugin")
 // TODO maybe move animations into separate css file
 
 module.exports = {
-  content: ["./**/*.{html,js}"],
+  content: ["./**/*.{html,liquid,js}"],
   // safelist some classes, cuz they only get used in js created elems(?)
   safelist: ["animate-rise-word", "animate-wave", "animate-bop", "animate-swoosh"],
   theme: {
@@ -135,8 +135,7 @@ module.exports = {
         "rise-word": "rise 300ms cubic-bezier(0.86, 0, 0.07, 1) 1 forwards",
         wave: "wave 1000ms linear forwards",
         bop: "bop 1s ease-in-out forwards",
-        swoosh:
-          "swoosh-out 100ms ease-in 0ms forwards, swoosh-in 200ms ease-in 100ms forwards",
+        swoosh: "swoosh-out 100ms ease-in 0ms forwards, swoosh-in 200ms ease-in 100ms forwards",
       },
     },
   },

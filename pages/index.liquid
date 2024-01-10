@@ -303,7 +303,7 @@
           {% assign words = sentence | split: " " %}
           <p class="my-14 text-4xl">
             {% for word in words %}
-              <span class="about-line-word text-appear animation-delay-[{{ delay }}ms]">
+              <span class="about-line-word text-appear animation-delay-[{{- delay -}}ms]">
                 {{ word }}
               </span>
               {% assign delay = delay | plus: 50 %}
@@ -326,7 +326,7 @@
       <h5 class="mt-10 text-xl">
         {% assign text = "A collection of my works, big and small" | split: " " %}
         {% for word in text %}
-          <span class="projects-line-word text-appear animation-delay-[{{ forloop.index0 | times: 50 | plus: 250  }}ms]">
+          <span class="projects-line-word text-appear animation-delay-[{{- forloop.index0 | times: 50 | plus: 250 -}}ms]">
             {{ word }}
           </span>
         {% endfor %}
@@ -386,5 +386,5 @@
       </h6>
     </section>
   </body>
-  <script type="module" src="/src/index.ts"></script>
+  <script type="module" src="/scripts/index.ts"></script>
 </html>
