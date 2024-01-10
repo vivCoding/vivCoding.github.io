@@ -6,8 +6,7 @@
   "printWidth": 120,
   "plugins": [
     "prettier-plugin-tailwindcss",
-    "@shopify/prettier-plugin-liquid",
-    "prettier-plugin-ejs"
+    "@shopify/prettier-plugin-liquid"
   ],
   "liquidSingleQuote": false
 }
