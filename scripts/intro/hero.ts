@@ -1,8 +1,4 @@
-import { waitForAnimations } from "./utils/animation"
-import { usePercentageSeen } from "./utils/hooks"
-
-const introSection = document.getElementById("intro")
-const hero = document.getElementById("hero")
+import { waitForAnimations } from "../utils/animation"
 
 const logoInit = document.getElementById("logoInit")
 const logoTop = document.getElementById("logoTop")
@@ -15,17 +11,9 @@ const heroText = document.getElementById("heroText")
 const heroTitle = document.getElementById("heroTitle")
 const heroDesc = document.getElementById("heroDesc")
 
-const bgOverlay = document.getElementById("bgOverlay")
-const buttonOverlay = document.getElementById("buttonOverlay")
-
 // TODO maybe bring this back into css?
 
-export async function animateIntro() {
-  animateHero()
-  updateOnScroll()
-}
-
-async function animateHero() {
+export async function animateHero() {
   if (
     !logoInit ||
     !logoTop ||
@@ -205,19 +193,4 @@ async function animateHero() {
 
   // also reset hero description parent
   heroDescParent.style.overflowY = "visible"
-}
-
-function updateOnScroll() {
-  if (!hero || !bgOverlay || !buttonOverlay) throw "bruh no hero"
-  usePercentageSeen(introSection, (percentage) => {
-    if (percentage >= 0.55) {
-      hero.style.opacity = `${(0.67 - percentage) / 0.12}`
-      // eh not ideal, have to look at z-indexes of other stuff
-      buttonOverlay.style.zIndex = "-20"
-    } else {
-      hero.style.opacity = "1"
-      buttonOverlay.style.zIndex = "11"
-    }
-    bgOverlay.style.opacity = `${1 - (0.65 - percentage) / 0.15}`
-  })
 }

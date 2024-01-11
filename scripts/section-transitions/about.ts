@@ -1,4 +1,4 @@
-import { usePercentageSeen } from "./utils/hooks"
+import { usePercentageSeen } from "../utils/hooks"
 
 const aboutSection = document.getElementById("about")
 const introSection = document.getElementById("intro")
@@ -9,7 +9,7 @@ const PERCENTAGE_TRIGGER = 0.68
 const WORD_ANIMATION = "animate-rise-word"
 const EMOJI_ANIMATION = "animate-wave"
 
-export function animateAbout() {
+export function initTransition() {
   if (!aboutSection) throw "no aboutSection"
 
   // initial

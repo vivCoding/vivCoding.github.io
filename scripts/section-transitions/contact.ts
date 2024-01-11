@@ -1,4 +1,4 @@
-import { usePercentageSeen } from "./utils/hooks"
+import { usePercentageSeen } from "../utils/hooks"
 
 const contactSection = document.getElementById("contact")
 const projectsSection = document.getElementById("projects")
@@ -10,7 +10,7 @@ const PERCENTAGE_TRIGGER = 0.73
 const WORD_ANIMATION = "animate-rise-word"
 const EMOJI_ANIMATION = "animate-swoosh"
 
-export function animateContact() {
+export function initTransition() {
   if (!contactSection) throw "no contact section"
 
   // initial

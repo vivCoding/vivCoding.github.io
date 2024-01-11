@@ -1,7 +1,7 @@
 // TODO this is basically copy paste from aboutSection
 // dont repeat urself?
 
-import { usePercentageSeen } from "./utils/hooks"
+import { usePercentageSeen } from "../utils/hooks"
 
 const projectsSection = document.getElementById("projects")
 const aboutSection = document.getElementById("about")
@@ -14,7 +14,7 @@ const WORD_ANIMATION = "animate-rise-word"
 const EMOJI_ANIMATION = "animate-bop"
 const DESC_ANIMATION = "animate-fade-in-up"
 
-export function animateProject() {
+export function initTransition() {
   if (!projectsSection) throw "no section"
 
   // initial

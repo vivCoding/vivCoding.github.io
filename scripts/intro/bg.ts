@@ -1,8 +1,8 @@
+import { randomIntFromRange } from "@/utils/misc"
 import { Theme } from "./themes"
 import { BlobBg } from "./themes/blob"
 import { StarsScene } from "./themes/stars"
 import { WavesScene } from "./themes/waves"
-import { randomIntFromRange } from "./utils/misc"
 
 const themes: Record<string, Theme> = {
   waves: new WavesScene(),

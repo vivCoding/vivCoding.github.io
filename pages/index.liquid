@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Vincent V">
+    <meta property="og:image" content="/assets/images/logo-bg.svg">
+    <meta property="og:description" content="CS Student @ Purdue University">
+
+    <meta property="twitter:title" content="Vincent V">
+    <meta property="twitter:description" content="CS Student @ Purdue University">
+    <meta property="twitter:image" content="/assets/images/logo-bg.svg">
+    <meta name="twitter:card" content="summary_large_image">
+
     <link rel="stylesheet" href="/styles/index.css">
     <link rel="stylesheet" href="/styles/logo.css">
     <link rel="shortcut icon" type="image/x-icon" href="/assets/images/logo-bg.svg">
@@ -45,82 +55,32 @@
         >
       </div>
     </nav>
-    <div
-      id="buttonOverlay"
-      class="group/overlay fixed right-0 top-0 z-[99] flex animate-fade-in-left flex-col items-center justify-center p-6 opacity-0 animation-delay-[2s] animation-duration-500"
-    >
-      <button
-        class="rotate-90 rounded-full bg-[#0D0F20] bg-opacity-0 p-3 text-3xl transition duration-300 ease-in-out group-hover/overlay:rotate-0 group-hover/overlay:scale-125 group-hover/overlay:bg-opacity-90"
+    {% comment %} container to control the opacity of entire thing {% endcomment %}
+    <div id="buttonOverlayContainer">
+      {% comment %} child controls the hover effects {% endcomment %}
+      <div
+        id="buttonOverlay"
+        class="group/overlay fixed right-0 top-0 z-[99] flex animate-fade-in-left flex-col items-center justify-center p-6 opacity-0 animation-delay-[2s] animation-duration-500"
       >
-        <svg class="fill-white" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
-          <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-          <path
-            d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"
-          />
-        </svg>
-      </button>
-      <div class="relative overflow-y-clip">
-        <div
-          class="flex -translate-y-full scale-75 flex-col items-center rounded-b-full bg-[#0D0F20] bg-opacity-0 p-2 pb-4 pt-2 opacity-0 transition group-hover/overlay:translate-y-0 group-hover/overlay:scale-100 group-hover/overlay:bg-opacity-90 group-hover/overlay:opacity-100"
+        <button
+          id="settingsBtn"
+          class="rotate-90 rounded-full bg-[#0D0F20] bg-opacity-0 p-3 text-3xl transition duration-300 ease-in-out group-hover/overlay:rotate-0 group-hover/overlay:scale-125 group-hover/overlay:bg-opacity-90"
         >
-          <button id="waveSettingBtn" class="group/waveBtn relative text-2xl transition" onclick="changeTheme('waves')">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="1em"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-waves hover:scale-125 hover:opacity-70"
-            >
-              <path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
-              <path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
-              <path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
-            </svg>
-            <span
-              class="pointer-events-none absolute left-0 top-1/2 -ml-4 inline-block w-16 -translate-x-full -translate-y-1/2 rounded bg-slate-700 bg-opacity-90 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:translate-x-full after:border-y-8 after:border-l-8 after:border-y-transparent after:border-l-slate-700 after:border-opacity-90 after:bg-opacity-90 after:content-[''] group-hover/waveBtn:pointer-events-auto group-hover/waveBtn:opacity-100"
-            >
-              Waves!
-            </span>
-          </button>
-          <button
-            id="starSettingBtn"
-            title="Stars!"
-            class="group/starsBtn relative mt-2 text-2xl"
-            onclick="changeTheme('stars')"
+          <svg class="fill-white" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+            <path
+              d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"
+            />
+          </svg>
+        </button>
+        <div class="relative overflow-y-clip">
+          <div
+            class="flex -translate-y-full scale-75 flex-col items-center rounded-b-full bg-[#0D0F20] bg-opacity-0 p-2 pb-4 pt-2 opacity-0 transition group-hover/overlay:translate-y-0 group-hover/overlay:scale-100 group-hover/overlay:bg-opacity-90 group-hover/overlay:opacity-100"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="1em"
-              viewBox="0 0 24 24"
-              fill="white"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-sparkles transition hover:scale-125 hover:opacity-70"
-            >
-              <path
-                d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"
-              />
-              <path d="M5 3v4" />
-              <path d="M19 17v4" />
-              <path d="M3 5h4" />
-              <path d="M17 19h4" />
-            </svg>
-            <span
-              class="pointer-events-none absolute left-0 top-1/2 -ml-4 inline-block w-16 -translate-x-full -translate-y-1/2 rounded bg-slate-700 bg-opacity-90 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:translate-x-full after:border-y-8 after:border-l-8 after:border-y-transparent after:border-l-slate-700 after:border-opacity-90 after:bg-opacity-90 after:content-[''] group-hover/starsBtn:pointer-events-auto group-hover/starsBtn:opacity-100"
-            >
-              Stars!
-            </span>
-          </button>
-          <!--
             <button
-              title="Flow Field!"
-              class="group/flowBtn relative mt-2 text-2xl"
-              onclick="changeTheme('flowField')"
+              id="waveSettingBtn"
+              class="group/waveBtn relative text-2xl transition"
+              onclick="changeTheme('waves')"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -131,57 +91,116 @@
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="lucide lucide-wind transition hover:scale-125 hover:opacity-70"
+                class="lucide lucide-waves hover:scale-125 hover:opacity-70"
               >
-                <path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2" />
-                <path d="M9.6 4.6A2 2 0 1 1 11 8H2" />
-                <path d="M12.6 19.4A2 2 0 1 0 14 16H2" />
+                <path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
+                <path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
+                <path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
               </svg>
               <span
-                class="pointer-events-none absolute left-0 top-1/2 -ml-4 inline-block w-32 -translate-x-full -translate-y-1/2 rounded bg-slate-700 bg-opacity-90 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:translate-x-full after:border-y-8 after:border-l-8 after:border-y-transparent after:border-l-slate-700 after:border-opacity-90 after:bg-opacity-90 after:content-[''] group-hover/flowBtn:pointer-events-auto group-hover/flowBtn:opacity-100"
+                class="pointer-events-none absolute left-0 top-1/2 -ml-4 inline-block w-16 -translate-x-full -translate-y-1/2 rounded bg-slate-700 bg-opacity-90 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:translate-x-full after:border-y-8 after:border-l-8 after:border-y-transparent after:border-l-slate-700 after:border-opacity-90 after:bg-opacity-90 after:content-[''] group-hover/waveBtn:pointer-events-auto group-hover/waveBtn:opacity-100"
               >
-                Flow Field!
+                Waves!
               </span>
             </button>
-          -->
-          <button title="Blob" class="group/blobBtn relative mt-2 text-2xl" onclick="changeTheme('blob')">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="1em"
-              viewBox="0 0 24 24"
-              fill="white"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-cloud rotate-45 transition hover:scale-125 hover:opacity-70"
+            <button
+              id="starSettingBtn"
+              title="Stars!"
+              class="group/starsBtn relative mt-2 text-2xl"
+              onclick="changeTheme('stars')"
             >
-              <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
-            </svg>
-            <span
-              class="pointer-events-none absolute left-0 top-1/2 -ml-4 inline-block w-16 -translate-x-full -translate-y-1/2 rounded bg-slate-700 bg-opacity-90 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:translate-x-full after:border-y-8 after:border-l-8 after:border-y-transparent after:border-l-slate-700 after:border-opacity-90 after:bg-opacity-90 after:content-[''] group-hover/blobBtn:pointer-events-auto group-hover/blobBtn:opacity-100"
-            >
-              Blob
-            </span>
-          </button>
-          <button title="No Theme" class="group/noneBtn relative mt-3 text-2xl" onclick="changeTheme('none')">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="1em"
-              viewBox="0 0 512 512"
-              class="fill-white transition hover:scale-125 hover:opacity-70"
-            >
-              <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-              <path
-                d="M367.2 412.5L99.5 144.8C77.1 176.1 64 214.5 64 256c0 106 86 192 192 192c41.5 0 79.9-13.1 111.2-35.5zm45.3-45.3C434.9 335.9 448 297.5 448 256c0-106-86-192-192-192c-41.5 0-79.9 13.1-111.2 35.5L412.5 367.2zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"
-              />
-            </svg>
-            <span
-              class="pointer-events-none absolute left-0 top-1/2 -ml-4 inline-block w-24 -translate-x-full -translate-y-1/2 rounded bg-slate-700 bg-opacity-90 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:translate-x-full after:border-y-8 after:border-l-8 after:border-y-transparent after:border-l-slate-700 after:border-opacity-90 after:bg-opacity-90 after:content-[''] group-hover/noneBtn:pointer-events-auto group-hover/noneBtn:opacity-100"
-            >
-              No Theme
-            </span>
-          </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="1em"
+                viewBox="0 0 24 24"
+                fill="white"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-sparkles transition hover:scale-125 hover:opacity-70"
+              >
+                <path
+                  d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"
+                />
+                <path d="M5 3v4" />
+                <path d="M19 17v4" />
+                <path d="M3 5h4" />
+                <path d="M17 19h4" />
+              </svg>
+              <span
+                class="pointer-events-none absolute left-0 top-1/2 -ml-4 inline-block w-16 -translate-x-full -translate-y-1/2 rounded bg-slate-700 bg-opacity-90 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:translate-x-full after:border-y-8 after:border-l-8 after:border-y-transparent after:border-l-slate-700 after:border-opacity-90 after:bg-opacity-90 after:content-[''] group-hover/starsBtn:pointer-events-auto group-hover/starsBtn:opacity-100"
+              >
+                Stars!
+              </span>
+            </button>
+            <!--
+              <button
+                title="Flow Field!"
+                class="group/flowBtn relative mt-2 text-2xl"
+                onclick="changeTheme('flowField')"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-wind transition hover:scale-125 hover:opacity-70"
+                >
+                  <path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2" />
+                  <path d="M9.6 4.6A2 2 0 1 1 11 8H2" />
+                  <path d="M12.6 19.4A2 2 0 1 0 14 16H2" />
+                </svg>
+                <span
+                  class="pointer-events-none absolute left-0 top-1/2 -ml-4 inline-block w-32 -translate-x-full -translate-y-1/2 rounded bg-slate-700 bg-opacity-90 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:translate-x-full after:border-y-8 after:border-l-8 after:border-y-transparent after:border-l-slate-700 after:border-opacity-90 after:bg-opacity-90 after:content-[''] group-hover/flowBtn:pointer-events-auto group-hover/flowBtn:opacity-100"
+                >
+                  Flow Field!
+                </span>
+              </button>
+            -->
+            <button title="Blob" class="group/blobBtn relative mt-2 text-2xl" onclick="changeTheme('blob')">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="1em"
+                viewBox="0 0 24 24"
+                fill="white"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-cloud rotate-45 transition hover:scale-125 hover:opacity-70"
+              >
+                <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
+              </svg>
+              <span
+                class="pointer-events-none absolute left-0 top-1/2 -ml-4 inline-block w-16 -translate-x-full -translate-y-1/2 rounded bg-slate-700 bg-opacity-90 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:translate-x-full after:border-y-8 after:border-l-8 after:border-y-transparent after:border-l-slate-700 after:border-opacity-90 after:bg-opacity-90 after:content-[''] group-hover/blobBtn:pointer-events-auto group-hover/blobBtn:opacity-100"
+              >
+                Blob
+              </span>
+            </button>
+            <button title="No Theme" class="group/noneBtn relative mt-3 text-2xl" onclick="changeTheme('none')">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="1em"
+                viewBox="0 0 512 512"
+                class="fill-white transition hover:scale-125 hover:opacity-70"
+              >
+                <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path
+                  d="M367.2 412.5L99.5 144.8C77.1 176.1 64 214.5 64 256c0 106 86 192 192 192c41.5 0 79.9-13.1 111.2-35.5zm45.3-45.3C434.9 335.9 448 297.5 448 256c0-106-86-192-192-192c-41.5 0-79.9 13.1-111.2 35.5L412.5 367.2zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"
+                />
+              </svg>
+              <span
+                class="pointer-events-none absolute left-0 top-1/2 -ml-4 inline-block w-24 -translate-x-full -translate-y-1/2 rounded bg-slate-700 bg-opacity-90 p-2 text-center text-sm opacity-0 transition delay-0 after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:translate-x-full after:border-y-8 after:border-l-8 after:border-y-transparent after:border-l-slate-700 after:border-opacity-90 after:bg-opacity-90 after:content-[''] group-hover/noneBtn:pointer-events-auto group-hover/noneBtn:opacity-100"
+              >
+                No Theme
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
