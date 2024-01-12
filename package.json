@@ -1,12 +1,13 @@
 {
   "source": [
-    "site/index.html"
+    "site/index.html",
+    "site/no-anim/index.html"
   ],
   "scripts": {
     "dev": "eleventy && pnpm /^dev:/",
     "dev:eleventy": "eleventy --watch --quiet",
     "dev:parcel": "parcel serve -p 3000",
-    "build": "eleventy && parcel build",
+    "build": "eleventy && parcel build --no-content-hash",
     "preview": "cp test-server.js dist && node dist/test-server.js",
     "prettier": "prettier --check *.{html,css,js,ts,json,liquid} **/*.{html,css,js,ts,json,liquid}",
     "prettier:fix": "prettier --write *.{html,css,js,ts,json,liquid} **/*.{html,css,js,ts,json,liquid}"

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth motion-reduce:scroll-auto">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +7,10 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Vincent V">
     <meta property="og:image" content="/assets/images/logo-bg.svg">
-    <meta property="og:description" content="CS Student @ Purdue University">
+    <meta property="og:description" content="CS Master's @ Purdue University">
 
     <meta property="twitter:title" content="Vincent V">
-    <meta property="twitter:description" content="CS Student @ Purdue University">
+    <meta property="twitter:description" content="CS Master's @ Purdue University">
     <meta property="twitter:image" content="/assets/images/logo-bg.svg">
     <meta name="twitter:card" content="summary_large_image">
 
@@ -21,8 +21,8 @@
     <title>Vincent V</title>
   </head>
   <body class="bg-[#0D0F20] text-white">
-    <canvas id="pixiCanvas" class="fixed left-0 top-0 -z-30 opacity-0"></canvas>
-    <div id="blobBg" class="fixed left-0 top-0 -z-30 h-screen w-screen opacity-0">
+    <canvas id="pixiCanvas" class="fixed left-0 top-0 -z-30 opacity-0 motion-reduce:hidden"></canvas>
+    <div id="blobBg" class="fixed left-0 top-0 -z-30 h-screen w-screen opacity-0 motion-reduce:hidden">
       <div
         class="blob fixed z-[-10] aspect-square h-[60vh] origin-[30%_50%] animate-spin-slow rounded-full bg-gradient-to-r from-[#00C2FF] to-[#213941] blur-[200px] animation-duration-[5s]"
       ></div>
@@ -30,33 +30,33 @@
         class="blob fixed z-[-10] aspect-square h-[60vh] origin-[50%_70%] animate-spin-slow rounded-full bg-gradient-to-r from-[#00C2FF] to-[#213941] blur-[200px] animation-duration-[10s]"
       ></div>
     </div>
-    <div id="bgOverlay" class="fixed -z-10 h-screen w-screen bg-[#0D0F20] opacity-0"></div>
+    <div id="bgOverlay" class="fixed -z-10 h-screen w-screen bg-[#0D0F20] opacity-0 motion-reduce:hidden"></div>
     <nav id="navbar" class="fixed z-10 w-full bg-[#0D0F20] p-6 pl-9">
       <div class="flex flex-row gap-x-7 text-base font-medium">
         <a
-          class="navbarLink inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.5s] animation-duration-500 hover:scale-125"
-          href="/#"
+          class="navbarLink inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.5s] animation-duration-500 hover:scale-125 motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:hover:scale-100"
+          href="/no-anim/#"
           >Home</a
         >
         <a
-          class="navbarLink inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.6s] animation-duration-500 hover:scale-125"
-          href="/#about"
+          class="navbarLink inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.6s] animation-duration-500 hover:scale-125 motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:hover:scale-100"
+          href="/no-anim/#about"
           >About</a
         >
         <a
-          class="navbarLink inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.7s] animation-duration-500 hover:scale-125"
-          href="/#projects"
+          class="navbarLink inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.7s] animation-duration-500 hover:scale-125 motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:hover:scale-100"
+          href="/no-anim/#projects"
           >Projects</a
         >
         <a
-          class="navbarLink inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.8s] animation-duration-500 hover:scale-125"
-          href="/#contact"
+          class="navbarLink inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.8s] animation-duration-500 hover:scale-125 motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:hover:scale-100"
+          href="/no-anim/#contact"
           >Contact</a
         >
       </div>
     </nav>
     {% comment %} container to control the opacity of entire thing {% endcomment %}
-    <div id="buttonOverlayContainer">
+    <div id="buttonOverlayContainer" class= motion-reduce:hidden">
       {% comment %} child controls the hover effects {% endcomment %}
       <div
         id="buttonOverlay"
@@ -209,50 +209,50 @@
         <svg
           id="logoInit"
           width="175"
-          class="invisible relative left-1/2 z-10 overflow-visible py-4"
+          class="invisible relative left-1/2 z-10 overflow-visible py-4 motion-reduce:visible motion-reduce:left-0 motion-reduce:rotate-3"
           viewBox="0 0 65 54"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
             id="logoBottom"
-            class="drop-shadow-lg"
+            class="drop-shadow-lg motion-reduce:translate-x-[5px] motion-reduce:translate-y-[5px]"
             d="M27.2926 52.6568L7 8H20.5494L28.8681 27.011C29.1202 27.6065 29.4773 28.4145 29.9395 29.4353C30.4436 30.456 30.9688 31.6469 31.515 33.0078C32.1032 34.3263 32.6704 35.751 33.2165 37.2821C33.7627 38.8132 34.2459 40.4081 34.666 42.0668H32.0822C32.7124 40.0253 33.3636 38.1327 34.0358 36.389C34.75 34.6027 35.4433 32.944 36.1155 31.4129C36.8297 29.8818 37.4389 28.4571 37.9431 27.1386L46.1357 8H59.3701L39.5816 52.6568H27.2926Z"
             fill="#213941"
           />
           <path
             id="logoMiddle"
-            class="drop-shadow-lg"
+            class="drop-shadow-lg motion-reduce:translate-x-[2px] motion-reduce:translate-y-[3px]"
             d="M26.8954 52.752L5 5H19.6196L28.5954 25.3287C28.8674 25.9654 29.2527 26.8295 29.7514 27.921C30.2954 29.0124 30.862 30.2858 31.4513 31.7411C32.086 33.151 32.698 34.6745 33.2873 36.3117C33.8766 37.9489 34.3979 39.6543 34.8512 41.428H32.0633C32.7433 39.245 33.4459 37.2212 34.1713 35.3566C34.9419 33.4466 35.6899 31.6729 36.4152 30.0357C37.1858 28.3985 37.8432 26.875 38.3871 25.4652L47.2269 5H61.5066L40.1551 52.752H26.8954Z"
             fill="#396572"
           />
           <path
             id="logoTop"
-            class="drop-shadow-lg"
+            class="drop-shadow-lg motion-reduce:translate-x-[-2px] motion-reduce:translate-y-[-3px]"
             d="M25.4743 52.8763L25.6082 53.1673H25.9285H40.1373H40.4611L40.5935 52.872L63.4734 1.86602L63.7894 1.16138H63.0172H47.7154H47.3871L47.2566 1.46257L37.7841 23.3223L37.7801 23.3313L37.7766 23.3406C37.1987 24.8334 36.4993 26.4496 35.6776 28.1896L35.6775 28.1895L35.6728 28.2C34.893 29.9546 34.0893 31.8543 33.2617 33.899L33.2617 33.899L33.2594 33.9048C33.1927 34.0757 33.1262 34.2477 33.0599 34.421C32.4838 32.8593 31.8873 31.3948 31.2702 30.0277C30.6378 28.4714 30.0277 27.1045 29.4399 25.9282C28.908 24.7675 28.4982 23.8514 28.2098 23.1784L28.2098 23.1784L28.2073 23.1728L18.5891 1.45888L18.4573 1.16138H18.1319H2.46581H1.68544L2.01156 1.87033L25.4743 52.8763Z"
             fill="#00C2FF"
             stroke="#00C2FF"
           ></path>
           <path
             id="logoStroke"
-            class="fill-none"
+            class="fill-none motion-reduce:stroke-none"
             d="M25.4743 52.8763L25.6082 53.1673H25.9285H40.1373H40.4611L40.5935 52.872L63.4734 1.86602L63.7894 1.16138H63.0172H47.7154H47.3871L47.2566 1.46257L37.7841 23.3223L37.7801 23.3313L37.7766 23.3406C37.1987 24.8334 36.4993 26.4496 35.6776 28.1896L35.6775 28.1895L35.6728 28.2C34.893 29.9546 34.0893 31.8543 33.2617 33.899L33.2617 33.899L33.2594 33.9048C33.1927 34.0757 33.1262 34.2477 33.0599 34.421C32.4838 32.8593 31.8873 31.3948 31.2702 30.0277C30.6378 28.4714 30.0277 27.1045 29.4399 25.9282C28.908 24.7675 28.4982 23.8514 28.2098 23.1784L28.2098 23.1784L28.2073 23.1728L18.5891 1.45888L18.4573 1.16138H18.1319H2.46581H1.68544L2.01156 1.87033L25.4743 52.8763Z"
             stroke="#00C2FF"
           />
         </svg>
         <div
           id="heroSeparator"
-          class="mx-12 origin-center scale-y-0 self-stretch rounded border-l-4 border-white"
+          class="mx-12 origin-center scale-y-0 self-stretch rounded border-l-4 border-white motion-reduce:scale-y-100"
         ></div>
         <div class="px-2 py-4">
-          <div id="heroText" class="opacity-0">
+          <div id="heroText" class="opacity-0 motion-reduce:opacity-100">
             <h1 id="heroTitle" class="text-6xl font-semibold">Vincent V</h1>
             <div class="mt-5">
-              <div id="heroDesc" class="opacity-0">
+              <div id="heroDesc" class="opacity-0 motion-reduce:opacity-100">
                 <h3 id="subtitle" class="pl-1 text-lg font-medium">CS Master's @ Purdue University</h3>
                 <div id="links" class="mt-5 pl-0.5 text-4xl">
                   <a
-                    class="group relative inline-block hover:cursor-pointer"
+                    class="group relative inline-block hover:cursor-pointer motion-reduce:hover:animate-none "
                     href="https://github.com/vivCoding"
                     title="View my GitHub"
                     target="_blank"
@@ -260,7 +260,7 @@
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="fill-white transition group-hover:scale-125 group-hover:opacity-70"
+                      class="fill-white transition group-hover:scale-125 group-hover:opacity-70 motion-reduce:group-hover:scale-100"
                       height="1em"
                       viewBox="0 0 496 512"
                     >
@@ -276,7 +276,7 @@
                     </span>
                   </a>
                   <a
-                    class="group relative inline-block hover:cursor-pointer"
+                    class="group relative inline-block hover:cursor-pointer  motion-reduce:hover:animate-none "
                     href="https://www.linkedin.com/in/vincent-v-"
                     title="View my LinkedIn"
                     target="_blank"
@@ -284,7 +284,7 @@
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="fill-white transition group-hover:scale-125 group-hover:opacity-70"
+                      class="fill-white transition group-hover:scale-125 group-hover:opacity-70 motion-reduce:group-hover:scale-100"
                       height="1em"
                       viewBox="0 0 448 512"
                     >
@@ -306,14 +306,18 @@
         </div>
       </div>
     </section>
-    <section id="about" class="-mt-16 px-32 scroll-mt-36">
+    <section id="about" class="-mt-16 scroll-mt-36 px-32">
       <div class="">
         <h1 class="group mb-16 w-fit text-7xl font-medium">
-          <span class="about-line-word text-appear animation-delay-[0ms]">About</span>
-          <span class="about-line-word text-appear animation-delay-[250ms]">Me</span>
+          <span class="about-line-word text-appear  animation-delay-[0ms] motion-reduce:animate-none motion-reduce:opacity-100"
+            >About</span
+          >
+          <span class="about-line-word text-appear  animation-delay-[250ms] motion-reduce:animate-none motion-reduce:opacity-100"
+            >Me</span
+          >
           <span
             id="about-line-emoji"
-            class="text-appear -ml-8 origin-bottom-right animate-wave animation-delay-[500ms] animation-duration-500 group-hover:animate-[wave_infinite]"
+            class="text-appear -ml-8 origin-bottom-right animate-wave animation-delay-[500ms]   animation-duration-500 group-hover:animate-[wave_infinite] motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:group-hover:animate-none"
             >👋</span
           >
         </h1>
@@ -327,7 +331,7 @@
         {% assign delay = 500 %}
         <p class="my-14 text-4xl">
           {% for word in sentence1 %}
-            <span class="about-line-word text-appear animation-delay-[{{ delay }}ms]">
+            <span class="about-line-word  text-appear motion-reduce:animate-none motion-reduce:opacity-100 animation-delay-[{{ delay }}ms]">
               {{ word }}
             </span>
             {% assign delay = delay | plus: 50 %}
@@ -337,7 +341,7 @@
         {% assign delay = delay | plus: 50 %}
         <p class="my-14 text-4xl">
           {% for word in sentence2 %}
-            <span class="about-line-word text-appear animation-delay-[{{ delay }}ms]">
+            <span class="about-line-word  text-appear motion-reduce:animate-none motion-reduce:opacity-100 animation-delay-[{{ delay }}ms]">
               {{ word }}
             </span>
             {% assign delay = delay | plus: 50 %}
@@ -347,7 +351,7 @@
         {% assign delay = delay | plus: 50 %}
         <p class="my-14 text-4xl">
           {% for word in sentence3 %}
-            <span class="about-line-word text-appear animation-delay-[{{ delay }}ms]">
+            <span class="about-line-word  text-appear motion-reduce:animate-none motion-reduce:opacity-100 animation-delay-[{{ delay }}ms]">
               {{ word }}
             </span>
             {% assign delay = delay | plus: 50 %}
@@ -357,17 +361,17 @@
         {% assign delay = delay | plus: 50 %}
         <p class="my-14 text-4xl">
           {% for word in sentence4 %}
-            <span class="about-line-word text-appear animation-delay-[{{ delay }}ms]">
+            <span class="about-line-word  text-appear motion-reduce:animate-none motion-reduce:opacity-100 animation-delay-[{{ delay }}ms]">
               {{ word }}
             </span>
             {% assign delay = delay | plus: 50 %}
           {% endfor %}
           <span
-            class="about-line-word text-appear animation-delay-[{{ delay }}ms]"
+            class="about-line-word  text-appear motion-reduce:animate-none motion-reduce:opacity-100 animation-delay-[{{ delay }}ms]"
           >
             <a
               href="https://en.wikipedia.org/wiki/Bogosort"
-              class="text-[#00C2FF] hover:text-blue-100 font-semibold transition duration-200 m-0"
+              class="m-0 font-semibold text-[#00C2FF] transition duration-200 hover:text-blue-100"
               target="_blank"
               rel="noreferrer noopener"
               >bogosort</a
@@ -376,12 +380,12 @@
         </p>
       </div>
     </section>
-    <section id="projects" class="my-36 px-32 scroll-mt-36">
+    <section id="projects" class="my-36 scroll-mt-36 px-32">
       <h1 class="group w-fit text-7xl font-medium">
-        <span class="projects-line-word text-appear">Projects</span>
+        <span class="projects-line-word  text-appear motion-reduce:animate-none motion-reduce:opacity-100">Projects</span>
         <span
           id="projects-line-emoji"
-          class="text-appear -ml-6 animate-bop animation-delay-[250ms] animation-duration-1000 group-hover:animate-[bop_infinite]"
+          class="text-appear  -ml-6 animate-bop animation-delay-[250ms] animation-duration-1000 group-hover:animate-[bop_infinite] motion-reduce:animate-none  motion-reduce:opacity-100 motion-reduce:group-hover:animate-none"
         >
           👨‍💻
         </span>
@@ -389,7 +393,7 @@
       <h5 class="mt-10 text-xl">
         {% assign text = "A collection of my works, big and small" | split: " " %}
         {% for word in text %}
-          <span class="projects-line-word text-appear animation-delay-[{{- forloop.index0 | times: 50 | plus: 250 -}}ms]">
+          <span class="projects-line-word  text-appear motion-reduce:animate-none motion-reduce:opacity-100 animation-delay-[{{- forloop.index0 | times: 50 | plus: 250 -}}ms]">
             {{ word }}
           </span>
         {% endfor %}
@@ -397,7 +401,7 @@
       <div id="projectsList" class="mt-8 grid grid-cols-2 gap-8" x-data="projectsData">
         {% for project in projects %}
           <div
-            class="projectCard animation-delay-[{{ forloop.index0 |  times: 50 |  plus: 250 }}ms] group flex w-full flex-row items-center rounded-2xl bg-white text-black opacity-0 transition hover:scale-105"
+            class="projectCard animation-delay-[{{ forloop.index0 |  times: 50 |  plus: 250 }}ms] group flex w-full flex-row items-center rounded-2xl bg-white text-black opacity-0 transition hover:scale-105 motion-reduce:opacity-100 motion-reduce:hover:scale-100"
           >
             <div class="flex w-full flex-row items-center p-5 pr-0">
               <img src="{{ project.image }}" class="max-h-32 w-32 rounded border-2 border-solid border-slate-200">
@@ -415,7 +419,7 @@
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-full w-full -translate-x-[100%] opacity-0 transition group-hover:translate-x-0 group-hover:opacity-100"
+                class="h-full w-full -translate-x-[100%] opacity-0 transition group-hover:translate-x-0 group-hover:opacity-100  motion-reduce:translate-x-0 motion-reduce:opacity-100"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -430,12 +434,15 @@
         {% endfor %}
       </div>
     </section>
-    <section id="contact" class="my-36 px-32 scroll-mt-36">
-      <h1 class="group w-fit text-7xl font-medium mb-10">
-        <span class="contact-line-word text-appear">Contact</span>
-        <span id="contact-line-emoji" class="text-appear -ml-10 animation-delay-[250ms]">
+    <section id="contact" class="my-36 scroll-mt-36 px-32">
+      <h1 class="group mb-10 w-fit text-7xl font-medium">
+        <span class="contact-line-word  text-appear motion-reduce:animate-none motion-reduce:opacity-100">Contact</span>
+        <span
+          id="contact-line-emoji"
+          class="text-appear  -ml-10 animation-delay-[250ms] motion-reduce:animate-none motion-reduce:opacity-100"
+        >
           <span class="inline-block -translate-y-2">
-            <span class="inline-block group-hover:animate-swoosh">📨</span>
+            <span class="inline-block group-hover:animate-swoosh motion-reduce:group-hover:animate-none">📨</span>
           </span>
         </span>
       </h1>
@@ -445,7 +452,7 @@
 
       <p class="my-8 text-xl">
         {% for word in sentence1 %}
-          <span class="contact-line-word text-appear animation-delay-[{{ delay }}ms]">
+          <span class="contact-line-word  text-appear motion-reduce:animate-none motion-reduce:opacity-100 animation-delay-[{{ delay }}ms]">
             {{- word -}}
           </span>
           {% assign delay = delay | plus: 50 %}
@@ -455,17 +462,17 @@
       {% assign delay = delay | plus: 50 %}
       <p class="my-8 text-xl">
         {% for word in sentence2 %}
-          <span class="contact-line-word text-appear animation-delay-[{{ delay }}ms]">
+          <span class="contact-line-word  text-appear motion-reduce:animate-none motion-reduce:opacity-100 animation-delay-[{{ delay }}ms]">
             {{- word -}}
           </span>
           {% assign delay = delay | plus: 50 %}
         {% endfor %}
         <span
-          class="contact-line-word text-appear animation-delay-[{{ delay }}ms]"
+          class="contact-line-word  text-appear motion-reduce:animate-none motion-reduce:opacity-100 animation-delay-[{{ delay }}ms]"
         >
           <a
             href="https://forms.gle/ThEVfFZfQopvp1929"
-            class="text-[#00C2FF] hover:text-blue-100 font-semibold transition duration-200 m-0"
+            class="m-0 font-semibold text-[#00C2FF] transition duration-200 hover:text-blue-100"
             target="_blank"
             rel="noreferrer noopener"
             >form</a

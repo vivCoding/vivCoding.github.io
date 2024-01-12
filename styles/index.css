@@ -49,10 +49,6 @@
   }
 
   /* #endregion font */
-
-  * {
-    scroll-behavior: smooth;
-  }
 }
 
 @layer utilities {

@@ -5,8 +5,9 @@
   "singleQuote": false,
   "printWidth": 120,
   "plugins": [
-    "prettier-plugin-tailwindcss",
-    "@shopify/prettier-plugin-liquid"
+    "@shopify/prettier-plugin-liquid",
+    "prettier-plugin-tailwindcss"
   ],
-  "liquidSingleQuote": false
+  "liquidSingleQuote": false,
+  "tailwindConfig": "./tailwind.config.js"
 }
