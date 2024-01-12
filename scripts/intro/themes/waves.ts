@@ -14,8 +14,9 @@ type WavePoint = {
 }
 
 export class WavesScene extends PixiTheme {
-  minWavesHeight = this.height * 0.5
-  maxWavesHeight = this.height * 0.9
+  // TODO scale with screen width
+  minWavesHeight = this.height * (this.width < 500 ? 0.2 : 0.5)
+  maxWavesHeight = this.height * (this.width < 500 ? 0.4 : 0.9)
   minOpacity = 0.2
   maxOpacity = 0.4
   waves: WaveShape[]
@@ -146,6 +147,7 @@ class WaveShape {
     this.maxPointSpeed = 0.04
     // TODO different num points for each edge?
     this.numPoints = randomIntFromRange(4, 12)
+    // this.numPoints = this.wavesScene.width < 500 ? randomIntFromRange(4, 7) : randomIntFromRange(4, 12)
 
     // masking for when the top edge and bottom edge overlap :))))
     // (lmao maybe not performant for the user but idgaf it look cool)

@@ -10,7 +10,7 @@
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   // force usage of local config
-  "prettier.configPath": ".prettierrc",
+  "prettier.configPath": "./.prettierrc",
 
   // override user's indentation settings (helps when creating new files/auto commenting)
   "editor.indentSize": 2,

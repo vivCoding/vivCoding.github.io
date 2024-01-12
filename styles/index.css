@@ -50,11 +50,3 @@
 
   /* #endregion font */
 }
-
-@layer utilities {
-  .text-appear {
-    /* initial setup. Then, u add animate-wave or animate-rise-word or wtv */
-    opacity: 0;
-    display: inline-block;
-  }
-}
