@@ -431,7 +431,7 @@
       </div>
     </section>
     <section id="contact" class="my-36 px-32 scroll-mt-36">
-      <h1 class="group w-fit text-7xl font-medium">
+      <h1 class="group w-fit text-7xl font-medium mb-10">
         <span class="contact-line-word text-appear">Contact</span>
         <span id="contact-line-emoji" class="text-appear -ml-10 animation-delay-[250ms]">
           <span class="inline-block -translate-y-2">
@@ -439,10 +439,22 @@
           </span>
         </span>
       </h1>
-      <h6 class="mt-8 text-xl">
-        {% assign text = "Got a question or comment? Send me a message through this" | split: " " %}
-        {% assign delay = 250 %}
-        {% for word in text %}
+      {% assign sentence1 = "Got a question or comment?" | split: " " %}
+      {% assign sentence2 = "Send me a message through this" | split: " " %}
+      {% assign delay = 250 %}
+
+      <p class="my-8 text-xl">
+        {% for word in sentence1 %}
+          <span class="contact-line-word text-appear animation-delay-[{{ delay }}ms]">
+            {{- word -}}
+          </span>
+          {% assign delay = delay | plus: 50 %}
+        {% endfor %}
+      </p>
+
+      {% assign delay = delay | plus: 50 %}
+      <p class="my-8 text-xl">
+        {% for word in sentence2 %}
           <span class="contact-line-word text-appear animation-delay-[{{ delay }}ms]">
             {{- word -}}
           </span>
@@ -459,7 +471,7 @@
             >form</a
           >!
         </span>
-      </h6>
+      </p>
     </section>
   </body>
   <script type="module" src="/scripts/index.ts"></script>
