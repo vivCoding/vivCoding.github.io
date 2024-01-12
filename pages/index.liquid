@@ -317,19 +317,63 @@
             >👋</span
           >
         </h1>
+
+        {% comment %} ig a bit more scalable, since now i can insert mini links wherever i want if i want {% endcomment %}
+        {% assign sentence1 = "I am currently a Master's student in CS at Purdue University." | split: " " %}
+        {% assign sentence2 = "I like web dev and generative AI." | split: " " %}
+        {% assign sentence3 = "I also like making fun and useful things." | split: " " %}
+        {% assign sentence4 = "My current favorite sorting algorithm is" | split: " " %}
+
         {% assign delay = 500 %}
-        {% for sentence in about.description %}
-          {% assign words = sentence | split: " " %}
-          <p class="my-14 text-4xl">
-            {% for word in words %}
-              <span class="about-line-word text-appear animation-delay-[{{- delay -}}ms]">
-                {{ word }}
-              </span>
-              {% assign delay = delay | plus: 50 %}
-            {% endfor %}
-          </p>
-          {% assign delay = delay | plus: 50 %}
-        {% endfor %}
+        <p class="my-14 text-4xl">
+          {% for word in sentence1 %}
+            <span class="about-line-word text-appear animation-delay-[{{ delay }}ms]">
+              {{ word }}
+            </span>
+            {% assign delay = delay | plus: 50 %}
+          {% endfor %}
+        </p>
+
+        {% assign delay = delay | plus: 50 %}
+        <p class="my-14 text-4xl">
+          {% for word in sentence2 %}
+            <span class="about-line-word text-appear animation-delay-[{{ delay }}ms]">
+              {{ word }}
+            </span>
+            {% assign delay = delay | plus: 50 %}
+          {% endfor %}
+        </p>
+
+        {% assign delay = delay | plus: 50 %}
+        <p class="my-14 text-4xl">
+          {% for word in sentence3 %}
+            <span class="about-line-word text-appear animation-delay-[{{ delay }}ms]">
+              {{ word }}
+            </span>
+            {% assign delay = delay | plus: 50 %}
+          {% endfor %}
+        </p>
+
+        {% assign delay = delay | plus: 50 %}
+        <p class="my-14 text-4xl">
+          {% for word in sentence4 %}
+            <span class="about-line-word text-appear animation-delay-[{{ delay }}ms]">
+              {{ word }}
+            </span>
+            {% assign delay = delay | plus: 50 %}
+          {% endfor %}
+          <span
+            class="about-line-word text-appear animation-delay-[{{ delay }}ms]"
+          >
+            <a
+              href="https://en.wikipedia.org/wiki/Bogosort"
+              class="text-[#00C2FF] hover:text-blue-100 font-semibold transition duration-200 m-0"
+              target="_blank"
+              rel="noreferrer noopener"
+              >bogosort</a
+            >.
+          </span>
+        </p>
       </div>
     </section>
     <section id="projects" class="my-36 px-32 scroll-mt-36">
@@ -396,12 +440,25 @@
         </span>
       </h1>
       <h6 class="mt-8 text-xl">
-        {% assign text = "Send me a message!" | split: " " %}
+        {% assign text = "Got a question or comment? Send me a message through this" | split: " " %}
+        {% assign delay = 250 %}
         {% for word in text %}
-          <span class="contact-line-word text-appear animation-delay-[{{ forloop.index0 | times: 50 | plus: 250  }}ms]">
+          <span class="contact-line-word text-appear animation-delay-[{{ delay }}ms]">
             {{- word -}}
           </span>
+          {% assign delay = delay | plus: 50 %}
         {% endfor %}
+        <span
+          class="contact-line-word text-appear animation-delay-[{{ delay }}ms]"
+        >
+          <a
+            href="https://forms.gle/ThEVfFZfQopvp1929"
+            class="text-[#00C2FF] hover:text-blue-100 font-semibold transition duration-200 m-0"
+            target="_blank"
+            rel="noreferrer noopener"
+            >form</a
+          >!
+        </span>
       </h6>
     </section>
   </body>
