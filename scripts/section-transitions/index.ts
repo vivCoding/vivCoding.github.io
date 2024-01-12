@@ -4,6 +4,7 @@ import { initTransition as initIntro } from "./intro"
 import { initTransition as initNavbar } from "./navbar"
 import { initTransition as initProjects } from "./projects"
 
+// TODO adjust for smaller screens
 export function initSectionTransitions() {
   initIntro()
   initNavbar()

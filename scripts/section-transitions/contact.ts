@@ -22,7 +22,7 @@ export function initTransition() {
       contactSection.style.opacity = "1"
       showLines()
     } else {
-      const opacity = (percentage - 0.7) / (PERCENTAGE_TRIGGER - 0.7)
+      const opacity = (percentage - 0.71) / (PERCENTAGE_TRIGGER - 0.71)
       contactSection.style.opacity = `${opacity}`
       if (opacity <= 0) {
         hideLines()

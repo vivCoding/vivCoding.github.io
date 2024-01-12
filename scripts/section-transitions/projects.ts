@@ -9,7 +9,7 @@ const words = [...document.getElementsByClassName("projects-line-word")] as HTML
 const emoji = document.getElementById("projects-line-emoji")
 const description = document.getElementById("projectsDescription")
 
-const PERCENTAGE_TRIGGER = 0.7
+const PERCENTAGE_TRIGGER = 0.75
 const WORD_ANIMATION = "animate-rise-word"
 const EMOJI_ANIMATION = "animate-bop"
 const DESC_ANIMATION = "animate-fade-in-up"
