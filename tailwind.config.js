@@ -11,7 +11,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["RobotoMono", ...defaultTheme.fontFamily.sans],
+        mono: ["RobotoMono", ...defaultTheme.fontFamily.mono],
       },
       keyframes: {
         "fade-in": {

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Vincent V">
+    <meta property="og:image" content="/assets/images/logo-bg.png">
+    <meta property="og:description" content="My Little Corner">
+
+    <meta property="twitter:title" content="Vincent V">
+    <meta property="twitter:description" content="My Little Corner">
+    <meta property="twitter:image" content="/assets/images/logo-bg.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="stylesheet" href="/styles/index.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/logo-bg.svg">
+
+    <title>Vincent V | Blog Corner</title>
+  </head>
+  <body class=" bg-zinc-900 font-sans text-white">
+    <div class="mx-auto my-10 max-w-4xl px-10">
+      <a
+        href="/"
+        title="Homepage"
+        class="flex w-fit flex-row items-center border-b-2 border-solid border-b-transparent text-sm font-semibold transition hover:border-b-white hover:opacity-60"
+      >
+        <svg class="fill-white" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+          <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+        </svg>
+        &nbsp;
+        <span>Home</span>
+      </a>
+      <section id="intro">
+        <h1 class="my-4 text-4xl font-bold">My Blog</h1>
+        <p class="">
+          Well, not really a blog. I just write stuff when I need to remember my thought process for something. It's
+          more like a notes page that I can access anywhere. A little corner in the web.
+        </p>
+      </section>
+      <section id="posts" class="border-t-solid my-5 border-t-[1px] border-t-white">
+        {% comment %} TODO create loop {% endcomment %}
+        <div class="border-b-solid border-b-[1px] border-b-white p-5 transition hover:bg-zinc-800">
+          <h1 class="mr-4 text-2xl font-semibold">
+            {{ "Hello world" | truncatewords: 10 }}
+          </h1>
+          <h6 class="text-sm font-light italic">
+            {{ "2024-01-12" | date: "%b %d, %Y" }}
+          </h6>
+          {% assign text = "hello there👋" %}
+          <p class="my-4">{{ text | truncatewords: 20 }}</p>
+          <a
+            href="/blog/2024-01-10"
+            title="blog page"
+            class="flex w-fit flex-row items-center border-b-2 border-solid border-b-transparent text-sm font-semibold transition hover:border-b-white hover:opacity-60"
+          >
+            <span>Go to page</span>
+            &nbsp;
+            <svg class="fill-white" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+              <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/>
+            </svg>
+          </a>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
