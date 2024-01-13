@@ -1,7 +1,6 @@
 {
   "source": [
-    "site/index.html",
-    "site/no-anim/index.html"
+    "site/index.html"
   ],
   "scripts": {
     "dev": "eleventy && pnpm /^dev:/",
