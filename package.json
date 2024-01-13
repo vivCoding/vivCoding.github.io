@@ -2,8 +2,8 @@
   "scripts": {
     "dev": "eleventy && pnpm /^dev:/",
     "dev:eleventy": "eleventy --watch --quiet",
-    "dev:parcel": "parcel serve -p 3000 $(find ./site/ -type f)",
-    "build": "eleventy && parcel build --no-content-hash $(find ./site/ -type f)",
+    "dev:parcel": "parcel serve -p 3000 $(find ./_site/ -type f)",
+    "build": "eleventy && parcel build --no-content-hash $(find ./_site/ -type f)",
     "preview": "cp test-server.js dist && node dist/test-server.js",
     "prettier": "prettier --check *.{html,css,js,ts,json,liquid} **/*.{html,css,js,ts,json,liquid}",
     "prettier:fix": "prettier --write *.{html,css,js,ts,json,liquid} **/*.{html,css,js,ts,json,liquid}"
@@ -13,9 +13,11 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
     "@parcel/config-default": "^2.11.0",
     "@parcel/plugin": "^2.11.0",
     "@shopify/prettier-plugin-liquid": "^1.4.0",
+    "@tailwindcss/typography": "^0.5.10",
     "parcel": "^2.11.0",
     "postcss": "^8.4.32",
     "prettier": "^3.1.1",

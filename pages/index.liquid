@@ -1,5 +1,6 @@
 {% comment %}
   TODO make no js friendly
+  TODO make screen reader friendly (add aria attributes)
   TODO consider breaking sections up to separate components
 {% endcomment %}
 <!doctype html>
@@ -36,26 +37,26 @@
       ></div>
     </div>
     <div id="bgOverlay" class="fixed -z-10 h-screen w-screen bg-[#0D0F20] opacity-0 motion-reduce:hidden"></div>
-    <nav id="navbar" class="fixed z-10 w-full bg-[#0D0F20] p-6 pl-9">
+    <nav id="navbar" class="fixed z-10 w-full bg-[#0D0F20] p-6 sm:pl-9">
       <div class="flex flex-row justify-center gap-x-7 text-base font-medium sm:justify-start">
         <a
           class="navbarLink inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.5s] animation-duration-500 hover:scale-125 motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:hover:scale-100"
-          href="/#"
+          href="#"
           >Home</a
         >
         <a
           class="navbarLink inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.6s] animation-duration-500 hover:scale-125 motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:hover:scale-100"
-          href="/#about"
+          href="#about"
           >About</a
         >
         <a
           class="navbarLink inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.7s] animation-duration-500 hover:scale-125 motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:hover:scale-100"
-          href="/#projects"
+          href="#projects"
           >Projects</a
         >
         <a
           class="navbarLink inline-block animate-fade-in-down opacity-0 transition animation-delay-[1.8s] animation-duration-500 hover:scale-125 motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:hover:scale-100"
-          href="/#contact"
+          href="#contact"
           >Contact</a
         >
       </div>
@@ -454,13 +455,11 @@
                     class="group relative inline-block hover:cursor-pointer motion-reduce:hover:animate-none "
                     href="/blog"
                     title="Little corner"
-                    target="_blank"
-                    rel="noreferrer noopener"
                   >
                     <svg
                       class="fill-white transition group-hover:scale-125 group-hover:opacity-70 motion-reduce:group-hover:scale-100"
                       xmlns="http://www.w3.org/2000/svg"
-                      height="0.9em"
+                      height="1em"
                       viewBox="0 0 512 512"
                     >
                       <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"/>
@@ -632,9 +631,7 @@
           id="contact-line-emoji"
           class="-ml-4 inline-block opacity-0 animation-delay-[250ms] motion-reduce:animate-none motion-reduce:opacity-100 xl:-ml-10"
         >
-          <span class="inline-block -translate-y-2">
-            <span class="inline-block group-hover:animate-swoosh motion-reduce:group-hover:animate-none">📨</span>
-          </span>
+          <span class="inline-block group-hover:animate-swoosh motion-reduce:group-hover:animate-none">📨</span>
         </span>
       </h1>
       {% assign sentence1 = "Got a question or comment?" | split: " " %}
