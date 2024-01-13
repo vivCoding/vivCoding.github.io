@@ -4,8 +4,4 @@ Personal website
 
 View it [here](https://vivcoding.github.io/)
 
-### TODO
-
-- make webpage no-js friendly
-- make webpage prefer-no-motion friendly
-- maybe use another framework?
+<img alt="*insert cat furiously typing gif here*" src="https://media.tenor.com/CC1VPnwBVMMAAAAi/gianbortion-cat.gif" width=100 height=100 style="margin-top: 10px"/>
