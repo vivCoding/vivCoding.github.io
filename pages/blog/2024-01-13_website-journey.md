@@ -18,7 +18,7 @@ I don't think it looked too bad, as I thought it was minimalistic-ish. Showed my
 
 I did start to dislike the gradient background that I was using, and how you can see the pixels in my logo. I also wanted to see if I could add some fancy animations while keeping a little bit of the minimalistic-ish approach I had initially.
 
-For awhile, I've also wanted to implement a little blog section too.
+Additionally, for quite some time, I've been thinking of dding a little blog section too. Maybe it was time to do it.
 
 I think I was also just bored. Or something. Else I would've worked on my school homework. Whatever.
 
@@ -42,6 +42,8 @@ So I have:
 It's not so vanilla with TailwindCSS, but eh. Vanilla enough.
 
 ## Issue #1: JS Types
+
+Not a major issue, just a minor inconvenience that I had with developing.
 
 I've used [JSDoc types](https://jsdoc.app/tags-type) in the past for really small projects, since this typing feature is already embedded into VSCode and it's pretty easy to add types using comments. However, I realized that as I added more JS to my project, it got really cumbersome and looked messy. For example, in order to annotate a type for a variable/function, you have to write a comment on a separate line above it.
 
@@ -75,6 +77,8 @@ Now I have:
 - TailwindCSS
 - TypeScript
 - PixiJS (npm module)
+
+Looking less vanilla now lol.
 
 At this point, I started considering whether I wanted to use a bundler to easily manage my JS modules. I probably didn't need a bundler for my small (tiny 💀) JS codebase, but I figured if I ever wanted to add more client-side libraries for more fancy stuff, I should probably use a bundler.
 
