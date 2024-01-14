@@ -1,6 +1,6 @@
 ---
 layout: blog/post.liquid
-title: The (Unnecessary) Journey in Redoing my Website
+title: The (Unnecessarily Long) Journey in Redoing my Website
 date: 2024-01-13
 updated: 2024-01-13
 templateEngineOverride: md
