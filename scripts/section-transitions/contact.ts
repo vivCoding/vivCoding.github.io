@@ -45,8 +45,8 @@ function hideLines() {
 }
 
 function showLines() {
-  if (!projectsSection) throw "no about section"
-  projectsSection.style.visibility = "visible"
+  if (!contactSection) throw "no contact section"
+  contactSection.style.visibility = "visible"
 
   words.forEach((word) => {
     word.style.visibility = "visible"
