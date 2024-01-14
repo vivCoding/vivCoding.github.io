@@ -26,7 +26,7 @@ export function initTransition() {
     if (percentage >= PERCENTAGE_TRIGGER) {
       show()
     } else {
-      const opacity = 1 - (PERCENTAGE_TRIGGER - percentage) / 0.25
+      const opacity = 1 - (PERCENTAGE_TRIGGER - percentage) / 0.2
       projectsSection.style.opacity = `${opacity}`
       if (opacity <= 0) {
         hide()
