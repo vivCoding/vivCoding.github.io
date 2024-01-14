@@ -25,7 +25,7 @@
     {% for project in projects %}
       {% assign delay = delay | plus: 50 %}
       <a
-        class="projectCard group flex w-full select-text flex-col items-center rounded-2xl bg-white text-black opacity-0 transition hover:scale-105 motion-reduce:opacity-100 motion-reduce:hover:scale-100 sm:flex-row animation-delay-[{{ delay }}ms] hover:bg-slate-200"
+        class="projectCard group flex w-full select-text flex-col items-center rounded-2xl bg-white text-black opacity-0 transition hover:z-50 hover:scale-105 motion-reduce:opacity-100 motion-reduce:hover:scale-100 sm:flex-row animation-delay-[{{ delay }}ms] hover:bg-slate-200 "
         draggable="false"
         href="{{ project.link }}"
         title="{{ project.title }}"

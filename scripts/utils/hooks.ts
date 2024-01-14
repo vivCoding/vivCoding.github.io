@@ -37,7 +37,7 @@ export function usePercentageSeen(element: HTMLElement | null, onChange: (percen
     const calcPercentage =
       (overTopEdge ? elementOffsetTop + elementHeight - topEdge : bottomEdge - elementOffsetTop) / elementHeight
     // Restrict the range to between 0 and 1
-    const percentage = clampValue(0, 1, calcPercentage)
+    const percentage = Math.round(clampValue(0, 1, calcPercentage) * 100) / 100
     onChange(percentage)
   })
 
@@ -67,7 +67,7 @@ export function useYPercentageOnScreen(
     const trigger = elementPos - viewportHeight
     // now calculate the element's position y on screen, and get percentage y
     // also restrict range to between 0 and 1
-    const percentage = clampValue(0, 1, (scrollPos - trigger) / viewportHeight)
+    const percentage = Math.round(clampValue(0, 1, (scrollPos - trigger) / viewportHeight) * 100) / 100
     onChange(percentage)
   })
 
@@ -80,8 +80,11 @@ export function useScrollPosition(onChange: ({ yPos, yPercentage }: { yPos: numb
   scrollHooks.push(() => {
     const yPos = window.scrollY
     const yPercentage =
-      document.documentElement.scrollTop /
-      (document.documentElement.scrollHeight - document.documentElement.clientHeight)
+      Math.round(
+        (document.documentElement.scrollTop /
+          (document.documentElement.scrollHeight - document.documentElement.clientHeight)) *
+          100
+      ) / 100
     onChange({ yPos, yPercentage })
   })
 
