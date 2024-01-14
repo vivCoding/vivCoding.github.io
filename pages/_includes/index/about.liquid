@@ -1,0 +1,75 @@
+<section
+  id="about"
+  class="-mt-16 scroll-mt-24 px-10 motion-reduce:-mt-0 sm:px-20 xl:scroll-mt-36 2xl:px-32"
+>
+  <h1 class="group mb-6 w-fit text-4xl font-medium sm:mb-10 sm:text-5xl xl:mb-16 xl:text-7xl">
+    <span class="about-line-word inline-block opacity-0 animation-delay-[0ms] motion-reduce:animate-none motion-reduce:opacity-100"
+      >About</span
+    >
+    <span class="about-line-word inline-block opacity-0 animation-delay-[250ms] motion-reduce:animate-none motion-reduce:opacity-100"
+      >Me</span
+    >
+    <span
+      id="about-line-emoji"
+      class="-ml-4 inline-block origin-bottom-right animate-wave opacity-0 animation-delay-[500ms] animation-duration-500 group-hover:animate-[wave_infinite] motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:group-hover:animate-none xl:-ml-8"
+      >👋</span
+    >
+  </h1>
+
+  {% comment %} ig a bit more scalable, since now i can insert mini links wherever i want if i want {% endcomment %}
+  {% assign sentence1 = "I am currently a Master's student in CS at Purdue University." | split: " " %}
+  {% assign sentence2 = "I like web dev and generative AI, especially code generation." | split: " " %}
+  {% assign sentence3 = "I also like making fun and useful things." | split: " " %}
+  {% assign sentence4 = "My current favorite sorting algorithm is" | split: " " %}
+
+  {% assign delay = 500 %}
+  <p class="my-8 text-lg sm:my-8 sm:text-2xl xl:my-14 xl:text-4xl">
+    {% for word in sentence1 %}
+      <span class="about-line-word inline-block opacity-0 motion-reduce:animate-none motion-reduce:opacity-100 animation-delay-[{{ delay }}ms]">
+        {{ word }}
+      </span>
+      {% assign delay = delay | plus: 50 %}
+    {% endfor %}
+  </p>
+
+  {% assign delay = delay | plus: 50 %}
+  <p class="my-8 text-lg sm:my-8 sm:text-2xl xl:my-14 xl:text-4xl">
+    {% for word in sentence2 %}
+      <span class="about-line-word inline-block opacity-0 motion-reduce:animate-none motion-reduce:opacity-100 animation-delay-[{{ delay }}ms]">
+        {{ word }}
+      </span>
+      {% assign delay = delay | plus: 50 %}
+    {% endfor %}
+  </p>
+
+  {% assign delay = delay | plus: 50 %}
+  <p class="my-8 text-lg sm:my-8 sm:text-2xl xl:my-14 xl:text-4xl">
+    {% for word in sentence3 %}
+      <span class="about-line-word inline-block opacity-0 motion-reduce:animate-none motion-reduce:opacity-100 animation-delay-[{{ delay }}ms]">
+        {{ word }}
+      </span>
+      {% assign delay = delay | plus: 50 %}
+    {% endfor %}
+  </p>
+
+  {% assign delay = delay | plus: 50 %}
+  <p class="my-8 text-lg sm:my-8 sm:text-2xl xl:my-14 xl:text-4xl">
+    {% for word in sentence4 %}
+      <span class="about-line-word inline-block opacity-0 motion-reduce:animate-none motion-reduce:opacity-100 animation-delay-[{{ delay }}ms]">
+        {{ word }}
+      </span>
+      {% assign delay = delay | plus: 50 %}
+    {% endfor %}
+    <span
+      class="about-line-word inline-block opacity-0 motion-reduce:animate-none motion-reduce:opacity-100 animation-delay-[{{ delay }}ms]"
+    >
+      <a
+        href="https://en.wikipedia.org/wiki/Bogosort"
+        class="m-0 font-semibold text-[#00C2FF] transition duration-200 hover:text-blue-100"
+        target="_blank"
+        rel="noreferrer noopener"
+        >bogosort</a
+      >.
+    </span>
+  </p>
+</section>

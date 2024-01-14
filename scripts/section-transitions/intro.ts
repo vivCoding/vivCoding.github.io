@@ -1,17 +1,20 @@
-import { usePercentageSeen } from "@/utils/hooks"
+import { useYPercentageOnScreen } from "@/utils/hooks"
 
 const introSection = document.getElementById("intro")
 const hero = document.getElementById("hero")
 const bgOverlay = document.getElementById("bgOverlay")
 
+const PERCENTAGE_TRIGGER = 0.1
+
 export function initTransition() {
   if (!hero || !bgOverlay) throw "bruh no hero"
-  usePercentageSeen(introSection, (percentage) => {
-    if (percentage >= 0.55) {
-      hero.style.opacity = `${(0.67 - percentage) / 0.12}`
+  useYPercentageOnScreen(introSection, (percentage) => {
+    if (percentage >= PERCENTAGE_TRIGGER) {
+      hero.style.opacity = `${(0.34 - percentage) / (0.34 - PERCENTAGE_TRIGGER)}`
     } else {
       hero.style.opacity = "1"
     }
-    bgOverlay.style.opacity = `${1 - (0.65 - percentage) / 0.15}`
+    const opacity = 1 - (0.3 - percentage) / 0.3
+    bgOverlay.style.opacity = `${opacity}`
   })
 }

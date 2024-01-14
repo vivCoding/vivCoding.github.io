@@ -1,0 +1,46 @@
+<section id="contact" class="my-24 px-10 sm:px-20 lg:my-36 2xl:px-32">
+  <h1 class="group mb-4 w-fit text-4xl font-medium sm:mb-6 sm:text-5xl xl:mb-10 xl:text-7xl">
+    <span class="contact-line-word inline-block opacity-0 motion-reduce:animate-none motion-reduce:opacity-100"
+      >Contact</span
+    >
+    <span
+      id="contact-line-emoji"
+      class="-ml-4 inline-block opacity-0 animation-delay-[250ms] motion-reduce:animate-none motion-reduce:opacity-100 xl:-ml-10"
+    >
+      <span class="inline-block group-hover:animate-swoosh motion-reduce:group-hover:animate-none">📨</span>
+    </span>
+  </h1>
+  {% assign sentence1 = "Got a question or comment?" | split: " " %}
+  {% assign sentence2 = "Send me a message through this" | split: " " %}
+  {% assign delay = 250 %}
+
+  <p class="my-2 text-sm sm:my-4 sm:text-base xl:my-8 xl:text-xl">
+    {% for word in sentence1 %}
+      <span class="contact-line-word inline-block opacity-0 motion-reduce:animate-none motion-reduce:opacity-100 animation-delay-[{{ delay }}ms]">
+        {{- word -}}
+      </span>
+      {% assign delay = delay | plus: 50 %}
+    {% endfor %}
+  </p>
+
+  {% assign delay = delay | plus: 50 %}
+  <p class="my-2 text-sm sm:my-4 sm:text-base xl:my-8 xl:text-xl">
+    {% for word in sentence2 %}
+      <span class="contact-line-word inline-block opacity-0 motion-reduce:animate-none motion-reduce:opacity-100 animation-delay-[{{ delay }}ms]">
+        {{- word -}}
+      </span>
+      {% assign delay = delay | plus: 50 %}
+    {% endfor %}
+    <span
+      class="contact-line-word inline-block opacity-0 motion-reduce:animate-none motion-reduce:opacity-100 animation-delay-[{{ delay }}ms]"
+    >
+      <a
+        href="https://forms.gle/ThEVfFZfQopvp1929"
+        class="m-0 font-semibold text-[#00C2FF] transition duration-200 hover:text-blue-100"
+        target="_blank"
+        rel="noreferrer noopener"
+        >form</a
+      >!
+    </span>
+  </p>
+</section>

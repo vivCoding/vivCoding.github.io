@@ -1,0 +1,82 @@
+<section id="projects" class="my-24 scroll-mt-24 px-10 sm:px-20 lg:my-36 xl:scroll-mt-36 2xl:px-32">
+  <h1 class="group w-fit text-4xl font-medium sm:text-5xl xl:text-7xl">
+    <span class="projects-line-word inline-block opacity-0 motion-reduce:animate-none motion-reduce:opacity-100"
+      >Projects</span
+    >
+    <span
+      id="projects-line-emoji"
+      class="-ml-4 inline-block animate-bop opacity-0 animation-delay-[250ms] animation-duration-1000 group-hover:animate-[bop_infinite] motion-reduce:animate-none motion-reduce:opacity-100  motion-reduce:group-hover:animate-none xl:-ml-6"
+    >
+      👨‍💻
+    </span>
+  </h1>
+
+  <h5 class="mt-4 text-sm sm:mt-6 sm:text-base xl:mt-10 xl:text-xl">
+    {% assign text = "A collection of my works, big and small" | split: " " %}
+    {% for word in text %}
+      <span class="projects-line-word inline-block opacity-0 motion-reduce:animate-none motion-reduce:opacity-100 animation-delay-[{{- forloop.index0 | times: 50 | plus: 250 -}}ms]">
+        {{ word }}
+      </span>
+    {% endfor %}
+  </h5>
+
+  <div id="projectsList" class="mt-4 grid grid-cols-1 gap-8 lg:grid-cols-2 xl:mt-8">
+    {% assign delay = 250 %}
+    {% for project in projects %}
+      {% assign delay = delay | plus: 50 %}
+      <a
+        class="projectCard group flex w-full select-text flex-col items-center rounded-2xl bg-white text-black opacity-0 transition hover:scale-105 motion-reduce:opacity-100 motion-reduce:hover:scale-100 sm:flex-row animation-delay-[{{ delay }}ms] hover:bg-slate-200"
+        draggable="false"
+        href="{{ project.link }}"
+        title="{{ project.title }}"
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        <div class="flex w-full flex-col items-center p-5 pb-0 sm:flex-row sm:pb-5 sm:pr-0">
+          <img src="{{ project.image }}" class="max-h-32 w-32 rounded border-2 border-solid border-slate-200">
+          <div class="projectCardContent mt-2 text-center sm:ml-5 sm:text-left">
+            <h6 class="text-lg font-medium">{{ project.title }}</h6>
+            <p class="mt-1 text-sm sm:mt-2 xl:text-base">{{ project.description }}</p>
+          </div>
+        </div>
+        {% comment %}
+          When screen is small, show "View ->"
+          When is large, only show chevron arrow
+        {% endcomment %}
+        <div
+          class="flex flex-row items-center rounded-2xl rounded-l-none bg-clip-content p-5 transition sm:ml-1 sm:h-full sm:w-8 sm:p-0"
+        >
+          {% comment %} "View ->" {% endcomment %}
+          <span class="mr-1 inline font-bold sm:hidden">View</span>
+          <svg
+            class="-mb-[2px] inline align-middle sm:hidden"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+          {% comment %} chevron arrow {% endcomment %}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="hidden h-full w-full -translate-x-[100%] opacity-0 transition group-hover:translate-x-0 group-hover:opacity-100 motion-reduce:translate-x-0  motion-reduce:opacity-100 sm:inline-block"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m 9 20 6 -8 -6 -8" />
+          </svg>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</section>

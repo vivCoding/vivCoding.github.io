@@ -6,9 +6,7 @@ updated: 2024-01-13
 templateEngineOverride: md
 ---
 
-These were issues I had when developing my [website](https://vivcoding.github.io/), and how I went from vanilla technologies to "not-so-vanilla".
-
-Not-quite-so-recently, I decided to revise my personal website, as I thought it looked a little bit boring.
+Not-quite-so-recently, I decided to revise my personal website, as I thought it looked a little bit boring. These were issues I had when developing my [website](https://vivcoding.github.io/), and how I went from vanilla technologies to "not-so-vanilla".
 
 At the time of writing, I archived this website in a separate branch on GitHub. I hope a future me remembers to not delete it. If not, here's what it used to look like:
 
@@ -155,11 +153,11 @@ For some reason, this was not the case. Instead, it seemed as though it did not 
 
 It's very likely I misunderstood something about the internal process. I spent a decent time studying it, even asking in Parcel's official Discord server. No luck.
 
-> I realize as I'm writing this that I could've probably just dynamically created `style` attributes rather than using classes. Maybe it would've worked, maybe not. I cope by saying there might've been other problems down the road if I don't switch to something else 🤪
+> I realize as I'm writing this that I could've probably solved this by just dynamically creating `style` attributes rather than classes. Maybe it would've worked, maybe not. I cope by saying there might've been other problems down the road if I don't switch to something else 🤪
 
 So, I still needed a way to figure out how to generate the static pages. Honestly, maybe I could've rolled my own little script to do this. But, I also heard of another library that could provide huge flexibility in the future.
 
-## Introducing Eleventy
+## Using Eleventy
 
 [Eleventy](https://www.11ty.dev/) is a static site generator that lets you use a wide range of templating engines to statically generate pages. Which is exactly what I needed. All I had to do was plug and play, and do a lil' tinkering.
 

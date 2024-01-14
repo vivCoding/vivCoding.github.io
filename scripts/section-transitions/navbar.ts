@@ -1,4 +1,4 @@
-import { usePercentageSeen } from "@/utils/hooks"
+import { useYPercentageOnScreen } from "@/utils/hooks"
 
 const navbar = document.getElementById("navbar")
 const navbarLinks = [...document.getElementsByClassName("navbarLink")] as HTMLElement[]
@@ -8,8 +8,8 @@ const introSection = document.getElementById("intro")
 const settingsBtnOverlay = document.getElementById("buttonOverlay")
 const settingsBtnOverlayContainer = document.getElementById("buttonOverlayContainer")
 
-const NAVBAR_TRIGGER = 0.7
-const SETTINGS_TRIGGER = 0.55
+const NAVBAR_TRIGGER = 0.4
+const SETTINGS_TRIGGER = 0.1
 const GROUP_HOVER_CLASS = "group/overlay"
 
 export function initTransition() {
@@ -17,7 +17,7 @@ export function initTransition() {
   if (!navbar) throw "no navbar"
   if (!settingsBtnOverlay || !settingsBtnOverlayContainer) throw "no buttonOverlay"
 
-  usePercentageSeen(introSection, (percentage) => {
+  useYPercentageOnScreen(introSection, (percentage) => {
     if (percentage > NAVBAR_TRIGGER) {
       navbar.classList.remove("bg-opacity-0")
       navbar.classList.add("bg-opacity-100")

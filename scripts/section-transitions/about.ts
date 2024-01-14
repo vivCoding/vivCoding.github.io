@@ -1,11 +1,13 @@
-import { usePercentageSeen } from "../utils/hooks"
+import { useScrollPosition, useYPercentageOnScreen } from "@/utils/hooks"
 
 const aboutSection = document.getElementById("about")
 const introSection = document.getElementById("intro")
 const words = [...document.getElementsByClassName("about-line-word")] as HTMLElement[]
 const emoji = document.getElementById("about-line-emoji")
 
-const PERCENTAGE_TRIGGER = 0.68
+// const PERCENTAGE_TRIGGER = 0.65
+const PERCENTAGE_TRIGGER = 0.35
+
 const WORD_ANIMATION = "animate-rise-word"
 const EMOJI_ANIMATION = "animate-wave"
 
@@ -13,25 +15,44 @@ export function initTransition() {
   if (!aboutSection) throw "no aboutSection"
 
   // initial
-  hideLines()
+  hide()
 
-  // use intro section to relate the scrolling of intro section to about section
-  usePercentageSeen(introSection, (percentage) => {
+  // relate the position/visibility of previous section to this section
+  useYPercentageOnScreen(introSection, (percentage) => {
     if (percentage >= PERCENTAGE_TRIGGER) {
-      showLines()
-      aboutSection.style.opacity = "1"
+      show()
     } else {
-      const opacity = (percentage - 0.6) / (PERCENTAGE_TRIGGER - 0.6)
+      const opacity = 1 - (PERCENTAGE_TRIGGER - percentage) / 0.15
       aboutSection.style.opacity = `${opacity}`
       if (opacity <= 0) {
-        hideLines()
+        hide()
       }
     }
   })
+
+  // accouting for large screens, where there is very minimal scrolling
+  useScrollPosition(({ yPercentage }) => {
+    if (yPercentage === 1) show()
+  })
 }
 
-function hideLines() {
-  if (!aboutSection) throw "no about section"
+function show() {
+  if (!aboutSection) throw "no section"
+  aboutSection.style.visibility = "visible"
+  aboutSection.style.opacity = "1"
+
+  words.forEach((word) => {
+    word.style.visibility = "visible"
+    word.classList.add(WORD_ANIMATION)
+  })
+
+  if (!emoji) throw new Error("no emoji")
+  emoji.style.visibility = "visible"
+  emoji.classList.add("animate-wave")
+}
+
+function hide() {
+  if (!aboutSection) throw "no section"
   aboutSection.style.visibility = "hidden"
 
   words.forEach((line) => {
@@ -42,18 +63,4 @@ function hideLines() {
   if (!emoji) throw new Error("no emoji")
   emoji.style.visibility = "hidden"
   emoji.classList.remove(EMOJI_ANIMATION)
-}
-
-function showLines() {
-  if (!aboutSection) throw "no about section"
-  aboutSection.style.visibility = "visible"
-
-  words.forEach((word) => {
-    word.style.visibility = "visible"
-    word.classList.add(WORD_ANIMATION)
-  })
-
-  if (!emoji) throw new Error("no emoji")
-  emoji.style.visibility = "visible"
-  emoji.classList.add("animate-wave")
 }

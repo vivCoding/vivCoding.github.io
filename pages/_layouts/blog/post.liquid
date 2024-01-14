@@ -32,40 +32,41 @@ tags: post
   </head>
   <body class="bg-zinc-900 font-sans text-white">
     <main class="mx-auto my-4 mb-10 max-w-4xl px-10">
-      {% render "blog/nav.liquid" %}
-      <div>
-        <div>
-          <h1 class="mb-0 hyphens-auto break-words text-5xl font-bold">
-            {{ title }}
-          </h1>
-          <h6 class="mt-2 text-sm font-semibold">
-            Created:
-            <span class="font-normal italic">
-              {{ date | date: "%b %d, %Y" }}
-            </span>
-          </h6>
-          <h6 class="text-sm font-semibold">
-            Updated:
-            <span class="font-normal italic">
-              {{ updated | date: "%b %d, %Y" }}
-            </span>
-          </h6>
-        </div>
-        <div class="prose prose-invert mt-10 max-w-none border-y-2 border-solid border-y-white py-8">
-          {{ content }}
-        </div>
-        <a
-          class="my-4 flex w-fit flex-row items-center border-b-2 border-solid border-b-transparent text-sm font-semibold transition hover:border-b-white hover:opacity-60"
-          href="#"
-          title="Back to Top"
-        >
-          <svg class="fill-white" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
-            <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/>
-          </svg>
-          &nbsp;
-          <span>Back to Top</span>
-        </a>
+      {% include "blog/nav.liquid" %}
+
+      <div id="postHeader">
+        <h1 class="mb-0 hyphens-auto break-words text-5xl font-bold">
+          {{ title }}
+        </h1>
+        <h6 class="mt-4 text-sm italic">
+          Created:
+          <span class="font-light">
+            {{ date | date: "%b %d, %Y" }}
+          </span>
+        </h6>
+        <h6 class="text-sm italic">
+          Updated:
+          <span class="font-light">
+            {{ updated | date: "%b %d, %Y" }}
+          </span>
+        </h6>
       </div>
+
+      <div class="prose prose-invert mt-10 max-w-none border-y-2 border-solid border-y-white py-4">
+        {{ content }}
+      </div>
+
+      <a
+        class="my-4 flex w-fit flex-row items-center border-b-2 border-solid border-b-transparent text-sm font-semibold transition hover:border-b-white hover:opacity-60"
+        href="#"
+        title="Back to Top"
+      >
+        <svg class="fill-white" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
+          <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/>
+        </svg>
+        &nbsp;
+        <span>Back to Top</span>
+      </a>
     </main>
   </body>
 </html>

@@ -1,59 +1,51 @@
 // TODO this is basically copy paste from aboutSection
 // dont repeat urself?
 
-import { usePercentageSeen } from "../utils/hooks"
+import { useScrollPosition, useYPercentageOnScreen } from "../utils/hooks"
 
 const projectsSection = document.getElementById("projects")
 const aboutSection = document.getElementById("about")
 const words = [...document.getElementsByClassName("projects-line-word")] as HTMLElement[]
 const emoji = document.getElementById("projects-line-emoji")
-const description = document.getElementById("projectsDescription")
+const projectCards = [...document.getElementsByClassName("projectCard")] as HTMLElement[]
 
-const PERCENTAGE_TRIGGER = 0.75
+const PERCENTAGE_TRIGGER = 0.6
+
 const WORD_ANIMATION = "animate-rise-word"
 const EMOJI_ANIMATION = "animate-bop"
-const DESC_ANIMATION = "animate-fade-in-up"
+const CARD_ANIMATION = "animate-rise-word"
 
 export function initTransition() {
   if (!projectsSection) throw "no section"
 
   // initial
-  hideLines()
+  hide()
 
-  // use intro section to relate the scrolling of intro section to about section
-  usePercentageSeen(aboutSection, (percentage) => {
+  // relate the position/visibility of previous section to this section
+  useYPercentageOnScreen(aboutSection, (percentage) => {
     if (percentage >= PERCENTAGE_TRIGGER) {
-      projectsSection.style.opacity = "1"
-      showLines()
-      showProjects()
+      show()
     } else {
-      const opacity = (percentage - 0.6) / (PERCENTAGE_TRIGGER - 0.6)
+      const opacity = 1 - (PERCENTAGE_TRIGGER - percentage) / 0.25
       projectsSection.style.opacity = `${opacity}`
       if (opacity <= 0) {
-        hideLines()
-        hideProjects()
+        hide()
       }
     }
   })
-}
 
-function hideLines() {
-  if (!projectsSection) throw "no section"
-  projectsSection.style.visibility = "hidden"
-
-  words.forEach((line) => {
-    line.style.visibility = "hidden"
-    line.classList.remove(WORD_ANIMATION)
+  // accouting for large screens, where there is very minimal scrolling
+  useScrollPosition(({ yPercentage }) => {
+    if (yPercentage === 1) show()
   })
-  if (!emoji) throw new Error("no emoji")
-  emoji.style.visibility = "hidden"
-  emoji.classList.remove(EMOJI_ANIMATION)
 }
 
-function showLines() {
-  if (!projectsSection) throw "no about section"
+function show() {
+  if (!projectsSection) throw "no section"
   projectsSection.style.visibility = "visible"
+  projectsSection.style.opacity = "1"
 
+  // show lines
   words.forEach((word) => {
     word.style.visibility = "visible"
     word.classList.add(WORD_ANIMATION)
@@ -62,23 +54,30 @@ function showLines() {
   emoji.style.visibility = "visible"
   emoji.classList.add(EMOJI_ANIMATION)
 
-  // if (!description) throw "no description"
-  // description.style.visibility = "visible"
-  // description.classList.add(DESC_ANIMATION)
-}
-
-function showProjects() {
-  const projectCards = [...document.getElementsByClassName("projectCard")] as HTMLElement[]
+  // show cards
   projectCards.forEach((projectCard) => {
     projectCard.style.visibility = "visible"
-    projectCard.classList.add("animate-rise-word")
+    projectCard.classList.add(CARD_ANIMATION)
   })
 }
 
-function hideProjects() {
+function hide() {
+  if (!projectsSection) throw "no section"
+  projectsSection.style.visibility = "hidden"
+
+  // hiding words
+  words.forEach((line) => {
+    line.style.visibility = "hidden"
+    line.classList.remove(WORD_ANIMATION)
+  })
+  if (!emoji) throw new Error("no emoji")
+  emoji.style.visibility = "hidden"
+  emoji.classList.remove(EMOJI_ANIMATION)
+
+  // hiding cards
   const projectCards = [...document.getElementsByClassName("projectCard")] as HTMLElement[]
   projectCards.forEach((projectCard) => {
     projectCard.style.visibility = "hidden"
-    projectCard.classList.remove("animate-rise-word")
+    projectCard.classList.remove(CARD_ANIMATION)
   })
 }
