@@ -32,10 +32,15 @@ export function initTransition() {
     }
     if (percentage > SETTINGS_TRIGGER) {
       settingsBtnOverlay.classList.remove(GROUP_HOVER_CLASS)
-      settingsBtnOverlayContainer.style.opacity = `${1 - (percentage - SETTINGS_TRIGGER) / 0.1}`
+      const opacity = 1 - (percentage - SETTINGS_TRIGGER) / 0.1
+      settingsBtnOverlayContainer.style.opacity = `${opacity}`
+      if (opacity <= 0) {
+        settingsBtnOverlayContainer.style.display = "none"
+      }
     } else {
       settingsBtnOverlay.classList.add(GROUP_HOVER_CLASS)
       settingsBtnOverlayContainer.style.opacity = "1"
+      settingsBtnOverlayContainer.style.display = "block"
     }
   })
 }

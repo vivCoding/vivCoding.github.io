@@ -1,7 +1,7 @@
 // TODO this is basically copy paste from aboutSection
 // dont repeat urself?
 
-import { useScrollPosition, useYPercentageOnScreen } from "../utils/hooks"
+import { usePercentageSeen, useScrollPosition, useYPercentageOnScreen } from "../utils/hooks"
 
 const projectsSection = document.getElementById("projects")
 const aboutSection = document.getElementById("about")
@@ -9,7 +9,7 @@ const words = [...document.getElementsByClassName("projects-line-word")] as HTML
 const emoji = document.getElementById("projects-line-emoji")
 const projectCards = [...document.getElementsByClassName("projectCard")] as HTMLElement[]
 
-const PERCENTAGE_TRIGGER = 0.6
+const PERCENTAGE_TRIGGER = 0.57
 
 const WORD_ANIMATION = "animate-rise-word"
 const EMOJI_ANIMATION = "animate-bop"
@@ -35,8 +35,13 @@ export function initTransition() {
   })
 
   // accouting for large screens, where there is very minimal scrolling
+  usePercentageSeen(projectsSection, (percentage) => {
+    if (percentage >= 0.99) show()
+  })
   useScrollPosition(({ yPercentage }) => {
-    if (yPercentage >= 0.99) show()
+    if (yPercentage >= 0.99) {
+      show()
+    }
   })
 }
 

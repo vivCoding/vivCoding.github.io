@@ -32,12 +32,14 @@ export function usePercentageSeen(element: HTMLElement | null, onChange: (percen
     const overTopEdge = elementOffsetTop < topEdge
 
     // calculate the percentage on screen
-    // NOTE could divide by min(elementHeight, viewportHeight) instead.
+    // NOTE we divide by min(elementHeight, viewportHeight).
     // That way, if element is larger than screen, will return 100% when element covers entire screen
     const calcPercentage =
-      (overTopEdge ? elementOffsetTop + elementHeight - topEdge : bottomEdge - elementOffsetTop) / elementHeight
+      (overTopEdge ? elementOffsetTop + elementHeight - topEdge : bottomEdge - elementOffsetTop) /
+      Math.min(elementHeight, viewportHeight)
     // Restrict the range to between 0 and 1
-    const percentage = Math.round(clampValue(0, 1, calcPercentage) * 100) / 100
+    const percentage = clampValue(0, 1, calcPercentage)
+
     onChange(percentage)
   })
 
@@ -67,7 +69,7 @@ export function useYPercentageOnScreen(
     const trigger = elementPos - viewportHeight
     // now calculate the element's position y on screen, and get percentage y
     // also restrict range to between 0 and 1
-    const percentage = Math.round(clampValue(0, 1, (scrollPos - trigger) / viewportHeight) * 100) / 100
+    const percentage = clampValue(0, 1, (scrollPos - trigger) / viewportHeight)
     onChange(percentage)
   })
 
@@ -80,11 +82,8 @@ export function useScrollPosition(onChange: ({ yPos, yPercentage }: { yPos: numb
   scrollHooks.push(() => {
     const yPos = window.scrollY
     const yPercentage =
-      Math.round(
-        (document.documentElement.scrollTop /
-          (document.documentElement.scrollHeight - document.documentElement.clientHeight)) *
-          100
-      ) / 100
+      document.documentElement.scrollTop /
+      (document.documentElement.scrollHeight - document.documentElement.clientHeight)
     onChange({ yPos, yPercentage })
   })
 

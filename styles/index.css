@@ -50,3 +50,29 @@
 
   /* #endregion font */
 }
+
+@layer utilities {
+  .animate-border-bottom {
+    position: relative;
+  }
+
+  .animate-border-bottom:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    /* spacing in bottom */
+    bottom: -4px;
+    /* border thickness */
+    height: 2px;
+    width: 100%;
+    transform-origin: left center;
+    background: white;
+    transform: scale3d(0, 1, 1);
+    transition: transform 500ms cubic-bezier(0.86, 0, 0.07, 1);
+    border-radius: 4px;
+  }
+
+  .animate-border-bottom:hover:after {
+    transform: scale3d(1, 1, 1);
+  }
+}

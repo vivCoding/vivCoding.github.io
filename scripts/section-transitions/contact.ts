@@ -1,11 +1,11 @@
-import { useScrollPosition, useYPercentageOnScreen } from "../utils/hooks"
+import { usePercentageSeen, useScrollPosition } from "@/utils/hooks"
 
 const contactSection = document.getElementById("contact")
 const projectsSection = document.getElementById("projects")
 const words = [...document.getElementsByClassName("contact-line-word")] as HTMLElement[]
 const emoji = document.getElementById("contact-line-emoji")
 
-const PERCENTAGE_TRIGGER = 0.45
+const PERCENTAGE_TRIGGER = 0.9
 
 const WORD_ANIMATION = "animate-rise-word"
 const EMOJI_ANIMATION = "animate-swoosh"
@@ -16,12 +16,12 @@ export function initTransition() {
   // initial
   hide()
 
-  // relate the position/visibility of previous section to this section
-  useYPercentageOnScreen(projectsSection, (percentage) => {
+  // a lil different for last section
+  usePercentageSeen(contactSection, (percentage) => {
     if (percentage >= PERCENTAGE_TRIGGER) {
       show()
     } else {
-      const opacity = 1 - (PERCENTAGE_TRIGGER - percentage) / 0.1
+      const opacity = 1 - (PERCENTAGE_TRIGGER - percentage) / 0.3
       contactSection.style.opacity = `${opacity}`
       if (opacity <= 0) {
         hide()
@@ -31,7 +31,9 @@ export function initTransition() {
 
   // accouting for large screens, where there is very minimal scrolling
   useScrollPosition(({ yPercentage }) => {
-    if (yPercentage >= 0.99) show()
+    if (yPercentage >= 0.99) {
+      show()
+    }
   })
 }
 
