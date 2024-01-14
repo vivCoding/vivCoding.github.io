@@ -31,8 +31,7 @@ export function initTransition() {
 
   // accouting for large screens, where there is very minimal scrolling
   useScrollPosition(({ yPercentage }) => {
-    console.log(yPercentage)
-    if (yPercentage === 1) show()
+    if (yPercentage >= 0.99) show()
   })
 }
 
