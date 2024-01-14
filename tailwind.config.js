@@ -150,7 +150,7 @@ module.exports = {
               borderBottomWidth: "2px",
               transitionProperty: "border-color, opacity",
               transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
-              transitionDuration: "150ms",
+              transitionDuration: "200ms",
               "&:hover": {
                 borderColor: "rgb(147 197 253 / var(--tw-text-opacity))",
                 opacity: 0.6,
