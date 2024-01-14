@@ -2,7 +2,7 @@
 # TODO consider doing pagination
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth motion-reduce:scroll-auto">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,8 +26,8 @@
   {% comment %}
     TODO put the body and main wrap as a separate includes
   {% endcomment %}
-  <body class="scroll-smooth bg-zinc-900 font-sans text-white">
-    <main class="mx-auto my-4 mb-10 max-w-4xl scroll-smooth px-10">
+  <body class="bg-zinc-900 font-sans text-white">
+    <main class="mx-auto my-4 mb-10 max-w-4xl px-10">
       {% render "blog/nav.liquid" %}
       <section id="intro">
         <h1 class="text-5xl font-bold">My Blog</h1>
@@ -38,7 +38,7 @@
       </section>
       <section id="posts" class="border-t-solid my-4 mt-10 border-t-2 border-t-white">
         {% for post in collections.post reversed %}
-          <div class="border-b-solid border-b-2 border-b-white px-3 py-5 ">
+          <div class="border-b-solid border-b-2 border-b-white px-3 py-5 hover:bg-zinc-800">
             <h1 class="text-2xl font-semibold">
               <a
                 class="border-b-2 border-solid border-b-transparent opacity-100 transition hover:border-b-white hover:opacity-60"
@@ -56,7 +56,7 @@
                 </svg>
               </a>
             </h1>
-            <h6 class="text-sm font-light italic">
+            <h6 class="text-sm italic">
               {{ post.date | date: "%b %d, %Y" }}
             </h6>
             <p class="mt-4">{{ post.content | excerpt | strip_html | strip_newlines | truncatewords: 30 }}</p>

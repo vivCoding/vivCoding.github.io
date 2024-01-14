@@ -137,6 +137,36 @@ module.exports = {
         bop: "bop 1s ease-in-out forwards",
         swoosh: "swoosh-out 100ms ease-in 0ms forwards, swoosh-in 200ms ease-in 100ms forwards",
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            a: {
+              color: "rgb(147 197 253 / var(--tw-text-opacity))",
+              fontWeight: 600,
+              textDecorationLine: "none",
+              opacity: 1,
+              borderColor: "transparent",
+              borderStyle: "solid",
+              borderBottomWidth: "2px",
+              transitionProperty: "border-color, opacity",
+              transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
+              transitionDuration: "150ms",
+              "&:hover": {
+                borderColor: "rgb(147 197 253 / var(--tw-text-opacity))",
+                opacity: 0.6,
+              },
+            },
+            blockquote: {
+              "p::before": {
+                content: "none",
+              },
+              "p::after": {
+                content: "none",
+              },
+            },
+          },
+        },
+      },
     },
   },
   plugins: [
