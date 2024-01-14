@@ -6,9 +6,9 @@ updated: 2024-01-13
 templateEngineOverride: md
 ---
 
-These were issues I had when developing my [website](https://vivcoding.github.io/), and how I went from vanilla technologies to "a little bit more".
+These were issues I had when developing my [website](https://vivcoding.github.io/), and how I went from vanilla technologies to "not-so-vanilla".
 
-Not quite so recently (like way back in November during my school's Thanksgiving break), I decided to revise my personal website, as I thought it looked a little bit boring.
+Not-quite-so-recently, I decided to revise my personal website, as I thought it looked a little bit boring.
 
 At the time of writing, I archived this website in a separate branch on GitHub. I hope a future me remembers to not delete it. If not, here's what it used to look like:
 
