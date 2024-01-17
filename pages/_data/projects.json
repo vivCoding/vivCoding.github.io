@@ -6,12 +6,6 @@
     "description": "A collaborative platform to learn LeetCode problems together. Submitted to the Boilermake X hackathon"
   },
   {
-    "title": "Blanner",
-    "link": "https://devpost.com/software/blanner",
-    "image": "/assets/images/projects/purdueLogoB_1.png",
-    "description": "A degree and semester course planner for Purdue students. Submitted to the Boilermake IX Hackathon"
-  },
-  {
     "title": "VChess",
     "link": "https://vivcoding.github.io/vchess/",
     "image": "/assets/images/projects/chess_piece_knight.png",
@@ -24,6 +18,12 @@
     "description": "Web app that animates many different sorting algorithms"
   },
   {
+    "title": "yt-dlp GUI",
+    "link": "https://github.com/vivCoding/yt-dlp-gui",
+    "image": "/assets/images/projects/youtube_logo.png",
+    "description": "A simple GUI for the popular Youtube downloader library"
+  },
+  {
     "title": "Vusic",
     "link": "https://github.com/vivCoding/vusic",
     "image": "/assets/images/projects/logo500x500.png",
@@ -34,6 +34,12 @@
     "link": "https://github.com/vivCoding/bf-interpreter",
     "image": "/assets/images/projects/bfLogo.png",
     "description": "A Brainfuck interpreter writen in C. Has basic error checking."
+  },
+  {
+    "title": "Blanner",
+    "link": "https://devpost.com/software/blanner",
+    "image": "/assets/images/projects/purdueLogoB_1.png",
+    "description": "A degree and semester course planner for Purdue students. Submitted to the Boilermake IX Hackathon"
   },
   {
     "title": "vsearch",
@@ -52,12 +58,6 @@
     "link": "https://devpost.com/software/healtheye",
     "image": "/assets/images/projects/healtheye.png",
     "description": "A video analytics IoT system that allows you to monitor people traffic and COVID social distancing violations. Uses Microsoft Azure Web services. Submitted to the Microsoft Azure AI 2021 Hackathon"
-  },
-  {
-    "title": "yt-dlp GUI",
-    "link": "https://github.com/vivCoding/yt-dlp-gui",
-    "image": "/assets/images/projects/youtube_logo.png",
-    "description": "A simple GUI for the popular Youtube downloader library"
   },
   {
     "title": "ASCII Art Converter",
