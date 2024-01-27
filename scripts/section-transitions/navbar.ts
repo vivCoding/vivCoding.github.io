@@ -32,6 +32,8 @@ export function initTransition() {
     }
     if (percentage > SETTINGS_TRIGGER) {
       settingsBtnOverlay.classList.remove(GROUP_HOVER_CLASS)
+      // override important styles
+      settingsBtnOverlay.style.setProperty("animation-delay", "0s", "important")
       const opacity = 1 - (percentage - SETTINGS_TRIGGER) / 0.1
       settingsBtnOverlayContainer.style.opacity = `${opacity}`
       if (opacity <= 0) {
