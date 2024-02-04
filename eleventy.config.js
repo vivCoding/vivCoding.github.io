@@ -1,10 +1,12 @@
 // TODO consider using eleventy as the final builder/processor and using parcel only for js bundling
 // rather than having eleventy only for templates and parcel for bundling everything
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight")
+const mdk = require("markdown-it-katex")
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight)
+  eleventyConfig.amendLibrary("md", (mdLib) => mdLib.use(mdk))
 
   // attempts to extracts a mini excerpt preview given a post
   // uses the first paragraph as the excerpt's content
