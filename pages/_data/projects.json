@@ -1,5 +1,17 @@
 [
   {
+    "title": "GPT Math",
+    "link": "https://github.com/vivCoding/gpt-math",
+    "image": "/assets/images/projects/math.png",
+    "description": "Basic experiment of improving math problem solving for ChatGPT"
+  },
+  {
+    "title": "DSRLM GPT",
+    "link": "https://github.com/vivCoding/dsr-lm-gpt",
+    "image": "/assets/images/projects/code_icon.png",
+    "description": "Basic experiment of improving logical reasoning (specifically relation extractions) for ChatGPT"
+  },
+  {
     "title": "MeetCode",
     "link": "https://devpost.com/software/meetcode",
     "image": "/assets/images/projects/leetcode.png",
@@ -9,7 +21,7 @@
     "title": "VChess",
     "link": "https://vivcoding.github.io/vchess/",
     "image": "/assets/images/projects/chess_piece_knight.png",
-    "description": "A basic C++ chess engine for playing chess games and generating optimal moves. Designed to be paired with a GUI and be a backend for chess programs. Deployable to the web with WebAssembly"
+    "description": "Basic C++ chess engine for playing chess games and generating optimal moves. Designed to be paired with a GUI and be a backend for chess programs. Deployable to the web with WebAssembly"
   },
   {
     "title": "Sorting Visualizer",
@@ -21,19 +33,19 @@
     "title": "yt-dlp GUI",
     "link": "https://github.com/vivCoding/yt-dlp-gui",
     "image": "/assets/images/projects/youtube_logo.png",
-    "description": "A simple GUI for the popular Youtube downloader library"
+    "description": "Simple GUI for the popular Youtube downloader library"
   },
   {
     "title": "Vusic",
     "link": "https://github.com/vivCoding/vusic",
     "image": "/assets/images/projects/logo500x500.png",
-    "description": "A fast and easy to use music player and queuer, inspired by Discord GroovyBot. Submited to the BoilerMake VIII Hackathon"
+    "description": "Fast and easy to use music player and queuer, inspired by Discord GroovyBot. Submitted to the BoilerMake VIII Hackathon"
   },
   {
     "title": "BF Interpreter",
     "link": "https://github.com/vivCoding/bf-interpreter",
     "image": "/assets/images/projects/bfLogo.png",
-    "description": "A Brainfuck interpreter writen in C. Has basic error checking."
+    "description": "Simple Brainf**k interpreter writen in C. Has basic error checking."
   },
   {
     "title": "Blanner",
