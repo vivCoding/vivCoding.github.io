@@ -12,6 +12,12 @@
     "description": "Basic experiment of improving logical reasoning (specifically relation extractions) for ChatGPT"
   },
   {
+    "title": "Program Synthesizer",
+    "link": "https://github.com/vivCoding/ps",
+    "image": "/assets/images/projects/code_icon.png",
+    "description": "Basic program-by-example (PBE) synthesizer that can generate programs that perform basic array manipulation and arithmetic on an input array. Does bottom-up and top-down enumeration to search for programs."
+  },
+  {
     "title": "MeetCode",
     "link": "https://devpost.com/software/meetcode",
     "image": "/assets/images/projects/leetcode.png",
