@@ -13,9 +13,9 @@
   },
   {
     "title": "Program Synthesizer",
-    "link": "https://github.com/vivCoding/ps",
+    "link": "https://vivcoding.github.io/ps/",
     "image": "/assets/images/projects/code_icon.png",
-    "description": "Basic program-by-example (PBE) synthesizer that can generate programs that perform basic array manipulation and arithmetic on an input array. Does bottom-up and top-down enumeration to search for programs."
+    "description": "Basic program-by-example (PBE) synthesizer that can generate programs that perform basic array manipulation and arithmetic on an input array. Does bottom-up and top-down enumeration to search for programs"
   },
   {
     "title": "MeetCode",
