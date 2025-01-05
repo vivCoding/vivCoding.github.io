@@ -1,5 +1,11 @@
 [
   {
+    "title": "Theory Combination Visualizer",
+    "link": "https://theory-combo-viz.vercel.app/",
+    "image": "/assets/images/projects/code_icon.png",
+    "description": "A basic visualizer for polite theory combination"
+  },
+  {
     "title": "GPT Math",
     "link": "https://github.com/vivCoding/gpt-math",
     "image": "/assets/images/projects/math.png",
