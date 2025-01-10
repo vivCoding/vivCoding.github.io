@@ -2,8 +2,8 @@
   {
     "title": "Theory Combination Visualizer",
     "link": "https://theory-combo-viz.vercel.app/",
-    "image": "/assets/images/projects/code_icon.png",
-    "description": "A basic visualizer for polite theory combination"
+    "image": "/assets/images/projects/sigma.png",
+    "description": "A basic visualizer for polite theory combination. Shows the steps that many modern SMT solvers use when verifiying a logic statement from two theories"
   },
   {
     "title": "GPT Math",
@@ -14,13 +14,19 @@
   {
     "title": "DSRLM GPT",
     "link": "https://github.com/vivCoding/dsr-lm-gpt",
-    "image": "/assets/images/projects/code_icon.png",
+    "image": "/assets/images/projects/chatgpt.jpg",
     "description": "Basic experiment of improving logical reasoning (specifically relation extractions) for ChatGPT"
+  },
+  {
+    "title": "Uniera Website",
+    "link": "https://theuniera.com",
+    "image": "/assets/images/projects/uniera-consulting.png",
+    "description": "A website project for Uniera Consulting. Give them a look!"
   },
   {
     "title": "Program Synthesizer",
     "link": "https://vivcoding.github.io/ps/",
-    "image": "/assets/images/projects/code_icon.png",
+    "image": "/assets/images/projects/tree.jpg",
     "description": "Basic program-by-example (PBE) synthesizer that can generate programs that perform basic array manipulation and arithmetic on an input array. Does bottom-up and top-down enumeration to search for programs"
   },
   {
